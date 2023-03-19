@@ -1,0 +1,39 @@
+.textdecore {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.kittyimg {
+    margin-left: auto;
+    margin-right: auto;
+    border: 4px solid red;
+    height: 300px;
+    display: flex;
+   
+}
+
+ol {
+    list-style-type: upper-roman;
+}
+
+.red {
+    border: 1px solid red;
+    text-align: center;
+    color: red;
+    width: 1000px
+}
+
+.table {
+    width: 1000px;
+}
+th, td {
+    border: 1px solid black;
+}
+
+.lionimg {
+    margin-left: auto;
+    margin-right: auto;
+    border: 4px solid red;
+    height: 300px;
+    display: flex;
+}
