@@ -1,13 +1,11 @@
-.body {
+body {
     margin: 0;
     width: 100%;
     height: 100vh;
-    background-image: url(../daily-challenge/img/background.jpg);
+    background-image: url("background.jpg");
     background-position: center;
     background-size: cover;
-    margin: 0px;
     padding: 0px;
-    display: flex;
 }
 
 .header {
@@ -47,10 +45,16 @@
     position: relative;
     color: white;
     list-style: none;
-    left: 900px;
+    left: 1000px;
 }
 
 li {
     display: inline;
     padding: 10px;
+}
+
+.text {
+    position: absolute;
+    top: 250px;
+    left: 100px;
 }
