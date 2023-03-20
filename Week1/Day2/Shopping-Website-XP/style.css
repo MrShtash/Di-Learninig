@@ -23,6 +23,9 @@ body {
     color: white;
     margin-right: 20px;
     justify-content: space-between;
+    display: flex;
+    text-align: center;
+    align-items: center;
 }
 
 .footer {
@@ -38,5 +41,12 @@ body {
 a {
     color: white;
     font-weight: medium;
-    
+    margin: 0 auto;
+    border: 1px solid white;
+    border-radius: 5px;
+    text-align: center;
+    align-items: center;
+    padding: 5px;
+    margin: 0 10px 0 10px;
+    height: 20px;
 }
