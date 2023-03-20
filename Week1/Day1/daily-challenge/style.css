@@ -15,6 +15,58 @@ body {
     height: 100px;
 }
 
+@media all and (min-width: 768px) {
+    h1 {
+        font-size: 25px;
+    }
+}
+
+@media all and (min-width: 600px) {
+    h1 {
+        font-size: 25px;
+    }
+}
+
+@media all and (max-width: 480px) {
+    color: yellow;
+}
+
+@media all and (max-width: 480px) {
+    p {
+        background-color: black;
+        color: yellow;
+    }
+}
+
+@media all and (min-width: 768px) and (max-width: 1024px) {
+    p {
+        background-color: rgb(122, 227, 122);
+        color: black;
+    }
+}
+
+@media all and (min-width: 992px) {
+    p {
+        background-color: red;
+        color: white;
+    }
+}
+
+@media all and (min-width: 1200px) {
+    p {
+        background-color: black;
+        color: white;
+    }
+}
+
+@media all and (mix-width: 1200px) {
+    h1 {
+        float: left;
+        width: 25%;
+    }
+}
+
+
 .box {
     top: 0;
     left: 0;
@@ -58,5 +110,4 @@ li {
     top: 250px;
     left: 100px;
     font-family: 'Arimo', sans-serif;
-
 }
