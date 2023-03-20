@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+    width: 100%;
+    padding: 0px;
+}
+
+.navbar {
+    background-color: black;
+    width: 100%;
+    height: 80px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.logo {
+    margin-left: 50px;
+    color: rgb(235, 219, 230);
+    font-size: 30px;
+}
+
+.menu {
+    color: white;
+    margin-right: 20px;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: black;
+    text-align: center;
+    color: white;
+    width: 100%;
+}
