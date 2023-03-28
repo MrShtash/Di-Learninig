@@ -9,11 +9,11 @@
 #else:
 #    print(f'{num[0]} , {num[-1]}')
 
-#num = input('enter text')
-#print(num)
-#m=""
-#for i in num:
-#    m+=i
+# str = input('enter text')
+# print(str)
+# m = ""
+# for s in str:
+#    m+=s
 #    print(m)
 
 import random
@@ -21,5 +21,3 @@ x = list('developer')
 random.shuffle(x)
 result = ''.join(x)
 print(result)
-
-
