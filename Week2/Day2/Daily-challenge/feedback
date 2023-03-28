@@ -1,0 +1,4 @@
+ In the first challenge,
+ It looks like the issue is that result is a list of integers, but the join() method expects a list of strings.
+ To fix this error, you can convert each integer to a string before appending it to result. 
+ The second challenge is perfect!
