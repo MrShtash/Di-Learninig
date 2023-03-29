@@ -64,7 +64,7 @@
 # print(more_on_zara)
 
 # ex 4: Disney Characters
-users = ["Mickey","Minnie","Donald","Ariel","Pluto"]
+# users = ["Mickey","Minnie","Donald","Ariel","Pluto"]
 # 1
 # disney_users_A = {} # add dict
 # i = 0 # add iterator

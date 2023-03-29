@@ -9,7 +9,7 @@
 #         b.append(i)
 #         word_dict[m] = b
 #     else: # if we have no letter in list
-#         word_dict[m] = [i]
+#         word_dict[m] = [i] #make massive
 #     i = i + 1
 # print(word_dict)
 
@@ -33,6 +33,15 @@
 # 3
 # {'f': [0], 'r': [1], 'o': [2], 'g': [3]]
 # 4
+#
+# s = "dodo"
+# {"d":[0,2], "o":[1,3]}
+#print s index
+#
+#
+
+
+
 # ------
 
 
