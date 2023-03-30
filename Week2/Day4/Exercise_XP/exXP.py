@@ -103,7 +103,8 @@ def get_random_temp(season: str) -> float: # use float, coz it's in task
         'summer': random.uniform(20,35),
         'autumn': random.uniform(10,20),
         }
-    return result_dict.get(season) 
+    return result_dict.get(season)
+# to get the desired value from the dictionary based on the incoming season value, dict.get("key") is the same as dict["key"], only if there is no such key, the first one will return None, and the second one will fail and  program will break
 
 def main():
     season = input('please, type a season (summer/autumn/winter/spring): ')
