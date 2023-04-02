@@ -135,7 +135,7 @@ class Zoo:
         print (self.sort_animals)
         
     def get_groups(self):
-        print("groups:")
+        print("group:")
         list(map(print, self.sort_animals))
 
 ramatgamzoo = Zoo('RamatGanZoo')
