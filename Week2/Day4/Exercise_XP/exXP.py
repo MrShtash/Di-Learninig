@@ -26,7 +26,7 @@ import random # for ex 4 and 7
 # favorite_book(title)
 
 # 3.1
-#def describe_city(str1, str2) -> str:
+# def describe_city(str1, str2) -> str:
 #     concatenated = str1 + '' + str2
 #     return concatenated
 
