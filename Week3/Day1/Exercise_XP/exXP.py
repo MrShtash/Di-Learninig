@@ -22,7 +22,7 @@
 # def oldest_cat(cat_list: list) -> Cat:
 
 # # def oldest_cat(*cats) -> Cat:
-#     # oldest = max(cats, key=lamba cat: cat.age)
+#     # oldest = max(cats, key=lambda cat: cat.age)
 #     # return oldest
 
 #     oldest = cat_list[0]
@@ -82,19 +82,71 @@
 # print(heighest.name)
 
 # 3  Who’s The Song Producer?
-class Song:
+# class Song:
 
-    def __init__(self, lyrics):
-        self.lyrics = lyrics
+#     def __init__(self, lyrics):
+#         self.lyrics = lyrics
 
-    def sing_me_a_song(self):
-        for line in self.lyrics:
-            print(line)
+#     def sing_me_a_song(self):
+#         for line in self.lyrics:
+#             print(line)
 
-stairway = Song(["There's a lady who's sure",
-                    "all that glitters is gold",
-                    "and she's buying a stairway to heaven"])
+# stairway = Song(["There's a lady who's sure",
+#                     "all that glitters is gold",
+#                     "and she's buying a stairway to heaven"])
 
-stairway.sing_me_a_song()
+# stairway.sing_me_a_song()
 
 # 4 Afternoon At the Zoo
+class Zoo:
+    
+    def __init__(self, zoo_name):
+        self.name = zoo_name
+        self.animals = []
+
+    def add_animal(self, new_animal):
+        if new_animal not in self.animals:
+            self.animals.append(new_animal)
+
+    def get_animsls(self):
+        print(self.animals)
+
+    def sell_animal(self, animal_sold):
+        if animal_sold in self.animals:
+            self.animals.remove(animal_sold)
+
+    # def sort_animals(self):
+
+    #     for animal in self.animals:
+    #         return sorted(self.animals, key=lambda animal: alphabet.index(animal[0]))
+
+    # def get_groups(self):
+    #     print()
+
+    def sort_animals(self):
+        self.sort_animals=[[]] # add new list for sorted by 1st letter animals 
+        self.animals.sort()
+        let=0 # add new variable for new list
+        for i, m in enumerate(self.animals): # i — variable for animal1, animal2, ..., m — variable for 1st letter in animal name
+            if m[0]!= self.animals[(i-1) if i>0 else 0][0]: # check 1st letter in animal name and after first animal go on 
+                let+=1 # add new underlist 
+                self.sort_animals.append([])
+            self.sort_animals[let].append(m)
+        print (self.sort_animals)
+        
+    def get_groups(self):
+        print("group:")
+        list(map(print, self.sort_animals))
+
+ramatgamzoo = Zoo('RamatGanZoo')
+ramatgamzoo.add_animal('shark')
+ramatgamzoo.add_animal('monkey')
+ramatgamzoo.add_animal('lion')
+ramatgamzoo.add_animal('bear')
+ramatgamzoo.add_animal('crockodile')
+ramatgamzoo.add_animal('eagle')
+ramatgamzoo.add_animal('snake')
+ramatgamzoo.sell_animal('lion')
+ramatgamzoo.get_animsls()
+ramatgamzoo.sort_animals()
+ramatgamzoo.get_groups()
