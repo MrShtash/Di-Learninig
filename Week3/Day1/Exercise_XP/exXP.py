@@ -115,14 +115,6 @@ class Zoo:
         if animal_sold in self.animals:
             self.animals.remove(animal_sold)
 
-    # def sort_animals(self):
-
-    #     for animal in self.animals:
-    #         return sorted(self.animals, key=lambda animal: alphabet.index(animal[0]))
-
-    # def get_groups(self):
-    #     print()
-
     def sort_animals(self):
         self.sort_animals=[[]] # add new list for sorted by 1st letter animals 
         self.animals.sort()
