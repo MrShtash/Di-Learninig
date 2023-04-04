@@ -2,17 +2,17 @@ import math
 
 class Pagination:
 
-    def __init__(self, items: list = None, page_size: int = 10) -> None:
+    def __init__(self, items: list = None, page_size: int = 10):
         if items is not None:
             self.items = items
         else:
             self.items = []
         self.page_size = page_size
-        self.current_idx = 0
-        self.total_pages = math.ceil(len(self.items) / self.page_size) # value up to whole
+        self.current_idx = 0 # 1st index = 0, первый лист индекс = 0
+        self.total_pages = math.ceil(len(self.items) / self.page_size) # value up to whole, sum of pages and sum letters per page (определели количество страниц и сколько букв вывести/стр)
 
-    def get_visible_items(self):
-        start_idx = self.current_idx * self.page_size
+    def get_visible_items(self): # whwrw we are now где находимся в данный момент
+        start_idx = self.current_idx * self.page_size # start page * sum letters per page (откуда начинаю страница * количество символов на странице)
         end_idx = start_idx + self.page_size
         return self.items[start_idx: end_idx]
 
@@ -21,7 +21,7 @@ class Pagination:
         if page_num > self.total_pages or page_num < 1:
             raise ValueError(f'Incorrect page number - {page_num}. Aviable - {self.total_pages}')
         
-        self.current_idx = page_num - 1 #
+        self.current_idx = page_num - 1 # work with isx page (работа с индексом листа)
 
     def first_page(self):
         self.go_to_page(1)
@@ -32,15 +32,14 @@ class Pagination:
         return self
 
     def next_page(self):
-        self.go_to_page(self.current_idx + 2)
+        self.go_to_page(self.current_idx + 2) # coz its idx
         return self
 
     def previous_page(self):
-        self.go_to_page(self.current_idx)
+        self.go_to_page(self.current_idx) # coz it idx
         return self
 
 # dunder method - double under method
-
     def __str__(self) -> str:
         # out = ""
         # visible_items = self.get_visible_items()
