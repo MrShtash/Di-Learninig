@@ -2,9 +2,10 @@ import random
 import string
 import datetime
 import faker from Faker
+# from Faker import faker
 
 # #1 
-# from func import additional as add
+from func import additional as add
 
 # print(add(5, 7))
 
@@ -56,11 +57,11 @@ import faker from Faker
 # print(age_mars)
 
 # 9
-# fake=Faker()
-# user_list=[]
-# for i in range(10):
-#     name=fake.name()
-#     addres=fake.address()
-#     language=fake.language_code()
-#     user_list.append({'name':name, 'addres':addres, 'language':language})
-# print (user_list)
+fake = Faker()
+user_list = []
+for i in range(10):
+    name=fake.name()
+    addres=fake.address()
+    language=fake.language_code()
+    user_list.append({'name':name, 'addres':addres, 'language':language})
+print (user_list)
