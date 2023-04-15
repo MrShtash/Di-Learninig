@@ -75,9 +75,7 @@ def get_words_from_file(filename: str) -> set: #use set, coz in task we nwwd col
     return word_set
 
 def get_random_sentense(word_set: set):
-
     sent_list = []
-    
     q = int(input(f'please, enter the number of words for the sentence from 2 to 20: '))
  
     if not isinstance(q, int): # return bool, we check q — int (for future)
@@ -86,7 +84,7 @@ def get_random_sentense(word_set: set):
         print('You need a number from 2 to 20')
     else:
         for i in range(q): # use len value
-            s = random.sample(list(word_set), 1)[0] # take 1 word from set q times, and add to empty list; take [0] from list 
+            s = random.sample(list(word_set), 1)[0] # take 1 random word from set q times, and add to empty list; coz its return us a list, we ned to use [0] to access the element inside a list 
             sent_list.append(s)
         r = ' '.join(sent_list)
 
