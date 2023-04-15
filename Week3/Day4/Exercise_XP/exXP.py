@@ -59,71 +59,73 @@
 #     else:
 #         print(get_random_sentense)
 
-# import random
+import random
 
-# def get_words_from_file(filename: str) -> set: #use set, coz in task we nwwd collection. func resieve textfile and we can take a set of words
-#     word_set = set()
+def get_words_from_file(filename: str) -> set: #use set, coz in task we nwwd collection. func resieve textfile and we can take a set of words
+    word_set = set()
  
-#     with open(filename, 'r') as file: # open 2 read
-#         lines = file.readlines() # read line by line
+    with open(filename, 'r') as file: # open 2 read
+        lines = file.readlines() # read line by line
  
-#         for line in lines:
-#             words = line.strip('\n').split(" ") # we have list of lines, delete symbol \n, use split to ceparate lines into words and we right words in empty list
-#             for word in words:
-#                 word_set.add(word)
+        for line in lines:
+            words = line.strip('\n').split(" ") # we have list of lines, delete symbol \n, use split to ceparate lines into words and we right words in empty list
+            for word in words:
+                word_set.add(word)
  
-#     return word_set
+    return word_set
 
-# def get_random_sentense(word_set: set):
-#     sent_list = []
-#     q = int(input(f'please, enter the number of words for the sentence from 2 to 20: '))
- 
-#     if not isinstance(q, int): # return bool, we check q — int (for future)
-#         print('You should type a number')
-#     elif q > 20 or q < 1: # and we check a q value
-#         print('You need a number from 2 to 20')
-#     else:
-#         for i in range(q): # use len value
-#             s = random.sample(list(word_set), 1)[0] # take 1 word from set q times, and add to empty list; take [0] from list 
-#             sent_list.append(s)
-#         r = ' '.join(sent_list)
+def get_random_sentense(word_set: set):
 
-#         print(sent_list)
-#         print(r.lower())
+    sent_list = []
+    
+    q = int(input(f'please, enter the number of words for the sentence from 2 to 20: '))
  
-# def main():
-#     print(f'This program create a random sentense with your random length')
+    if not isinstance(q, int): # return bool, we check q — int (for future)
+        print('You should type a number')
+    elif q > 20 or q < 1: # and we check a q value
+        print('You need a number from 2 to 20')
+    else:
+        for i in range(q): # use len value
+            s = random.sample(list(word_set), 1)[0] # take 1 word from set q times, and add to empty list; take [0] from list 
+            sent_list.append(s)
+        r = ' '.join(sent_list)
 
-#     filename = 'words.txt'
-
-#     words_set = get_words_from_file(filename)
-#     get_random_sentense(words_set)
+        print(sent_list)
+        print(r.lower())
  
-# main()
+def main():
+    print(f'This program create a random sentense with your random length')
+
+    filename = 'words.txt'
+
+    words_set = get_words_from_file(filename)
+    get_random_sentense(words_set)
+ 
+main()
 
 # 2 work with JSON
-import json
+# import json
 
-sampleJson = """{ 
-   "company":{ 
-      "employee":{ 
-         "name":"emma",
-         "payable":{ 
-            "salary":7000,
-            "bonus":800
-         }
-      }
-   }
-}"""
+# sampleJson = """{ 
+#    "company":{ 
+#       "employee":{ 
+#          "name":"emma",
+#          "payable":{ 
+#             "salary":7000,
+#             "bonus":800
+#          }
+#       }
+#    }
+# }"""
 
-jsn_str = json.loads(sampleJson) # load string 
-print(jsn_str['company']['employee']['payable']['salary']) # Access the nested “salary” key from the JSON-string above.
+# jsn_str = json.loads(sampleJson) # load string 
+# print(jsn_str['company']['employee']['payable']['salary']) # Access the nested “salary” key from the JSON-string above.
 
-jsn_str['company']['employee']['birth_date'] = '12/12/2021' # Add a key called “birth_date” to the JSON-string at the same level as the “name” key.
-print(jsn_str)
+# jsn_str['company']['employee']['birth_date'] = '12/12/2021' # Add a key called “birth_date” to the JSON-string at the same level as the “name” key.
+# print(jsn_str)
 
-sampleJson_1 = json.dumps(jsn_str, indent = 2, sort_keys=True)
-print (sampleJson_1)
+# sampleJson_1 = json.dumps(jsn_str, indent = 2, sort_keys=True)
+# print (sampleJson_1)
 
-with open("exXP.json",'w') as file: # save dict 2 JSON file
-    json.dump(jsn_str, file, indent = 2)
+# with open("exXP.json",'w') as file: # save dict 2 JSON file
+#     json.dump(jsn_str, file, indent = 2)
