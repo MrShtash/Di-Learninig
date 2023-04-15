@@ -1,4 +1,6 @@
+# way 1
 from math import pi
+import turtle
 
 class Circle:
     
@@ -32,5 +34,3 @@ print(circle_sum_r)
 print(circle_dif_r)
 print(circle_eq_r)
 # print(circle_list.sort)
-
-

@@ -1,7 +1,8 @@
 import random
 import string
 import datetime
-import faker from Faker
+from faker import Faker
+
 # from Faker import faker
 
 # #1 
