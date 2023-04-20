@@ -36,7 +36,7 @@ def add_item_to_menu():
     if new_item.save():
          print('add successful')
     else:
-         print('couldnt add') # always print this, coz .save returns nothing, if i add to .save return True — add_item_to_menu will be print allways success, have no idea how to check it
+         print('couldnt add') 
 # add_item_to_menu()
 
 # remove_item_from_menu() - this function should ask the user to input the name of the item they want to remove from the restaurant’s menu. The function should not interact with the menu itself, but simply call the appropriate function from the MenuItem object.
@@ -44,7 +44,8 @@ def add_item_to_menu():
 # If not – print a message which states that there was an error.
 def remove_item_to_menu():
     item_name = input('type what u want to delete: ')
-    if MenuItem.item_name.delete():
+    if MenuItem.item_name == item_name:
+        MenuItem.item_name.delete()
         print('{item_name} delete successful')
     else:
         print('couldnt remove')

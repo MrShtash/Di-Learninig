@@ -20,7 +20,7 @@ class MenuItem:
         with connection.cursor() as cursor:
             cursor.execute(q)
             connection.commit()
-        # return True
+            return True
 
     def delete(self):
         q1 = f"delete from restourant_menu where (name = '{self.name}');"
