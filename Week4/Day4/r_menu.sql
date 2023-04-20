@@ -1,0 +1,11 @@
+-- create table restourant_menu (
+-- menu_id serial primary key not null,
+-- name varchar (50),
+-- price float
+-- );
+
+-- delete from restourant_menu where menu_id = '2';
+-- delete from restourant_menu where menu_id = '3';
+-- delete from restourant_menu where menu_id = '4';
+-- update restourant_menu set name = 'p', price = 4 where name = 'Ice' and price = 5;
+-- select name, price from restourant_menu where name = 'pizza';

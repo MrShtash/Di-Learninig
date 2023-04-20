@@ -54,10 +54,9 @@
 -- select * from order_price (2);
 -- select * from order_price (3);
 
-
 -- BONUS
 -- create table users (
--- user_id serial primary key,
+-- user_id serial,
 -- items_id int,
 -- product_orders_id int,
 -- first_name varchar (20),
@@ -65,6 +64,8 @@
 -- primary key (user_id, product_orders_id),
 -- constraint fk_product_orders foreign key (product_orders_id) references product_orders(id)
 -- );
+
+
 
 -- create total_price (total_id int)
 -- returns int as $$
