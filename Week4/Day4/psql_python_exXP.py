@@ -20,6 +20,7 @@ class MenuItem:
         with connection.cursor() as cursor:
             cursor.execute(q)
             connection.commit()
+        # return True
 
     def delete(self):
         q1 = f"delete from restourant_menu where (name = '{self.name}');"
@@ -75,14 +76,14 @@ class MenuItem:
 
         # q7 = f"select '{self.name}', '{self.price}' from restourant_menu where name = '{self.name}';"        
 
-burguer = MenuItem('Burguer',35)
-pizza = MenuItem('pizza',40)
-salad = MenuItem('ceazar', 55)
-beer = MenuItem('Corona extra', 15)
-burguer2 = MenuItem('BIG Burguer',100)
-shakshuka = MenuItem('shakshuka', 60)
-vb = MenuItem('Veggie Burger', 37)
-i = MenuItem('Ice', 5)
+# burguer = MenuItem('Burguer',35)
+# pizza = MenuItem('pizza',40)
+# salad = MenuItem('ceazar', 55)
+# beer = MenuItem('Corona extra', 15)
+# burguer2 = MenuItem('BIG Burguer',100)
+# shakshuka = MenuItem('shakshuka', 60)
+# vb = MenuItem('Veggie Burger', 37)
+# i = MenuItem('Ice', 5)
 
 # burguer.save()
 # pizza.save()
