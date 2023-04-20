@@ -1,0 +1,9 @@
+-- create table countries (
+-- id serial primary key not null,
+-- name varchar (50) not null,
+-- capital varchar (50) not null,
+-- flag_emoji varchar (50) not null,
+-- flag_url varchar (50) not null,
+-- subregion varchar (50) not null,
+-- population int not null
+-- );
