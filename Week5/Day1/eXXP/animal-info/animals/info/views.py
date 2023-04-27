@@ -25,4 +25,3 @@ def anmls(request,id):
                 }
     f.close()
     return render(request, 'anmls.html', context)
-
