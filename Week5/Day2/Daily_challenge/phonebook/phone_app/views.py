@@ -41,7 +41,7 @@ def profile_view(request, search_value: str):
     person_info = search(Person, search_value)
     if person_info is not None:
         person_profile = person_info.profile
-        person_language = person_profile.Language.all().order_by('name')
+        profile_language = person_profile.Language.all().order_by('name')
 
-        context = {'person_info': person_info, 'person_info': person_profile, 'language': person_language}
+        context = {'person_info': person_info, 'person_profile': person_profile, 'language': profile_language}
     return render(request, 'profile.html', context)
