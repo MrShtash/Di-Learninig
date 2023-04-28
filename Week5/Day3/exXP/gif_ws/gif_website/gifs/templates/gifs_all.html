@@ -1,0 +1,28 @@
+{%extends 'base.html'%}
+{%block title%}all gifs{%endblock title%}
+{%block content%}
+    {%for gif, like, dislike in gifs_forms%}
+        <br>
+        <!-- instance -->
+            {{gif}} 
+        <br>
+        <!-- value likes field -->
+            {{gif.likes}}
+        <br>
+        <!-- form -->
+            <form method="POST">
+                {%csrf_token%}
+                    {{like}}
+                <button type="submit", style='background-color: green'>LIKE</button>
+            </form>
+        <br>
+        <!-- form -->
+            <form method="POST">
+                {%csrf_token%}
+                    {{dislike}}
+                <button type="submit", style='background-color: red'>DISLIKE</button>
+            </form>
+        <br>
+    {%endfor%}
+
+{%endblock content%}

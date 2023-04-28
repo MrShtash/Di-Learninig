@@ -1,0 +1,15 @@
+body {
+    background-color: rgb(225, 168, 83);
+    font-family: 'Trebuchet MS', Helvetica, sans-serif;
+    font-size: 0.9em;
+    text-align: justify;
+    color: azure;
+}
+
+h1 {
+    color: blue;
+}
+
+ul > li {
+    color: red;
+}
