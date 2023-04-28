@@ -33,3 +33,15 @@ def search_person(request, search_value: str):
         context = {'person': person_info}
 
     return render(request, 'person_info.html', context)
+
+# ==== extra (trying new topic) ====
+# data for profile
+def profile_view(request, search_value: str):
+    context = {}
+    person_info = search(Person, search_value)
+    if person_info is not None:
+        person_profile = person_info.profile
+        person_language = person_profile.Language.all().order_by('name')
+
+        context = {'person_info': person_info, 'person_info': person_profile, 'language': person_language}
+    return render(request, 'profile.html', context)
