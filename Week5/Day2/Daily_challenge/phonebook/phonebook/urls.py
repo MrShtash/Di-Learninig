@@ -16,10 +16,11 @@
 # """
 from django.contrib import admin
 from django.urls import path
-from phone_app.views import search_person, profile_view
+from phone_app.views import search_person, profile_view, search_ph
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('persons/<str:search_value>', search_person),
-    path('profiles/<str:search_value>', profile_view)
+    path('profiles/<str:search_value>', profile_view),
+    path('search_ph/', search_ph)
 ]
