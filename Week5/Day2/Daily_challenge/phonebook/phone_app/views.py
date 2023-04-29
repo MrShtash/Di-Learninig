@@ -24,14 +24,18 @@ def search_person(request, search_value: str):
     # by_phonenumber = search(Person, 'phone_number', search_value)
     person_info = search(Person, search_value)
 
-    # if by_name is not None:
-    #     context = {'Person': by_name}
+    # # if by_name is not None:
+    # #     context = {'Person': by_name}
 
-    # if by_phonenumber is not None:
-    #     context = {'Person': by_phonenumber}
+    # # if by_phonenumber is not None:
+    # #     context = {'Person': by_phonenumber}
 
-    if person_info is not None:
-        context = {'person': person_info}
+    # if person_info is not None:
+    #     context = {'person': person_info}
+    if person_info: # if we find
+        context['person'] = person_info # add t context
+    else:
+        context['error'] = 'not found'
 
     return render(request, 'person_info.html', context)
 
@@ -55,9 +59,10 @@ def search_ph(request):
             name = form.cleaned_data['name'] # take field name
             phone_number = form.cleaned_data['phone_number'] # take field ph number
             person_info = search(Person, name) or search(Person, phone_number) # search Person instance
-            if person_info: # if we find reson instance
-                context['person'] = person_info # add to context
-                # return redirect('search_person', search_value=name)
+            if person_info: # if we find reason instance
+                # context['person'] = person_info # add to context
+                return search_person(request, person_info.name) # if we find person - we call search_person and 
+            # take name like value for search
             else:
                 context['error'] = 'Person not found'
 
@@ -66,4 +71,4 @@ def search_ph(request):
 
     context['form'] = form
 
-    return render(request, 'search_phone.html', context)
+    return render(request, 'search_phone.html', context) # show all atribute in search_phone.html
