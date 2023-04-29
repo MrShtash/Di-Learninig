@@ -16,11 +16,15 @@
 # """
 from django.contrib import admin
 from django.urls import path
-from gifs.views import add_gif_view, add_category_view, gifs_view
+from gifs.views import add_gif_view, add_category_view, gifs_view, home, category, all_category, one_gif
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('add_gif/', add_gif_view),
     path('add_category/', add_category_view),
-    path('gifs/', gifs_view)
+    path('gifs/', gifs_view),
+    path('home/', home),
+    path('category/<int:c_id>/', category, name='category'),
+    path('all_category/', all_category),
+    path('one_gif/<int:gif_id>/', one_gif, name='one_gif')
 ]

@@ -1,0 +1,10 @@
+{%extends 'base.html'%}
+{%block title%}One Gif{%endblock title%}
+{%block content%}
+        <li> 
+            <img src="{{gif.url}}" alt=""><br>
+            Title:{{gif.title}}<br>
+            Uploader:{{gif.uploader_name}}<br>
+            Created at:{{gif.created_at}}<br><br> 
+        </li>
+{%endblock content%}

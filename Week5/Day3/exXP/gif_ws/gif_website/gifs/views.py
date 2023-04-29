@@ -5,6 +5,11 @@ from django.http import HttpResponse
 
 # Create your views here.
 
+menu = [{'title': "Home", 'url_name': 'home'},
+        {'title': "Add gif", 'url_name': 'add_gif'},
+        {'title': "Add category", 'url_name': 'add_category'},
+]
+
 # add new gif
 def add_gif_view(request): # each request - method, it can be GET and POST in this case
     # Get mode - getting content out
@@ -86,3 +91,29 @@ def gifs_view(request):
     gifs_forms = list(zip(gifs_all, like_forms, dislike_forms)) # connect by index them, put inside a list. result% gif, like form, dislike form
     context = {'gifs_forms': gifs_forms} # passed into context
     return render (request, 'gifs_all.html', context)
+
+def home(request):
+    gif_list=Gif.objects.all()
+    context={'gif_list':gif_list}
+    for p in gif_list:
+        print(p.url)
+    return render(request, 'home.html', context)
+
+def category(request, c_id):
+    cat_name=Category.objects.get(pk=c_id)
+    gif_list=Gif.objects.filter(categories__pk=c_id)
+    context={'menu':menu, 'cat_name':cat_name, 'gif_list':gif_list}
+    for p in gif_list:
+        print(p.url)
+    return render(request, 'category.html', context)
+
+def all_category(request):
+    categories=Category.objects.all()
+    # print(categories)
+    context={'categories':categories}
+    return render(request, 'all_category.html', context)
+
+def one_gif(request, gif_id): # there r big steps with id but its work
+    gif=Gif.objects.get(pk=gif_id)
+    context={'menu':menu, 'gif':gif}
+    return render(request, 'one_gif.html', context)
