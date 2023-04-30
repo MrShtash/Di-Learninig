@@ -46,7 +46,6 @@ customer_list = Customer.objects.all()
 #                         customer = customer,
 #                         vehicle = vehicle)
 #     fake_rental.save()
-    
 
 for _ in range(100): #create loop with variable
     l = {} #create empty dict with 1 key (random date 1-10.04) - value (random date between 1-10 days after control date)
