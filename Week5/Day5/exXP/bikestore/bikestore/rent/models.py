@@ -19,7 +19,7 @@ class Customer(models.Model):
     
 class Vehicle(models.Model):
     vehicle_type = models.ForeignKey('VehicleType', on_delete=models.DO_NOTHING)
-    date_created = models.DateField(blank=True, default=datetime.date.today())
+    date_created = models.DateField(blank=True, auto_now_add=True)
     real_cost = models.FloatField(blank=False)
     size = models.ForeignKey('VehicleSize', on_delete=models.DO_NOTHING)
 
