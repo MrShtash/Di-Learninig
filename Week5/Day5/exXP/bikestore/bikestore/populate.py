@@ -48,13 +48,13 @@ customer_list = Customer.objects.all()
 #     fake_rental.save()
 
 for _ in range(100): #create loop with variable
-    l = {} #create empty dict with 1 key (random date 1-10.04) - value (random date between 1-10 days after control date)
+    l = {} #create empty dict with 1 key (random date 1-10.04) - value 
     fake_date = fake.date_between_dates(date_start=datetime.datetime(2022,4,1), date_end=datetime.datetime(2023,5,15))
-    fake_date_2 = fake_date + datetime.timedelta(days = random.randint(1, 10))
-    day = datetime.datetime(2023,4,28)
-    if fake_date_2 > day.date(): # if date > 28.04 -> None
+    fake_date_2 = fake_date + datetime.timedelta(days = random.randint(1, 10)) # create 2nd date (add random days between 1-10 days after control date)
+    day = datetime.datetime(2023,5,15)
+    if fake_date_2 > day.date(): # if date > 15.05 -> None
         fake_date_2 = None
-    l[fake_date] = fake_date_2
+    l[fake_date] = fake_date_2 #add key-value, where key - random date in 1 line and date_2 - random date in 2 line
         
     for k,v in l.items(): # for key and value in dict
         customer_1 = random.choice(customer_list) # random customer from DB
