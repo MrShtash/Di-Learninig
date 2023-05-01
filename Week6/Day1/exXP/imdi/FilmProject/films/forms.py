@@ -8,7 +8,7 @@ class FilmForm(forms.ModelForm):
         model = Film # use model Film
         fields = '__all__'
 
-class Director(forms.ModelForm):
+class DirectorForm(forms.ModelForm):
     class Meta:
         model = Director # use model Dirrector
         fields = '__all__'

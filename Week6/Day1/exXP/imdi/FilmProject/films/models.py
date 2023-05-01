@@ -16,12 +16,12 @@ class Category(models.Model):
 class Film(models.Model):
     title = models.CharField(max_length=50, blank=False, db_index=True)
     release_date = models.DateField(blank=False, auto_now_add=True)
-    created_in_country = models.ForeignKey(Country, on_delete=models.CASCADE)
-    available_in_countries = models.ManyToManyField(Country, on_delete=models.DO_NOTHING)
-    category = models.ManyToManyField(Category, on_delete=models.DO_NOTHING)
-    director = models.ManyToManyField('Director', on_delete=models.DO_NOTHING)
+    created_in_country = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='films_created')
+    available_in_countries = models.ManyToManyField(Country, related_name='films_available')
+    category = models.ManyToManyField(Category)
+    director = models.ManyToManyField('Director')
     def __str__(self):
-        return f'{self.title} {self.release_date} {self.created_in_country} {self.available_in_countries} {self.category} {self.director}'
+        return f'{self.title}, {self.release_date}, {self.created_in_country}, {self.available_in_countries}, {self.category}, {self.director}'
 
 class Director(models.Model):
     first_name = models.CharField(max_length=50, blank=False, db_index=True)
