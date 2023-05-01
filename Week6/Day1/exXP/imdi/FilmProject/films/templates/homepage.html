@@ -1,8 +1,21 @@
 {%extends 'base.html'%}
-{%block title%}  {%endblock title%}
+{%block title%} Films {%endblock title%}
 {%block content%}
-    <ul>{% for film in films %}
-        {{ film }}
-        <!-- <li>{{film.title}} {{film.relese_date}} {{film.created_in_country}} {{film.available_in_countries}} {{film.category}} {{film.director}}</li> -->
-    </ul>{% endfor %}   
+<ul>
+    {% for film in films %}
+        <h2>{{ film }}</h2>
+            <h4>Available in countries</h4>
+            {% for country_available in film.available_in_countries.all%}
+                {{country_available}}
+            {% endfor %}
+            {% for category in film.category.all%}
+            <h4>Categories</h4>
+                {{category}}
+            {% endfor %}
+            <h4>Directors</h4>
+            {% for director in film.director.all%}
+                {{director}}
+            {% endfor %}
+    {% endfor %}
+</ul>
 {%endblock%}

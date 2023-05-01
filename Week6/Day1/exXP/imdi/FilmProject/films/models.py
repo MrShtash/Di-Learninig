@@ -21,7 +21,7 @@ class Film(models.Model):
     category = models.ManyToManyField(Category)
     director = models.ManyToManyField('Director')
     def __str__(self):
-        return f'{self.title}, {self.release_date}, {self.created_in_country}, {self.available_in_countries}, {self.category}, {self.director}'
+        return f'{self.title}, {self.release_date}, {self.created_in_country}'
 
 class Director(models.Model):
     first_name = models.CharField(max_length=50, blank=False, db_index=True)
