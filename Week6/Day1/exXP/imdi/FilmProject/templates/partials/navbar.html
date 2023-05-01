@@ -8,26 +8,27 @@
   <li class="nav-item">
     <a class="nav-link" href="#">Profile</a>
   </li>
-  <li class="nav-item">
+  <!-- <li class="nav-item">
     <a class="nav-link" href="/films/add-film">ADD a Films</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="/films/add-director">ADD a Director</a>
+  </li> -->
+  <li class="nav-item">
+    <a class="nav-link" href="/films/login">Login</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/films/signup">SignUP</a>
   </li>
 </ul>
 
-
-<!-- <nav>
-    <ul>
-        <li><a href=""></a></li>
-        <li><a href=""></a></li>
-    </ul>
-</nav>
-
-<nav>
-        <ul>
-            <li><a class="navbar-brand" href="/home">Home</a></li>
-            <li><a class="navbar-brand" href="/add_gif">Add gif</a></li>
-            <li><a class="navbar-brand" href="/add_category">Add category</a></li>
-        </ul>
-    </nav> --> 
+{% if user.is_authenticated and user.is_superuser %}
+<ul class="navbar-nav mr-auto">
+  <li class="nav-item {% if request.path == '/films/add-film/' %}active{% endif %}">
+    <a class="nav-link" href="{% url 'addfilm' %}">Add Film</a>
+  </li>
+  <li class="nav-item {% if request.path == '/films/add-director/' %}active{% endif %}">
+    <a class="nav-link" href="{% url 'adddirector' %}">Add Director</a>
+  </li>
+</ul>
+{% endif %}

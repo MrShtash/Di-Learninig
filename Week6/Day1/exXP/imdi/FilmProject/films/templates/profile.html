@@ -1,0 +1,11 @@
+{%extends 'base.html'%}
+{%block title%} Profile {%endblock title%}
+{%block content%}
+<h1>Profile</h1>
+Hello
+<ul>
+    <li>Username {{request.user.username}}</li>
+    <li>First name {{request.user.first_name}}</li>
+    <li>Last name {{request.user.last_name}}</li>
+</ul>
+{%endblock%}
