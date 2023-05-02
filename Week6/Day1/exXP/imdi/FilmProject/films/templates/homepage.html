@@ -1,24 +1,32 @@
-{%extends 'base.html'%}
-{%block title%} Films {%endblock title%}
-{%block content%}
-<h1>FILMS</h1>
-<ul>
-    {% for film in films %}
-<br>
+{% extends 'base.html' %}
+{% block title %} Films {% endblock title %}
+{% block content %}
+  {% if user.is_authenticated %}
+    <h1>FILMS</h1>
+    <ul>
+      {% for film in films %}
+        <br>
         <h2>{{ film }}</h2>
-            <li><h4>Available in countries</h4>
-            {% for country_available in film.available_in_countries.all%}
-                {{country_available}}
-            {% endfor %}</li>
-            <li>{% for category in film.category.all%}
+        <li><h4>Available in countries</h4> 
+          {% for country_available in film.available_in_countries.all %}
+            {{ country_available }}
+          {% endfor %}
+        </li>
+        <li>
+          {% for category in film.category.all %}  
             <h4>Categories</h4>
-                {{category}}
-            {% endfor %}</li>
-            <li>{% for director in film.director.all%}
+            {{ category }}
+          {% endfor %}
+        </li>
+        <li>
+          {% for director in film.director.all %}
             <h4>Directors</h4>
-                {{director}}
-            {% endfor %}</li>
-    {% endfor %}
-</ul>
-<br>
-{%endblock%}
+            {{ director }}
+          {% endfor %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Please log in to view the list of films.</p>
+  {% endif %}
+{% endblock %}
