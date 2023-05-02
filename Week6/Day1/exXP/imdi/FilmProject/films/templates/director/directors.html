@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %} Dorectors {% endblock title %}
+{% block content %}
+  {% if user.is_authenticated %}
+    <h1>DIRECTORS</h1>
+    <ul>
+      {% for director in directors %}
+        <br>
+        <h2>{{ director }}</h2>
+        
+        {% if user.is_authenticated and user.is_superuser %}
+          <p><a href="{% url 'director-delete' director.pk %}">Delete</a></p>
+        {%endif%}
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Please <a href="{%url 'login'%}">login</a> to view the list of directors.</p>
+  {% endif %}
+{% endblock %}

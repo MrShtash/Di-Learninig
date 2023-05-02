@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from django.views import generic
 from django.views.generic import DetailView
+from django.views.generic.edit import DeleteView
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from .models import Film, Director
@@ -18,13 +18,13 @@ def home(request):
     }
     return render(request, 'homepage.html', context)
 
-class FilmCreateView(generic.CreateView):
+class FilmCreateView(CreateView):
     template_name = 'film/addfilm.html'
     model = Film
     form_class = FilmForm
     success_url = reverse_lazy("addfilm")
 
-class DirectorCreateView(generic.CreateView):
+class DirectorCreateView(CreateView):
     template_name = 'director/adddirector.html'
     model = Director
     form_class = DirectorForm
@@ -82,3 +82,29 @@ class ProfileView(LoginRequiredMixin, DetailView): # LoginRequiredMixin - to acc
     def get_object(self, queryset=None): # take loggedin user
         pk = self.kwargs.get('pk') # take user by id
         return self.request.user #self.query.set - access to user
+
+def sfd(request):    
+    return render(request, 'film/sfd.html')
+
+class FilmDeleteView(DeleteView):
+    template_name = 'film/film_delete.html'
+    model = Film
+    # form_class = FilmForm
+    success_url = reverse_lazy('sfd')
+
+def director(request):
+    my_queryset = Director.objects.all()
+    context={
+        'title':'Directors',
+        'directors': my_queryset,
+    }
+    return render(request, 'director/directors.html', context)
+
+def sdd(request):    
+    return render(request, 'director/sdd.html')
+
+class DirectorDeleteView(DeleteView):
+    template_name = 'director/director_del.html'
+    model = Director
+    # form_class = FilmForm
+    success_url = reverse_lazy('sdd')

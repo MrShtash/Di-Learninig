@@ -24,9 +24,12 @@
             {{ director }}
           {% endfor %}
         </li>
+        {% if user.is_authenticated and user.is_superuser %}
+          <p><a href="{% url 'film-delete' film.pk %}">Delete</a></p>
+        {%endif%}
       {% endfor %}
     </ul>
   {% else %}
-    <p>Please log in to view the list of films.</p>
+    <p>Please <a href="{%url 'login'%}">login</a> to view the list of films.</p>
   {% endif %}
 {% endblock %}
