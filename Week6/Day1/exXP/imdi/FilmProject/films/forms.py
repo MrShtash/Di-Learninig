@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import Director, Film
+from .models import Director, Film, Comment
 from django.contrib.auth import get_user_model
 User = get_user_model()
 # from .models import UserProfile
@@ -32,3 +32,12 @@ class CustomSingUpForm(UserCreationForm):
 #         widgets = {
 #             'user': forms.HiddenInput()
 #         }
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = '__all__'
+        widgets = {
+            'author': forms.HiddenInput(),
+            'film': forms.HiddenInput()
+        }

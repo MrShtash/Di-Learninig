@@ -1,8 +1,9 @@
 from django.db import models
 import datetime
+# from forms import User 
 # from django.contrib.auth.models import User
-
-# Create your models here.
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 class Country(models.Model):
     name = models.CharField(max_length=50, blank=False, db_index=True)
@@ -43,3 +44,10 @@ class Director(models.Model):
 #     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
 #     def __str__(self):
 #         return f"{self.user.username}"
+
+class Comment(models.Model):
+    film = models.ForeignKey(Film, on_delete=models.CASCADE, related_name='comments')
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    def __str__(self):
+        return f'comment by {self.author.username} about {self.film.title}'

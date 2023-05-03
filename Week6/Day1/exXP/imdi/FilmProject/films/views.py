@@ -3,18 +3,22 @@ from django.views.generic import DetailView
 from django.views.generic.edit import DeleteView
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
-from .models import Film, Director
+from .models import Film, Director, Comment
 # from .models import UserProfile
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
 # from django.views.generic import TemplateView
 from .forms import DirectorForm, CustomSingUpForm, FilmForm
+from .forms import CommentForm
 
 def home(request):
-    my_queryset = Film.objects.all()
+    films = Film.objects.all()
+    comments = [CommentForm(initial={'film': film, 'author': request.user}) for film in films]
+
+    films_comments = zip(films, comments)
     context={
         'title':'Home page',
-        'films': my_queryset,
+        'films_comments': films_comments
     }
     return render(request, 'homepage.html', context)
 
@@ -75,7 +79,7 @@ class SignUpView(CreateView):
 User = get_user_model()
 
 class ProfileView(LoginRequiredMixin, DetailView): # LoginRequiredMixin - to access users that already login, DetailView - we need to see only about 1 user
-    model = User #bull-in model
+    model = User #python bull-in model
     template_name = 'profile.html'
     context_object_name = 'user' # take object to template
 
@@ -108,3 +112,9 @@ class DirectorDeleteView(DeleteView):
     model = Director
     # form_class = FilmForm
     success_url = reverse_lazy('sdd')
+
+class CommentCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'film/homepage.html'
+    model = Comment
+    form_class = CommentForm
+    success_url = reverse_lazy('homepage')
