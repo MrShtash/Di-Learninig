@@ -1,0 +1,27 @@
+{% extends 'rent/base.html' %}
+{% block content %}
+<h1>{{title}}</h1>
+<br><br>
+<div class="container">
+	<div class="row">
+    <div class="col">
+			<p>
+				<b>Rent status:</b>
+				{% if r.rent_status %}
+						Vehicle in rent
+				{% else %}
+						Rent Completed
+				{% endif %}
+			</p>
+			<p><b>Start retal date:</b> {{r.rental_date}}</p>
+			{% if r.rent_status %}
+					<p><b>Rent duration:</b> {{r.rent_duration}}</p>
+      {% else %}
+					<p><b>Return date:</b> {{r.return_date}}</p>
+			{% endif %}
+			<p><b>Customer:</b> <a href="{% url 'customer_path' r.customer.pk %}"> {{r.customer}}</a></p>
+			<p><b>Vehicle:</b> <a href="{% url 'vehicle_path' r.vehicle.pk %}"> {{r.vehicle}}</a></p>
+		</div>
+	</div>
+</div>
+{% endblock %}

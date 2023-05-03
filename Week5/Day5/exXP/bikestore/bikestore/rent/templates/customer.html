@@ -1,0 +1,18 @@
+{% extends 'rent/base.html' %}
+{% block content %}
+<h1>{{title}}</h1>
+<br><br>
+<div class="container">
+	<div class="row">
+    <div class="col">
+			<p><b>First name:</b> {{c.first_name}}</p>
+			<p><b>Last name:</b> {{c.last_name}}</p>
+			<p><b>Email:</b> {{c.email}}</p>
+			<p><b>Phone:</b> {{c.phone_number}}</p>
+			<p><b>Address:</b> {{c.address}}</p>
+			<p><b>City:</b> {{c.city}}</p>
+			<p><b>Country:</b> {{c.country}}</p>
+		</div>
+	</div>
+</div>
+{% endblock %}

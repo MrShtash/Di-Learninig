@@ -1,0 +1,32 @@
+{% extends 'rent/base.html' %}
+{% block content %}
+<h1>{{title}}</h1>
+<br>Page: rent list<br>
+<div class="container">
+	<div class="row">
+    <div class="col">
+			<table class="table table-striped table-hover">
+				<tr>
+					<th id="f_row">Start</th>
+					<th>Return</th>
+					<th>Customer</th>
+					<th>Vehicle</th>
+					{% for p in r_list%}
+						<tr>
+							<td > <a href="{% url 'rental_path' p.pk %}"> {{p.rental_date}} </a></td>
+							<td>
+								{% if p.rent_status %}
+									<b>{{p.rent_duration}}</b>
+								{% else %}
+									{{p.return_date}}
+								{% endif %}
+							</td>
+							<td>{{p.customer}}</td>
+							<td>{{p.vehicle}}</td>
+						</tr>
+					{% endfor %}
+			</table>
+		</div>
+	</div>
+</div>
+{% endblock %}
