@@ -15,29 +15,15 @@ class DirectorForm(forms.ModelForm):
         model = Director # use model Dirrector
         fields = '__all__'
 
-# class UserForm(forms.ModelForm):
-#     class Meta:
-#         model = User
-#         fields = '__all__'
-
 class CustomSingUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email']
 
-# class ProfileForm(forms.ModelForm):
-#     class Meta:
-#         model = UserProfile
-#         fields = '__all__'
-#         widgets = {
-#             'user': forms.HiddenInput()
-#         }
-
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = '__all__'
+        fields = ['content']
         widgets = {
-            'author': forms.HiddenInput(),
-            'film': forms.HiddenInput()
+            'content': forms.Textarea()
         }

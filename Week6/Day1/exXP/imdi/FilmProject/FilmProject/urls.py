@@ -1,9 +1,17 @@
 from django.contrib import admin
 from django.urls import path
-from films.views import home, FilmCreateView, DirectorCreateView, SignUpView, ProfileView, FilmDeleteView, sfd, sdd, director, DirectorDeleteView, CommentCreateView
+from films.views import (home,
+                        FilmCreateView,
+                        DirectorCreateView,
+                        SignUpView,
+                        ProfileView,
+                        FilmDeleteView,
+                        sfd,
+                        sdd,
+                        director,
+                        DirectorDeleteView,
+                        CommentCreateView)
 from django.contrib.auth.views import LoginView, LogoutView
-
-# from . import 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -19,5 +27,5 @@ urlpatterns = [
     path('films/sfd/', sfd, name='sfd'),
     path('films/director/directordel/<int:pk>/', DirectorDeleteView.as_view(template_name = 'director/director_del.html'), name='director-delete'),
     path('director/sfd/', sdd, name='sdd'),
-    path('films/homepage/comment/', CommentCreateView.as_view(template_name = 'film/homepage.html'), name='comment')
+    path('films/homepage/comment/<int:pk>', CommentCreateView.as_view(template_name = 'film/homepage.html'), name='comment')
 ]

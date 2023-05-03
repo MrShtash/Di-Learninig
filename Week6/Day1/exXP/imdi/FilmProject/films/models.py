@@ -31,23 +31,10 @@ class Director(models.Model):
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
 
-# class UserProfile(models.Model):
-#     username = models.OneToOneField(User, on_delete=models.CASCADE)
-#     first_name = models.CharField(max_length=50, blank=False, db_index=True, null=True)
-#     last_name = models.CharField(max_length=50, blank=False, db_index=True, null=True)
-#     password = models.CharField(max_length=50, blank=False, db_index=True, null=True)
-#     email = models.EmailField(max_length=50, blank=False, db_index=True, null=True)
-#     def __str__(self):
-#         return f'{self.UserProfile.username} {self.UserProfile.first_name} {self.UserProfile.last_name}'
-
-# class UserProfile(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-#     def __str__(self):
-#         return f"{self.user.username}"
-
 class Comment(models.Model):
     film = models.ForeignKey(Film, on_delete=models.CASCADE, related_name='comments')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
     def __str__(self):
         return f'comment by {self.author.username} about {self.film.title}'
+    
