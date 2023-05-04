@@ -1,0 +1,12 @@
+{% extends 'partials/base.html' %}
+{% block content %}
+  <h1>Welcome to Image Share Project</h1>
+  {% if user.is_authenticated %}
+    <p>Logged in as {{ user.username }}.</p>
+    <p><a href="{% url 'upload_image' %}">Upload an image</a></p>
+    <p><a href="{% url 'view_images' %}">View all images</a></p>
+    <p><a href="{% url 'my_images' %}">View my images</a></p>
+  {% else %}
+    <p>You are not logged in. <a href="{% url 'login' %}?next={{ request.path }}">login</a> and LEEETS START SHARING!</p>
+    {% endif %}
+{% endblock %}

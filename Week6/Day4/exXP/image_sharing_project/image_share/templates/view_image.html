@@ -1,0 +1,7 @@
+{% extends 'partials/base.html' %}
+{% block content %}
+  <h1>{{ image.title }}</h1>
+  <p>Uploaded by {{ image.user }} on {{ image.upload_date|date:"F j, Y, g:i a" }}.</p>
+  <img src="/media/{{ image.image_file }}" alt="{{ image.title }}" width="300px">
+  <p>{{ image.description }}</p>
+{% endblock %}

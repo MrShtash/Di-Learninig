@@ -1,14 +1,22 @@
 from django.db import models
 from django.contrib.auth.models import User
 import datetime
-
-# Create your models here.
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 class Image(models.Model):
-    image_file = models.URLField(null=True, blank=True)
-    title = models.CharField(max_length=50, blank=False, db_index=True)
-    description = models.CharField(max_length=50, blank=False, db_index=True)
+    image_file = models.ImageField(upload_to='media/')
+    title = models.CharField(max_length=100, blank=False, db_index=True)
+    description = models.TextField(max_length=100, blank=False, db_index=True)
     created_date = models.DateField(auto_now_add=True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-# class Profile(models.Model):
+    def __str__(self):
+        return f'{self.title} {self.description} {self.user}'
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    sum_img = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f'{self.user} {self.sum_img}'
