@@ -10,7 +10,9 @@ from films.views import (home,
                         sdd,
                         director,
                         DirectorDeleteView,
-                        CommentCreateView)
+                        CommentCreateView,
+                        RatingCreateView
+                        )
 from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
@@ -27,5 +29,6 @@ urlpatterns = [
     path('films/sfd/', sfd, name='sfd'),
     path('films/director/directordel/<int:pk>/', DirectorDeleteView.as_view(template_name = 'director/director_del.html'), name='director-delete'),
     path('director/sfd/', sdd, name='sdd'),
-    path('films/homepage/comment/<int:pk>', CommentCreateView.as_view(template_name = 'film/homepage.html'), name='comment')
+    path('films/homepage/comment/<int:pk>', CommentCreateView.as_view(template_name = 'film/homepage.html'), name='comment'),
+    path('films/homepage/rating/<int:pk>', RatingCreateView.as_view(template_name = 'film/homepage.html'), name='rating')
 ]

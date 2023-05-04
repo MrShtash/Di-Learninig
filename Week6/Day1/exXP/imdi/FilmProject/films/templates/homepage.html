@@ -4,45 +4,60 @@
 {% if user.is_authenticated %}
   <h1>FILMS</h1>
     <ul>
-      {% for film, comments in films_comments %}
-        <br>
-        <h2>{{ film }}</h2>
-        <li>
-          <h4>Available in countries</h4>
-          {% for country_available in film.available_in_countries.all %}
-            {{country_available}}
-          {% endfor %}
-        </li>
-        <li>
-          {% for category in film.category.all %}
-            <h4>Categories</h4>
-            {{ category }}
-          {% endfor %}
-        </li>
-        <li>
-          {% for director in film.director.all %}
-          <h4>Directors</h4>
-            {{ director }}
-          {% endfor %}
-        </li>
+      {% for film, comment_form, comments, rating_form, ratings in films_comments %}
+      <br>
+      <h2>{{ film }}</h2>
+      <li>
+      <h4>Available in countries</h4>
+        {% for country_available in film.available_in_countries.all %}
+          {{country_available}}
+        {% endfor %}
+      </li>
+      <li>
+        {% for category in film.category.all %}
+        <h4>Categories</h4>
+          {{ category }}
+        {% endfor %}
+      </li>
+      <li>
+        {% for director in film.director.all %}
+        <h4>Directors</h4>
+          {{ director }}
+        {% endfor %}
+      </li>
         <h4>comments:</h4>
         {%if comments%}
           {% for comment in comments %}
-            <li>{{ comment.content }}</li>
+          <li>{{ comment.content }}</li>
           {% endfor %}
         {%endif%}
-        <form method="post" action="{%url 'comment' film.pk%}">
-          <br>
-          {%csrf_token%}
-          {{comments.as_p}}
-          <button type="submit">Post</button>
-        </form>
-          {% if user.is_authenticated and user.is_superuser %}
-            <p><a href="{% url 'film-delete' film.pk %}">Delete</a></p>
-          {%endif%}
-      {% endfor %}
+        <h4>rating:</h4>
+        {%if ratings%}
+          {% for rating in ratings %}
+          <li>{{ rating.rating }}</li>
+          {% endfor %}
+        {%endif%}
+        <br>
+    <form method="post" action="{%url 'rating' film.pk%}">
+      <br>
+      {%csrf_token%}
+      {{rating_form.as_p}}
+      <button type="submit">Post</button>
+    </form>
+    
+    <br>
+    <form method="post" action="{%url 'comment' film.pk%}">
+      <br />
+      {%csrf_token%}
+      {{comment_form.as_p}}
+      <button type="submit">Post</button>
+    </form>
+    {% if user.is_authenticated and user.is_superuser %}
+      <p><a href="{% url 'film-delete' film.pk %}">Delete</a></p>
+    {%endif%}
+    {% endfor %}
     </ul>
 {% else %}
-      <p>Please <a href="{%url 'login'%}">login</a> to view the list of films.</p>
+  <p>Please <a href="{%url 'login'%}">login</a> to view the list of films.</p>
 {% endif %}
 {% endblock %}

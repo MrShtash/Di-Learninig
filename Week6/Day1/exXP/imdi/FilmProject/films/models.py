@@ -38,3 +38,18 @@ class Comment(models.Model):
     def __str__(self):
         return f'comment by {self.author.username} about {self.film.title}'
     
+class Rating(models.Model):
+    CHOICES = (
+        (1, '⭐'),
+        (2, '⭐⭐'),
+        (3, '⭐⭐⭐'),
+        (4, '⭐⭐⭐⭐'),
+        (5, '⭐⭐⭐⭐⭐')
+    )
+
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    film = models.ForeignKey(Film, on_delete=models.CASCADE, related_name='ratings')
+    rating = models.IntegerField(choices=CHOICES, default=1)
+
+    def __str__(self):
+        return f"{self.user}, {self.film.title}, {self.rating}"

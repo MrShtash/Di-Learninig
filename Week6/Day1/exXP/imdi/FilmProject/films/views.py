@@ -3,33 +3,25 @@ from django.views.generic import DetailView
 from django.views.generic.edit import DeleteView
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
-from .models import Film, Director, Comment
+from .models import Film, Director, Comment, Rating
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
-from .forms import DirectorForm, CustomSingUpForm, FilmForm
+from .forms import DirectorForm, CustomSingUpForm, FilmForm, RatingForm
 from .forms import CommentForm
 
 def home(request):
     films = Film.objects.all()
-    comments = [CommentForm(initial={'film': film, 'author': request.user}) for film in films]
+    comments_forms = [CommentForm(initial={'film': film, 'author': request.user}) for film in films]
+    rating_forms = [RatingForm(initial={'film': film, 'user': request.user}) for film in films]
+    comments = [film.comments.all() for film in films]
+    ratings = [film.ratings.all() for film in films]
 
-    films_comments = zip(films, comments)
+    films_comments = zip(films, comments_forms, comments, rating_forms, ratings)
     context={
         'title':'Home page',
         'films_comments': films_comments
     }
     return render(request, 'homepage.html', context)
-
-# def home(request):
-#     films = Film.objects.all()
-#     comments = [[comment.content for comment in film.comments.all()] for film in films]
-
-#     films_comments = zip(films, comments)
-#     context={
-#         'title':'Home page',
-#         'films_comments': films_comments
-#     }
-#     return render(request, 'homepage.html', context)
 
 class FilmCreateView(CreateView):
     template_name = 'film/addfilm.html'
@@ -86,7 +78,6 @@ class DirectorCreateView(CreateView):
     success_url = reverse_lazy("adddirector")
 
 class CommentCreateView(LoginRequiredMixin, CreateView):
-    
     template_name = 'film/homepage.html'
     model = Comment
     form_class = CommentForm
@@ -113,6 +104,18 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
     #     else:
     #         return self.form_invalid(form)
 
-def comments_view(request):
-    comments = Comment.objects.all()
-    return render(request, 'homepage.html', {'comments': comments})
+class RatingCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'film/homepage.html'
+    model = Rating
+    form_class = RatingForm
+    success_url = reverse_lazy("home")
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.author = self.request.user
+        # get_film = Film.objects.filter(pk=self.kwargs['pk']).first()
+        # if not get_film:
+        #     raise Http404()
+        obj.film_id = self.kwargs['pk']
+        print(self.kwargs)
+        return super(RatingCreateView, self).form_valid(form)

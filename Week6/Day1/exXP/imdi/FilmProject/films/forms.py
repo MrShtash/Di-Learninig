@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import Director, Film, Comment
+from .models import Director, Film, Comment, Rating
 from django.contrib.auth import get_user_model
 User = get_user_model()
 # from .models import UserProfile
@@ -27,3 +27,8 @@ class CommentForm(forms.ModelForm):
         widgets = {
             'content': forms.Textarea()
         }
+
+class RatingForm(forms.ModelForm):
+    class Meta:
+        model = Rating
+        fields = ['rating']
