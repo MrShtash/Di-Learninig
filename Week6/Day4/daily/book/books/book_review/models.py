@@ -18,10 +18,11 @@ class Book(models.Model):
         return f'{self.title}, {self.author}, {self.published_date}, {self.description}, {self.page_count}, {self.categories}, {self.humbnail_URL}'
     
 class BookReview(models.Model):
-    associated_book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='assotiated_book')
+    associated_book = models.ForeignKey(Book, on_delete=models.DO_NOTHING, related_name='assotiated_book')
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='user')
     rating = models.IntegerField()
     review_text = models.TextField()
 
     def __str__(self):
         return f'{self.associated_book}, {self.user}, {self.rating}, {self.review_text}'
+    
