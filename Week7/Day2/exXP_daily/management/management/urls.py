@@ -31,15 +31,20 @@ from management_api.views import (DepartmentListAPIView,
                                   TaskCreateAPIView,
                                   TaskDeleteView,
                                   TaskDetailView,
-                                  TaskUpdateAPIView)
+                                  TaskUpdateAPIView,
+                                  DepartmentDetailView,
+                                  EmployeeDetailView
+                                  )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api-auth/management/department/', DepartmentListAPIView.as_view(), name = 'department-list'),
     path('api-auth/management/department/<int:pk>/', DepartmentCreateAPIView.as_view(), name = 'department'),
+    path('api-auth/management/project/<int:pk>/retrieve/', DepartmentDetailView.as_view(), name = 'department-detail'),
     path('api-auth/management/employee/', EmployeeListAPIView.as_view(), name = 'employee-list'),
     path('api-auth/management/employee/<int:pk>/', EmployeeCreateAPIView.as_view(), name = 'employee'),
+    path('api-auth/management/project/<int:pk>/retrieve/', EmployeeDetailView.as_view(), name = 'employee-detail'),
     path('api-auth/management/project/', ProjectListAPIView.as_view(), name = 'project-list'),
     path('api-auth/management/project/<int:pk>/', ProjectCreateAPIView.as_view(), name = 'project'),
     path('api-auth/management/project/<int:pk>/update/', ProjectUpdateAPIView.as_view(), name = 'project-upd'),

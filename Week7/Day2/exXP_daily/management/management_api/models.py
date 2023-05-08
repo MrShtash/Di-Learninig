@@ -15,6 +15,7 @@ class Employee(models.Model):
     phone_number = models.CharField(max_length=50, blank=True)
     department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True) # Many-to-one with Department model: Each employee belongs to one department.
     project = models.ManyToManyField('Project') # Many-to-many with Project model: An employee can be assigned to multiple projects, and a project can have multiple employees working on it.
+    # department_admin = models.BooleanField(default=True)
     def __str__(self):
         return f'{self.name}, {self.email}, {self.phone_number}, {self.department}, {self.project}'
 
