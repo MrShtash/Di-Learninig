@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'FilmProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'filmproject',
+        'NAME': 'filmproject2',
         'USER': 'postgres',
         'PASSWORD': '',
         'HOST': 'localhost',
@@ -130,3 +130,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/films/homepage/'
 LOGOUT_REDIRECT_URL = '/films/homepage/'
+
+AUTH_USER_MODEL = 'films.User'

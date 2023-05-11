@@ -3,7 +3,12 @@ from django.views.generic import DetailView
 from django.views.generic.edit import DeleteView
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
-from .models import Film, Director, Comment, Rating
+from .models import (Film,
+                    Director,
+                    Comment,
+                    Rating,
+                    User
+                    )
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
 from .forms import DirectorForm, CustomSingUpForm, FilmForm, RatingForm
@@ -32,12 +37,14 @@ class FilmCreateView(CreateView):
 class SignUpView(CreateView):
     form_class = CustomSingUpForm
     success_url = reverse_lazy('login')
+    model = User
     template_name = 'film/signup.html'
 
-User = get_user_model()
+# User = get_user_model()
 
 class ProfileView(LoginRequiredMixin, DetailView): # LoginRequiredMixin - to access users that already login, DetailView - we need to see only about 1 user
-    model = User #python bull-in model
+    # model = User #python bull-in model
+    model = User
     template_name = 'profile.html'
     context_object_name = 'user' # take object to template
 

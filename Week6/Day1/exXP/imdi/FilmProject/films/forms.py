@@ -1,8 +1,14 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import Director, Film, Comment, Rating
-from django.contrib.auth import get_user_model
-User = get_user_model()
+from .models import (Director,
+                    Film,
+                    Comment,
+                    Rating,
+                    User
+                    )
+# from django.contrib.auth import get_user_model
+# CustomUser = get_user_model()
+# User = get_user_model()
 # from .models import UserProfile
 
 class FilmForm(forms.ModelForm):
@@ -17,8 +23,13 @@ class DirectorForm(forms.ModelForm):
 
 class CustomSingUpForm(UserCreationForm):
     class Meta:
+        # model = User
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email']
+        fields = ['first_name',
+                  'last_name',
+                  'email',
+                #   'username'
+                  ]
 
 class CommentForm(forms.ModelForm):
     class Meta:
