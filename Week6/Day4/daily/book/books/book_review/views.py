@@ -23,7 +23,7 @@ from django.contrib.auth import logout, login
 class BookList(DataMixin, ListView):
     # model = Book
     # fields = ['title', 'author', 'published_date', 'description', 'page_count', 'thumbnail_url', 'avr_rating']
-    # template_name = 'homepage_path.html'
+    # template_name = 'homepage.html'
 
     # def get_context_data(self, *,object_list=None, **kwargs: Any) -> Dict[str, Any]:
     #     context = super().get_context_data(**kwargs)
