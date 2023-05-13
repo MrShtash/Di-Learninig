@@ -1,0 +1,41 @@
+{% extends 'navbar.html' %}
+{% block content%}
+<div class="container">
+	<h1>{{title}}</h1>
+	<div class="row">
+		<form action="" method="post" class="col-6 form-floating row g-6 pb-4">
+			{% csrf_token %}
+			<div class="mb-3">
+				<label for="book_title" class="form-label" >Part of book title</label>
+				<input type="text" name="book_title" class="form-control" id="book_title" aria-describedby="emailHelp">
+			</div>
+			<div class="mb-3">
+				<label for="author_name" class="form-label">Part of the author's name</label>
+				<input type="text"  name="author_name" class="form-control" id="author_name">
+			</div>
+			<button type="submit" class="btn btn-primary col-3">Search</button>
+		</form>
+	</div>
+	<div class="row">
+		{% for p in book_list %}
+		<div class="col-3 mb-2">
+			<div class="card" style="width: 100%;">
+				<img src="{{p.thumbnail_url}}" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">{{p.title}}</h5>
+					<p class="card-text"><u>{{p.author}}</u></p>
+					<p class="card-text">{{p.description}}</p>
+					<p class="card-text" style="font-size: 14px;">Avr rating DB: {{p.avr_rating}}</p>
+					<p class="card-text" style="font-size: 14px;">Count rating DB: {{p.cnt_rating}}</p>
+					<p class="card-text" style="font-size: 14px;">Avr raiting on fly: {{p.avrg_raiting}}</p>
+					<p class="card-text" style="font-size: 14px;">Count of raiting on fly: {{p.count_raiting}}</p>
+					<a href="{% url 'comments' p.pk %}" class="btn btn-primary">See detail</a>
+					<a href="{% url 'add_comments' p.pk %}" class="btn btn-primary">Add comment</a>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+</div>
+{% endblock%}

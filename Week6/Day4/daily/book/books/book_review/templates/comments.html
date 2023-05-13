@@ -1,0 +1,71 @@
+{% extends 'navbar.html' %}
+{% block content%}
+<div class="container">
+	<h1>{{title}}</h1>
+	<div class="row">
+		<div class="col-3">
+			<img src="{{book.thumbnail_url}}" alt="" style="width: 200px;">
+		</div>
+		<div class="col-9">
+			<div class="row">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col"></th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Title</td>
+							<td>{{book.title}}</td>
+						</tr>
+						<tr>
+							<td>Author</td>
+							<td>{{book.author}}</td>
+						</tr>
+						<tr>
+							<td>Published date</td>
+							<td>{{book.published_date}}</td>
+						</tr>
+						<tr>
+							<td>Description</td>
+							<td>{{book.description}}</td>
+						</tr>
+						<tr>
+							<td>Page count</td>
+							<td>{{book.page_count}}</td>
+						</tr>
+						<tr>
+							<td>Avr rating from DB</td>
+							<td>{{book.avr_rating}}</td>
+						</tr>
+						<tr>
+							<td>Average raiting calculated on the fly</td>
+							<td>{{book.avrg_raiting}}</td>
+						</tr>
+						<tr>
+							<td>Count of raiting calculated on the fly</td>
+							<td>{{book.count_raiting}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		{% for p in object_list %}
+			<div class="card col-3 m-3">
+				<div class="card-body">
+					<h5 class="card-title">{{p.user}}</h5>
+					<h6 class="card-title">Raiting:{{p.rating}}</h6>
+					<p class="card-text">{{p.text}}</p>
+					<a href="#" class="card-link">Card link</a>
+					<a href="#" class="card-link">Another link</a>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+</div>
+{% endblock%}

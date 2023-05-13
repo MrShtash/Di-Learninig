@@ -13,9 +13,13 @@ class Book(models.Model):
     page_count = models.IntegerField(null = True, blank=True)
     categories = models.CharField(max_length=200, blank=False, db_index=True, null = True)
     thumbnail_URL = models.URLField(null = True, blank=True)
+    avr_rating = models.FloatField(default=0)
+    cnt_rating = models.IntegerField(default=0)
+    class Meta:
+        ordering = ['title']
 
     def __str__(self):
-        return f'{self.title}, {self.author}, {self.published_date}, {self.description}, {self.page_count}, {self.categories}, {self.humbnail_URL}'
+        return f'{self.title}, {self.author}, {self.published_date}, {self.description}, {self.page_count}, {self.categories}, {self.thumbnail_URL}'
     
 class BookReview(models.Model):
     associated_book = models.ForeignKey(Book, on_delete=models.CASCADE)
