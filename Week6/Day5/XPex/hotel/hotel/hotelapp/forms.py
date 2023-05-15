@@ -6,9 +6,9 @@ from .models import (
                     Type,
                     Size,
                     Room,
-                    # Review,
-                    # Booking,
-                    # ApartmentPhoto
+                    Review,
+                    Booking,
+                    ApartmentPhoto
                     )
 
 class ReserveForm(forms.Form):
@@ -23,8 +23,26 @@ class LookApartmentForm(forms.ModelForm):
     type = forms.ModelChoiceField (queryset=Type.objects.all())
     size = forms.ModelChoiceField(queryset=Size.objects.all())
     animals_allowed = forms.BooleanField(default=False)
-    price = forms.IntegerField()
+    # price = forms.IntegerField()
 
     class Meta:
         model = Room
+        fields = '__all__'
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = '__all__'
+        widgets = {
+            'text': forms.Textarea()
+        }
+
+class ImageForm(forms.ModelForm):
+    class Meta:
+        model = ApartmentPhoto
+        fields = '__all__'
+
+class BookingForm(forms.ModelForm):
+    class Meta:
+        model = Booking
         fields = '__all__'
