@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>All Rooms</h1>
+{% for room in rooms %}
+<div class="card mb-3">
+  <div class="card-header">
+    <h2>{{ room.type }}</h2>
+    <h4>{{ room.size }}</h4>
+  </div>
+  <div class="card-body">
+    <img src="{{ room.apartphoto.all|first.photo.url }}" class="img-thumbnail" style="max-width: 300px;">
+    <p class="card-text">{{ room.cost }} / night</p>
+    <p class="card-text">{{ room.min_rent }} night minimum stay</p>
+    {% if room.animals_allowed %}
+    <p class="card-text">Pets allowed</p>
+    {% endif %}
+    <a href="{% url 'detail' room.id %}" class="btn btn-primary">View Room Details</a>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

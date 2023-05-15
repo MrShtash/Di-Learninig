@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>{{ room.type }} Room</h1>
+  <p>Size: {{ room.size }}</p>
+  <p>Cost: {{ room.cost }}</p>
+  <p>Minimum Rent: {{ room.min_rent }} days</p>
+  <p>Animals Allowed: {% if room.animals_allowed %}Yes{% else %}No{% endif %}</p>
+  {% if booking_form %}
+    <h2>Book this Room</h2>
+    <form method="post" action="{% url '' room.id %}">
+      {% csrf_token %}
+      {{ booking_form.as_p }}
+      <button type="submit">Book</button>
+    </form>
+  {% endif %}
+  {% if reviews %}
+    <h2>Reviews</h2>
+    {% for review in reviews %}
+      <div>
+        <p>{{ review.text }}</p>
+        <p>by {{ review.email }}</p>
+      </div>
+    {% endfor %}
+  {% endif %}
+  {% if comment_form %}
+    <h2>Leave a Review</h2>
+    <form method="post" action="{% url '' room.id %}">
+      {% csrf_token %}
+      {{ comment_form.as_p }}
+      <button type="submit">Submit</button>
+    </form>
+  {% endif %}
+{% endblock %}
