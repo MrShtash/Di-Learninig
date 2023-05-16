@@ -1,3 +1,4 @@
 django_env/
 my_env/
 venv/
+.DS_Store
