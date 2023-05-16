@@ -8,8 +8,8 @@ from django.contrib.auth import logout, login # func for login / logout users
 from django.contrib.auth.forms import AuthenticationForm # built-in authentication form
 from django.contrib.auth.views import LoginView #built-in view for login in users
 from .forms import (
-                    ReserveForm,
-                    LookApartmentForm,
+                    # ReserveForm,
+                    # LookApartmentForm,
                     CommentForm,
                     ImageForm,
                     BookingForm
