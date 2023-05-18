@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex CALCULATOR Week 7 Day 5</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+      button {
+        width:70px;
+        height:70px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calc">
+        <div id="screen">
+            <!-- <input type="text" class="display"> -->
+        </div>
+        <div class="btns">
+            <button type="button" name="button" class = "btn" onclick="number(1);" value="1" id="num">1</button>
+            <button type="button" name="button" class = "btn" onclick="number(2);" value="2" id="num">2</button>
+            <button type="button" name="button" class = "btn" onclick="number(3);" value="3" id="num">3</button>
+            <button type="button" name="button" class = "btn" onclick="number(4);" value="4" id="num">4</button>
+            <br>
+            <button type="button" name="button" class = "btn" onclick="number(5);" value="5" id="num">5</button>
+            <button type="button" name="button" class = "btn" onclick="number(6);" value="6" id="num">6</button>
+            <button type="button" name="button" class = "btn" onclick="number(7);" value="7" id="num">7</button>
+            <button type="button" name="button" class = "btn" onclick="number(8);" value="8" id="num">8</button>
+            <br>
+            <button type="button" name="button" class = "btn" onclick="number(9);" value="9" id="num">9</button>
+            <button type="button" name="button" class = "btn" onclick="number(0);" value="0" id="num">0</button>
+            <button type="button" name="button" class = "btn" onclick="operator('+');" value="+" id="oper">+</button>
+            <button type="button" name="button" class = "btn" onclick="operator('-');" value="-" id="oper">-</button>
+            <br>
+            <button type="button" name="button" class = "btn" onclick="operator('*');" value="*" id="oper">*</button>
+            <button type="button" name="button" class = "btn" onclick="operator('/');" value="/" id="oper">/</button>
+            <button type="button" name="button" class = "btn" onclick="operator('.');" value="." id="oper">.</button>
+            <button type="button" name="button" class = "btn" onclick="equal();" value="=" id="oper">=</button>
+            <br>
+            <button type="button" name="button" class = "btn" onclick="reset('');" value="" id="n2">RESET</button>
+            <button type="button" name="button" class = "btn" onclick="clear('');" value="" id="n1">CLEAR</button>
+        </div>
+    </div>
+    <script src="script.js" charset="utf-8"></script>
+  </body>
+</html>
