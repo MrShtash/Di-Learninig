@@ -12,7 +12,13 @@ function bottlesOnTheWall() {
       alert(
         "sorry, it is not a number in range from 0 to 99, enter number from 0 to 99"
       );
-    } else {
+    } else if (beer == 1) {
+      bottles = bottles - beer;
+      console.log(`Take ${beer} down, pass it around`);
+      console.log(`we have now ${bottles} bottles`);
+      // return res;
+    }
+    else {
       bottles = bottles - beer;
       console.log(`Take ${beer} down, pass them around`);
       console.log(`we have now ${bottles} bottles`);
