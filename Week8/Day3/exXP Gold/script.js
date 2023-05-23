@@ -50,5 +50,5 @@
 // console.log(newArr.join(" "));
 
 // 3
-const trapped = [[[[[[[[[[[[[[[[[[[[[[[[[[3]]]]]]]]]]]]]]]]]]]]]]]]]];
-console.log(trapped.flat(24));
+// const trapped = [[[[[[[[[[[[[[[[[[[[[[[[[[3]]]]]]]]]]]]]]]]]]]]]]]]]];
+// console.log(trapped.flat(24));
