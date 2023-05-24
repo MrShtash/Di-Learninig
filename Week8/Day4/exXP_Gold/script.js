@@ -18,11 +18,11 @@
 // console.log(arr);
 
 let keysAndValues = {a: "Apple", b: "Microsoft", c: "Google"};
-let arr = [];
-for (i of keysAndValues) {
-    arr.push(item)
-}
-// let arr = [Object.keys(keysAndValues).sort(), Object.values(keysAndValues)];
+// let arr = [];
+// for (i of keysAndValues) {
+//     arr.push(item)
+// }
+let arr = [Object.keys(keysAndValues).sort(), Object.values(keysAndValues)];
 console.log(arr);
 
 // let keysAndValues = {key1: true, key2: false, key3: undefined};
