@@ -29,6 +29,19 @@ console.log(arr);
 // let arr = [Object.keys(keysAndValues).sort(), Object.values(keysAndValues)];
 // console.log(arr);
 
+// function keysAndValues1(obj){
+//   let keys = Object.keys(obj);
+//   let values = [];
+//   let temp = obj;
+//   let a = [keys.sort(), keys.map((item)=>{return (obj[item])})]
+//   // let a = keys.sort()
+//   // let b = keys.map((item)=>{
+//   //   console.log('ff', temp[item]);
+//   //   return (temp[item])})
+//   console.log('ttt', a);
+// }
+// console.log(keysAndValues1({ c: "Apple", b: "Microsoft", a: "Google" })); 
+
 
 
 
