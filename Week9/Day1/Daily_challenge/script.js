@@ -5,10 +5,11 @@ submitButton = document.getElementById('submit');
 submitButton.addEventListener('click', submit);
 
 function submit(event){
+    event.preventDefault()
     if (fields[0].value.length > 0 && fields[1].value.length > 0){
         let user = {
             'first_name': fields[0].value,
-            'lastname': fields[1].value
+            'last_name': fields[1].value
         }
         let userJson = JSON.stringify(user)
         let newpar = document.createElement('p')
@@ -16,5 +17,4 @@ function submit(event){
         document.querySelector('body').appendChild(newpar)
         // alert(userJson);
     }
-    event.preventDefault()
 }
