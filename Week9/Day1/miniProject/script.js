@@ -145,7 +145,6 @@ function search(event){
     }  
 }
 
-// let currentIndex = 0;
 let prevButton = document.getElementById("prev");
 let nextButton = document.getElementById("next");
 prevButton.addEventListener("click", showPQuote);
