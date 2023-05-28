@@ -14,6 +14,7 @@ function submit(event){
         let newpar = document.createElement('p')
         newpar.innerText = userJson;
         document.querySelector('body').appendChild(newpar)
+        // alert(userJson);
     }
     event.preventDefault()
 }
