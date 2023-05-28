@@ -13,13 +13,13 @@
     <div>
       <h2 id="quote"></h2>
       <p id="author"></p>
-      <br>
+      <br><br>
       <button id="ws">see the number of character inside each quote (with space)</button>
-      <br>
+      <br><br>
       <button id="wthts">see the number of character inside each quote (without space)</button>
-      <br>
+      <br><br>
       <button id="w">see the number of words in each quote</button>
-      <br>
+      <br><br>
       <button id="l">Like</button>
       <br>
 
@@ -30,12 +30,22 @@
             Author:
         <br>
             <input type="text" name="author" value="" id="author">
-        <br>
+        <br><br>
             Quote:
         <br>
             <input type="text" name="quote" value="" id="quote">
-        <br>
+        <br><br>
             <input type="submit" name="" value="AddQuote" id="submit"/>
+    </form>
+        <br>
+
+    <form id="filterQuote">
+          <input type="text" name="search" id="search">
+        <br><br>
+          <input type="submit" value="search quote by author">
+        <br><br>
+          <button id="prev">Previous</button>
+          <button id="next">Next</button>
     </form>
 
     <script src="script.js" charset="UTF-8"></script>
