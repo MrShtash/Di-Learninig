@@ -36,9 +36,9 @@
 // console.log(p)
 
 // OR:
-// let myPromise = new Promise( function(resolve,reject){
+// let myPromise = new Promise (function (resolve,reject) {
 //     if (true){
-//         setTimeout(()=> {
+//         setTimeout(() => {
 //             resolve('Success!')
 //         },'4000')
 //     }
