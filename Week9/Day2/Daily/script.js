@@ -143,9 +143,7 @@ const toMorse = (newMorse) => {
         p.innerText = `The morse translation of ${userInput} is ${translate}`;
         document.querySelector('body').appendChild(p);}
     joinWords(translate);
-
   });
-  
 };
 
 toJS(morse)
