@@ -109,9 +109,12 @@ const toJS = (morse) => {
   // console.log(typeof newMorse);
   // console.log(newMorse);
   return new Promise((resolve, reject) => {
-    if (Object.keys(newMorse).length == 0) {
+    if (Object.keys(newMorse).length == 0)
+    {
       reject("error");
-    } else {
+    }
+    else
+    {
       resolve(newMorse);
     }
   });
@@ -128,9 +131,12 @@ const toMorse = (newMorse) => {
     for (let letter of userWord) {
       console.log(newMorse[letter]);
       console.log(letter);
-      if (Object.keys(newMorse).includes(letter)) {
+      if
+      (Object.keys(newMorse).includes(letter))
+      {
         translate.push(newMorse[letter]);
-      } else {
+      } else
+      {
         reject("You entered incorrect symbols");
         break;
       }
@@ -162,3 +168,62 @@ toJS(morse)
 // .catch((error) => {
 //     console.log(error);
 // });
+
+
+// ~~~~OR~~~~:
+
+// const toJS = (jsonString) => {
+//   return new Promise((resolve, reject) => {
+//     let objMorse;
+//     try
+//     {
+//       objMorse = JSON.parse(jsonString);
+//     }
+//     catch(err)
+//     {
+//       reject('no json')
+//     }
+//     if
+//     (Object.keys(objMorse).length === 0)
+//     {
+//       reject('this json obj ie empty')
+//     }
+//     else
+//     {
+//       resolve(objMorse)
+//     }
+//   })
+// }
+
+// const toMorse = (morseJS) => {
+//   return new Promise((resolve, reject) => {
+//     let userStr = prompt('enter word');
+//     let arrStr = userStr.trim().split('');
+//     let returnArr = [];
+//     for (let i=0; i < arrStr.length; i++) {
+//       if
+//       (arrStr[i] in morseJS)
+//       {
+//         returnArr.push(morseJS[arrStr[i]]);
+//       }
+//       else {
+//         reject('letter does not exist')
+//       }
+//     }
+//     resolve(returnArr)
+//   })
+// }
+
+// const joinWords = (morse) => {
+//   let str = '';
+//   morse.forEach((item, i) => {
+//     str += item
+//   });
+//   return str;
+// }
+
+// toJS(morse)
+// .then(value => toMorse(value))
+// .then(arr => joinWords(arr))
+// .then(translation => console.log(translation))
+// .catch(err => console.log(err))
