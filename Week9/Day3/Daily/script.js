@@ -18,7 +18,7 @@ async function submit(event) {
   {
     let info = {
       topic: fields[0].value,
-};
+    };
 
     let r = await fetch(`https://api.giphy.com/v1/gifs/random?q=${info.topic}&rating=g&api_key=hpvZycW22qCjn5cRM1xtWB8NKq4dQ2My`);
     if (r.status == 200)
@@ -28,6 +28,11 @@ async function submit(event) {
       let newImg = document.createElement("img");
       newImg.src = json.data.images.original.url;
       document.querySelector("body").appendChild(newImg);
+
+      let delGif = document.createElement('button');
+      delGif.addEventListener('click', submit);
+      delGif.textContent = 'Delete';
+      document.querySelector('body').appendChild(delGif);
     }
     else
     {
@@ -35,4 +40,3 @@ async function submit(event) {
     }
   }
 }
-// submit()
