@@ -30,7 +30,7 @@ async function submit(event) {
       document.querySelector("body").appendChild(newImg);
 
       let delGif = document.createElement('button');
-      delGif.addEventListener('click', submit);
+      delGif.addEventListener('submit', submit);
       delGif.textContent = 'Delete';
       document.querySelector('body').appendChild(delGif);
     }
@@ -40,3 +40,8 @@ async function submit(event) {
     }
   }
 }
+
+//   let delGif = document.createElement('button');
+//       delGif.addEventListener('click', submit);
+//       delGif.textContent = 'Delete';
+//       document.querySelector('body').appendChild(delGif);
