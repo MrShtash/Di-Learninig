@@ -5,51 +5,71 @@ let form1 = document.forms.myForm; // choose form
 console.log(form1);
 let fields = myForm.elements; // choose all form fields
 console.log(fields);
+let newDiv = document.getElementById("container");
 
-// let submitButton = document.getElementById('submit');
-// submitButton.addEventListener('click', submit);
 form1.addEventListener("submit", submit);
 
 async function submit(event) {
   event.preventDefault();
-  if (fields[0].value.length > 0)
-  {
+  if (fields[0].value.length > 0) {
     let info = {
       topic: fields[0].value,
     };
 
-    let r = await fetch(`https://api.giphy.com/v1/gifs/random?q=${info.topic}&rating=g&api_key=hpvZycW22qCjn5cRM1xtWB8NKq4dQ2My`);
-    if (r.status == 200)
-    {
+    console.log(info.topic);
+
+    let r = await fetch(
+      `https://api.giphy.com/v1/gifs/random?tag=${info.topic}&rating=g&api_key=hpvZycW22qCjn5cRM1xtWB8NKq4dQ2My`
+    );
+    if (r.status == 200) {
       const json = await r.json();
       console.log(json.data);
+
+      let innerDiv = document.createElement("div");
+      newDiv.appendChild(innerDiv);
+
       let newImg = document.createElement("img");
       newImg.src = json.data.images.original.url;
-      document.querySelector("body").appendChild(newImg);
+      innerDiv.appendChild(newImg);
 
-      let delGif = document.createElement('button');
-      delGif.addEventListener('submit', submit);
-      delGif.textContent = 'Delete';
-      document.querySelector('body').appendChild(delGif);
-      delGif.style.marginLeft = '5px';
-      delGif.style.backgroundColor = 'red';
-
-      
-
-    }
-    else
-    {
+      let delGif = document.createElement("button");
+      delGif.addEventListener("click", deleteOne);
+      delGif.textContent = "Delete";
+      innerDiv.appendChild(delGif);
+      delGif.style.marginLeft = "5px";
+      delGif.style.backgroundColor = "red";
+    } else {
       throw new Error("bad query");
     }
   }
 }
 
+function deleteOne(event) {
+  const gifToDel = event.target.parentNode;
+  gifToDel.remove();
+}
 
+let delGifAll = document.createElement("button");
+delGifAll.addEventListener("click", deleteAll);
+delGifAll.textContent = "Delete All Gifs";
+newDiv.appendChild(delGifAll);
+delGifAll.style.backgroundColor = "red";
+delGifAll.style.fontSize = "20px";
+delGifAll.style.marginBottom = "10px";
 
-let delGifAll = document.createElement('button');
-      delGifAll.addEventListener('submit', submit);
-      delGifAll.textContent = 'Delete All Gifs';
-      form1.appendChild(delGifAll);
-      delGifAll.style.backgroundColor = 'red';
-      delGifAll.style.fontSize = '20px';
-      delGifAll.style.marginBottom = '10px';
+function deleteAll(event) {
+  const gifsToDel = event.target.parentNode;
+  gifsToDel.remove();
+}
+
+// function deleteAll() {
+//   let allimg = document.getElementsByTagName("img");
+//   let other = [...allimg];
+//   console.log(allimg);
+//   for (let i = 0; i < other.length; i++) {
+//     console.log("hello");
+//     //console.log(allimg[i]);
+//     allimg[i].remove();
+//     console.log(allimg);
+//   }
+// }
