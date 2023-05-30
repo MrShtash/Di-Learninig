@@ -1,7 +1,5 @@
 // API key: hpvZycW22qCjn5cRM1xtWB8NKq4dQ2My
-// 'https://api.giphy.com/v1/gifs/random?q=tag=sun&rating=g&api_key=hpvZycW22qCjn5cRM1xtWB8NKq4dQ2My'
 // random_id: string	e826c9fc5c929e0d6c6d423841a282aa
-// An ID/proxy for a specific user
 
 let form1 = document.forms.myForm; // choose form
 console.log(form1);
@@ -33,6 +31,11 @@ async function submit(event) {
       delGif.addEventListener('submit', submit);
       delGif.textContent = 'Delete';
       document.querySelector('body').appendChild(delGif);
+      delGif.style.marginLeft = '5px';
+      delGif.style.backgroundColor = 'red';
+
+      
+
     }
     else
     {
@@ -41,7 +44,12 @@ async function submit(event) {
   }
 }
 
-//   let delGif = document.createElement('button');
-//       delGif.addEventListener('click', submit);
-//       delGif.textContent = 'Delete';
-//       document.querySelector('body').appendChild(delGif);
+
+
+let delGifAll = document.createElement('button');
+      delGifAll.addEventListener('submit', submit);
+      delGifAll.textContent = 'Delete All Gifs';
+      form1.appendChild(delGifAll);
+      delGifAll.style.backgroundColor = 'red';
+      delGifAll.style.fontSize = '20px';
+      delGifAll.style.marginBottom = '10px';
