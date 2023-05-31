@@ -41,29 +41,29 @@ async function submit(event) {
       delGif.style.marginLeft = "5px";
       delGif.style.backgroundColor = "red";
 
-      // if(newImg>2)
-      // {
-        let delGifAll = document.createElement("button");
-        delGifAll.addEventListener("click", deleteAll);
-        delGifAll.textContent = "Delete All Gifs";
-        // innerDiv.appendChild(delGifAll);
-        delGifAll.style.backgroundColor = "red";
-        delGifAll.style.fontSize = "20px";
-        delGifAll.style.marginBottom = "10px";
+      // // if(newImg>2)
+      // // {
+      //   let delGifAll = document.createElement("button");
+      //   delGifAll.addEventListener("click", deleteAll);
+      //   delGifAll.textContent = "Delete All Gifs";
+      //   // innerDiv.appendChild(delGifAll);
+      //   delGifAll.style.backgroundColor = "red";
+      //   delGifAll.style.fontSize = "20px";
+      //   delGifAll.style.marginBottom = "10px";
+      // // }
+      // if(newImg>2) {
+      //   // let delGifAll = document.createElement("button");
+      //   // delGifAll.addEventListener("click", deleteAll);
+      //   // delGifAll.textContent = "Delete All Gifs";
+      //   innerDiv.appendChild(delGifAll);
+      //   // delGifAll.style.backgroundColor = "red";
+      //   // delGifAll.style.fontSize = "20px";
+      //   // delGifAll.style.marginBottom = "10px";
       // }
-      if(newImg>2) {
-        // let delGifAll = document.createElement("button");
-        // delGifAll.addEventListener("click", deleteAll);
-        // delGifAll.textContent = "Delete All Gifs";
-        innerDiv.appendChild(delGifAll);
-        // delGifAll.style.backgroundColor = "red";
-        // delGifAll.style.fontSize = "20px";
-        // delGifAll.style.marginBottom = "10px";
-      }
-      else
-      {
-        delGifAll.remove();
-      }
+      // else
+      // {
+      //   delGifAll.remove();
+      // }
 
     } else {
       throw new Error("bad query");
@@ -76,14 +76,14 @@ function deleteOne(event) {
   gifToDel.remove();
 }
 
-// let delGifAll = document.createElement("button");
-// delGifAll.addEventListener("click", deleteAll);
-// delGifAll.textContent = "Delete All Gifs";
-// // innerDiv.appendChild(delGifAll);
-// newDiv.appendChild(delGifAll);
-// delGifAll.style.backgroundColor = "red";
-// delGifAll.style.fontSize = "20px";
-// delGifAll.style.marginBottom = "10px";
+let delGifAll = document.createElement("button");
+delGifAll.addEventListener("click", deleteAll);
+delGifAll.textContent = "Delete All Gifs";
+// innerDiv.appendChild(delGifAll);
+newDiv.appendChild(delGifAll);
+delGifAll.style.backgroundColor = "red";
+delGifAll.style.fontSize = "20px";
+delGifAll.style.marginBottom = "10px";
 
 function deleteAll(event) {
   const gifsToDel = event.target.parentNode;
