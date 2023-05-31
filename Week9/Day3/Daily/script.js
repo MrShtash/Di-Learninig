@@ -5,7 +5,9 @@ let form1 = document.forms.myForm; // choose form
 console.log(form1);
 let fields = myForm.elements; // choose all form fields
 console.log(fields);
-let newDiv = document.getElementById("container");
+
+let newsection = document.getElementById('container')
+let newDiv = document.getElementById("containerin");
 
 form1.addEventListener("submit", submit);
 
@@ -38,6 +40,17 @@ async function submit(event) {
       innerDiv.appendChild(delGif);
       delGif.style.marginLeft = "5px";
       delGif.style.backgroundColor = "red";
+
+      // if(newImg>2) {
+      //   let delGifAll = document.createElement("button");
+      //   delGifAll.addEventListener("click", deleteAll);
+      //   delGifAll.textContent = "Delete All Gifs";
+      //   innerDiv.appendChild(delGifAll);
+      //   delGifAll.style.backgroundColor = "red";
+      //   delGifAll.style.fontSize = "20px";
+      //   delGifAll.style.marginBottom = "10px";
+      // }
+
     } else {
       throw new Error("bad query");
     }
@@ -52,6 +65,7 @@ function deleteOne(event) {
 let delGifAll = document.createElement("button");
 delGifAll.addEventListener("click", deleteAll);
 delGifAll.textContent = "Delete All Gifs";
+innerDiv.appendChild(delGifAll);
 newDiv.appendChild(delGifAll);
 delGifAll.style.backgroundColor = "red";
 delGifAll.style.fontSize = "20px";
