@@ -6,10 +6,12 @@ console.log(form1);
 let fields = myForm.elements; // choose all form fields
 console.log(fields);
 
-let newsection = document.getElementById('container')
+// let newsection = document.getElementById('container')
 let newDiv = document.getElementById("containerin");
 
 form1.addEventListener("submit", submit);
+
+let deleteAllExist = false;
 
 async function submit(event) {
   event.preventDefault();
@@ -64,9 +66,12 @@ async function submit(event) {
       // {
       //   delGifAll.remove();
       // }
-
     } else {
       throw new Error("bad query");
+    }
+    if(newDiv.children.length > 1 && !deleteAllExist){
+      deleteAllExist = true
+      createDeleteAllButton()
     }
   }
 }
@@ -76,18 +81,22 @@ function deleteOne(event) {
   gifToDel.remove();
 }
 
-let delGifAll = document.createElement("button");
-delGifAll.addEventListener("click", deleteAll);
-delGifAll.textContent = "Delete All Gifs";
-// innerDiv.appendChild(delGifAll);
-newDiv.appendChild(delGifAll);
-delGifAll.style.backgroundColor = "red";
-delGifAll.style.fontSize = "20px";
-delGifAll.style.marginBottom = "10px";
+function createDeleteAllButton() {
+  let delGifAll = document.createElement("button");
+  delGifAll.addEventListener("click", deleteAll);
+  delGifAll.textContent = "Delete All Gifs";
+  // innerDiv.appendChild(delGifAll);
+  newDiv.appendChild(delGifAll);
+  delGifAll.style.backgroundColor = "red";
+  delGifAll.style.fontSize = "20px";
+  delGifAll.style.marginBottom = "10px";
+}
 
 function deleteAll(event) {
-  const gifsToDel = event.target.parentNode;
-  gifsToDel.remove();
+  deleteAllExist = false
+  // const gifsToDel = event.target.parentNode;
+  // gifsToDel.remove();
+  newDiv.innerHTML = ''
 }
 
 // function deleteAll() {
