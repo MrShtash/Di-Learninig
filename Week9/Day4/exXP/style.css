@@ -1,0 +1,61 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"); 
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    text-align: center; /* text in the center (X) */
+    margin: 0;
+    padding: 0 20px;
+    background-image: url("/Week9/Day4/exXP/1614840364_56-p-fon-zvezdnoe-nebo-78.jpg");
+    background-size: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.page {
+    display: flex;
+    flex-direction: column; /* my page is going down from the top */
+    max-width: 1280px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.logo-img {
+    /* margin: auto; */
+    width: 50%;
+    /* display: block; */
+    /* height: 50%; */
+}
+
+.container {
+    border: 2px solid yellow;
+    border-radius: 5px;
+    height: 250px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn {
+    background-color: yellow;
+    border-radius: 5px;
+    border-style: solid 1px;
+    font-weight: bold;
+    margin-top: 40px;
+    margin-bottom: 100px;
+    height: 30px;
+}
+
+#loading {
+  display: none; /* Initially hide the loading spinner */
+}
+
+.fa-spinner {
+  font-size: 24px;
+  color: yellow;
+}
