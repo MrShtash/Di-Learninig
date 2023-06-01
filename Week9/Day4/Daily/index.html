@@ -4,10 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Week 9 Day 4 Daily</title>
 </head>
 <body>
-    
+    <div class="container">
+        <div class="converter">
+            <h1>Currency Converter</h1>
+            <h2>From</h2>
+            <select name="from" id="from" class="opt">
+                <!-- <option value="">USD</option>
+                <option value="">EUR</option>
+                <option value="">ILS</option> -->
+            </select>
+            <h2>To</h2>
+            <div>
+                <button id="switch">Switch</button>
+            </div>
+            <select name="to" id="to" class="opt">
+                <!-- <option value="">USD</option>
+                <option value="">EUR</option>
+                <option value="">ILS</option> -->
+            </select>
+            <h3>Amount</h3>
+            <input type="text" class="amount" id="input" value="1">
+            <!-- <button class="btn" id="convert">Convert</button> -->
+            <p id="summary"></p>
+        </div>
+    </div>
     <script src="script.js" charset="utf-8"></script>
 </body>
 </html>
