@@ -1,4 +1,8 @@
 from django.db import models
+import datetime
+from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 # Create your models here.
 
@@ -43,9 +47,22 @@ class templateWork (models.Model):
         return f'{self.task}'
 
 class Cash (models.Model):
-    cash = models.IntegerField()
+    cash =  models.DecimalField(max_digits=8, decimal_places=2, default=0)
 
-class 
+    def __str__(self):
+        return f'{self.cash}'
+
+class Work (models.Model):
+    title = models.CharField(max_length=100, blank=True, null=True)
+    details = models.CharField(max_length=1000, blank=True, null=True)
+    hour = models.IntegerField(default=0)
+    specialist = models.ForeignKey(User, on_delete=models.CASCADE)
+    date_creation = models.DateField(auto_now_add = True)
+    date_completion = models.DateField(blank = True, null = True)
+    deadline_date = models.DateField(blank = True)
+
+    def __str__(self):
+        return f'{self.task}, {self.hour}, {self.specialist}'
 
     
 
