@@ -23,15 +23,14 @@ class Project (models.Model):
         return f'{self.name}, {self.company}'
     
 class Grade (models.Model):
-    specialist_username = models.CharField(max_length=100, blank=True, null=True)
-    grade_type = models.IntegerField()
-    cost = models.IntegerField
+    grade_type = models.CharField(max_length=100, blank=True, null=True)
+    cost = models.DecimalField(max_digits=8, decimal_places=2, default=0)
 
     def __str__(self):
-        return f'{self.specialist_username}, {self.grade_type}, {self.cost}'
+        return f'{self.grade_type}, {self.cost}'
 
 class Hour (models.Model):
-    hour = models.IntegerField()
+    hour = models.IntegerField(default=0)
     grade_type = models.ForeignKey(Grade, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -46,7 +45,7 @@ class templateWork (models.Model):
 class Cash (models.Model):
     cash = models.IntegerField()
 
-
+class 
 
     
 
