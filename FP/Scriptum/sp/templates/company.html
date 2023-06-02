@@ -1,6 +1,14 @@
 {%extends 'base.html'%}
-{%block title%}Company{%endblock title%}
+{% if user.is_authenticated and user.is_superuser %}
+{%block title%}Manager{%endblock title%}
 {%block content%}
-
-
+<h1>{{company.name}}</h1>
+    <p>Address {{ company.address }}</p>  
+    <p>Total Paid Amount {{total_paid_amount}}</p>  
+<h2>Projects</h2>
+    <ul>
+        {% for project in projects %}
+        <li><a href="{% url 'project_page' project.id %}">{{ project.name }}</a></li>
+        {% endfor %}
+    </ul>
 {%endblock content%}

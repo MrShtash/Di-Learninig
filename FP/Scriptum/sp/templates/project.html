@@ -1,7 +1,23 @@
 {%extends 'base.html'%}
+{% if user.is_authenticated and user.is_superuser %}
 {%block title%}Project{%endblock title%}
 {%block content%}
+    <h1>{{ project.name }} </h1>
+        <p>Start Date: {{ project.start_date }}</p>
+        <p>End Date: {{ project.end_date }}</p>
+        <p>Total Hours Worked: {{ total_hours_worked }}</p>
 
-  
+    <h2>Works:</h2>
+    <ul>
+        {% for work in works %}
+            <li>{{ work.title }} - {{ work.hour }} hours</li>
+        {% endfor %}
+    </ul>
 
+    <h2>Add Work:</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Work</button>
+    </form>
 {%endblock content%}

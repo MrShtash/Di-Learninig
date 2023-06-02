@@ -34,4 +34,3 @@ function  getLogInFormValue(event) {
 };
 
 
-

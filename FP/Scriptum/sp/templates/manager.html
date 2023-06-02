@@ -1,5 +1,14 @@
 {%extends 'base.html'%}
+{% if user.is_authenticated and user.is_superuser %}
 {%block title%}Manager{%endblock title%}
 {%block content%}
-
+<h1>Profile</h1>
+    <p>Name {{ specialist.name }} </p>
+    <p>Workload {{total_workload}} hours</p>
+<h2>Companies</h2>
+<ul>
+    {% for company in companies %}
+        <li><a href="{% url 'company_page' company.id %}">{{ company.name }}</a></li>
+    {% endfor %}
+</ul>
 {%endblock content%}
