@@ -5,7 +5,7 @@ from .models import *
 class WorkAddForm(forms.ModelForm):
     class Meta:
         model = Work
-        fields = '__all__'
+        fields = ['title', 'details', 'hour', 'date_completion', 'deadline_date']
 
 class SpecialistProfileForm(forms.ModelForm):
     class Meta:

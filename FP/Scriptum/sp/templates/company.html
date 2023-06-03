@@ -1,14 +1,17 @@
 {%extends 'base.html'%}
-{% if user.is_authenticated and user.is_superuser %}
-{%block title%}Manager{%endblock title%}
-{%block content%}
-<h1>{{company.name}}</h1>
-    <p>Address {{ company.address }}</p>  
-    <p>Total Paid Amount {{total_paid_amount}}</p>  
-<h2>Projects</h2>
-    <ul>
-        {% for project in projects %}
-        <li><a href="{% url 'project_page' project.id %}">{{ project.name }}</a></li>
-        {% endfor %}
-    </ul>
-{%endblock content%}
+{% if user.is_authenticated or user.is_superuser %}
+    {%block title%}Manager{%endblock title%}
+    {%block content%}
+        <h1 class="head">{{company.name}}</h1>
+            <p>Address: <a class="a" href="{{ company.address }}" target="_blank">{{ company.address }}</a></p>
+            <p>Total Paid Amount: {{total_paid_amount}}</p>
+            <p>Rest of Money: {{ rest_of_money }}</p>
+
+        <h2 class="project">Projects</h2>
+            <ul>
+                {% for project in projects %}
+                    <li><a class="a" href="{% url 'project' project.id %}">{{ project.name }}</a></li>
+                {% endfor %}
+            </ul>
+    {%endblock content%}
+{%endif%}

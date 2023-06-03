@@ -6,10 +6,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: lightgray;
-    /* background-image: url("https://i.artfile.ru/1600x1200_397118_[www.ArtFile.ru].jpg");
-    background-size: no-repeat;
-    background-position: center;
-    background-size: cover; */
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .container {
@@ -43,4 +40,11 @@ body {
 .password {
     border-radius: 8px;
     text-align: center;
+}
+
+.footer {
+  background-color: #f5f5f5;
+  padding: 10px;
+  margin-top: 20px;
+  text-align: center;
 }

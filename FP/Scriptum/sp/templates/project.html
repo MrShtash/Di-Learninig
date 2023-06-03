@@ -1,23 +1,35 @@
 {%extends 'base.html'%}
-{% if user.is_authenticated and user.is_superuser %}
-{%block title%}Project{%endblock title%}
-{%block content%}
-    <h1>{{ project.name }} </h1>
-        <p>Start Date: {{ project.start_date }}</p>
-        <p>End Date: {{ project.end_date }}</p>
-        <p>Total Hours Worked: {{ total_hours_worked }}</p>
+{%load static%}
+{% if user.is_authenticated or user.is_superuser %}
+    {%block title%}Project{%endblock title%}
+    {%block content%}
+        <h1 class="head">{{ project.name }} </h1>
+            <p>Start Date: {{ project.date_start }}</p>
+            <p>End Date: {{ project.deadline }}</p>
+            <p>Total Hours: {{ total_hours }}</p>
+            <p>Difference in Hours: {{ difference_hours }}</p>
 
-    <h2>Works:</h2>
-    <ul>
-        {% for work in works %}
-            <li>{{ work.title }} - {{ work.hour }} hours</li>
-        {% endfor %}
-    </ul>
+        <h2 class="h">Works</h2>
+            <ul>
+                {% for work in works %}
+                    <li>{{ work.title }} - {{ work.hour }} hours</li>
+                {% endfor %}
+            </ul>
 
-    <h2>Add Work:</h2>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Add Work</button>
-    </form>
-{%endblock content%}
+        <h2 class="h">Add Work</h2>
+            <form method="POST" action="{% url 'project' project.id%}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="button" type="submit">Add Work</button>
+            </form>
+
+        <h2 class="h">Check SEO result</h2>
+            <div>
+                <input class="input" type="text" id="search-input" placeholder="Enter search request">
+                <button class="button" id="search-button">Search</button>
+            </div>
+        <div id="seo-result"></div>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src={% static "SEOscript.js" %} charset="utf-8"></script>
+    {%endblock content%}
+{%endif%}
