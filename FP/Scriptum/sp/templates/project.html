@@ -12,7 +12,7 @@
         <h2 class="h">Works</h2>
             <ul>
                 {% for work in works %}
-                    <li>{{ work.title }} - {{ work.hour }} hours</li>
+                    <li class="statistic">{{ work.title }} - {{ work.hour }} hours</li>
                 {% endfor %}
             </ul>
 
@@ -28,7 +28,8 @@
                 <input class="input" type="text" id="search-input" placeholder="Enter search request">
                 <button class="button" id="search-button">Search</button>
             </div>
-        <div id="seo-result"></div>
+        <div id="seo-result">
+        </div>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src={% static "SEOscript.js" %} charset="utf-8"></script>
     {%endblock content%}

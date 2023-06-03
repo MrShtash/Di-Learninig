@@ -3,7 +3,10 @@
     {%block title%}Specialist{%endblock title%}
     {%block content%}
     {% if messages %}
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-success" role="alert" style="font-size: 20px;
+    margin-bottom: 10px;
+    background-color: green;
+    color: white;">
             {%for message in messages%}
                 {{message}}
             {%endfor%}

@@ -33,6 +33,13 @@ body {
     text-decoration: none;
 }
 
+.alert alert-success {
+    font-size: 20px;
+    margin-bottom: 10px;
+    background-color: green;
+    color: white;
+}
+
 .workload {
     font-size: 20px;
     margin-bottom: 5px;

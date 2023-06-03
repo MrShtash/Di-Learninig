@@ -6,6 +6,13 @@ class WorkAddForm(forms.ModelForm):
     class Meta:
         model = Work
         fields = ['title', 'details', 'hour', 'date_completion', 'deadline_date']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'input'}),
+            'details': forms.TextInput(attrs={'class': 'input'}),
+            'hour': forms.TextInput(attrs={'class': 'input'}),
+            'date_completion': forms.TextInput(attrs={'class': 'input'}),
+            'deadline_date': forms.TextInput(attrs={'class': 'input'}),
+        }
 
 class SpecialistProfileForm(forms.ModelForm):
     class Meta:
