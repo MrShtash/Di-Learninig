@@ -3,8 +3,13 @@ import datetime
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 User = get_user_model()
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+import asyncio
+from tg_bot.bot import bot as tg_bot
+from django.conf import settings
 
-# Create your models here.
+loop = asyncio.get_event_loop()
 
 class Login (models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
@@ -117,3 +122,22 @@ class Work (models.Model):
 
     def __str__(self):
         return f'{self.task}, {self.hour}, {self.specialist}, {self.hour}, {self.specialist}, {self.project}, {self.date_creation}, {self.date_completion}, {self.deadline_date}'
+    
+
+
+@receiver(post_save, sender=Project, dispatch_uid="send_tgmessage")
+def send_tgmessage(sender, instance, created, **kwargs):
+    if created:
+        message = f'Hi, you have a new customer {instance.company.name}. They paid {instance.deposit} shekels. Dont forget to call them within 1 hour. Details are available on your CRM.'
+        try:
+            loop.run_until_complete(
+                tg_bot.send_message(
+                    chat_id=settings.MANAGER_CHAT_ID,
+                    text=message,
+                    parse_mode='html',
+                    disable_web_page_preview=True,
+                )
+            )
+
+        except Exception as e:
+            print(f"error: {e}")

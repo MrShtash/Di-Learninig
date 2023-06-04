@@ -1,49 +1,49 @@
-# import logging
-# from django.db.models.signals import post_save
-# from django.dispatch import receiver
-# from aiogram import Bot
-# from telegram import Bot
-# from .models import Project, Company
-
-# logging.basicConfig(level=logging.INFO)
-
-# bot_token = '5869913658:AAFD72OPZzvOTfbHPwNzXsGlxafWXDXSpwA'
-# bot = Bot(token=bot_token)
-
-# @receiver(post_save, sender=Project)
-# def new_project_handler(sender, instance, created, **kwargs):
-#     if created:
-#         project = instance
-#         company = project.company
-
-#         manager_chat_id = '194757893'
-
-#         message_text = f"Hi, you have a new customer {company.name}. They paid {project.payment_amount} shekels. Don't forget to call them within 1 hour. Details are available on your CRM."
-#         bot.send_message(chat_id=manager_chat_id, text=message_text)
-
-# if __name__ == '__main__': # Start the bot
-#     bot.run_polling()
-
-
-
 import logging
-from telegram import Bot
-from telegram.ext import Updater, CommandHandler
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from aiogram import Bot
+# from telegram import Bot
 from .models import Project, Company
 
-logging.basicConfig(level=logging.INFO) # set up logging
+logging.basicConfig(level=logging.INFO)
 
 bot_token = '5869913658:AAFD72OPZzvOTfbHPwNzXsGlxafWXDXSpwA'
 bot = Bot(token=bot_token)
 
-def start_handler(update, context): # def the command handler
-    context.bot.send_message(chat_id=update.effective_chat.id, text="Bot is running!")
+@receiver(post_save, sender=Project)
+def new_project_handler(sender, instance, created, **kwargs):
+    if created:
+        project = instance
+        company = project.company
 
-updater = Updater(token=bot_token, use_context=True) # set up the updater and dispatcher
-dispatcher = updater.dispatcher
-dispatcher.add_handler(CommandHandler('start', start_handler))
+        manager_chat_id = '194757893'
 
-updater.start_polling()
+        message_text = f"Hi, you have a new customer {company.name}. They paid {project.payment_amount} shekels. Don't forget to call them within 1 hour. Details are available on your CRM."
+        bot.send_message(chat_id=manager_chat_id, text=message_text)
+
+if __name__ == '__main__': # Start the bot
+    bot.run_polling()
+
+
+
+# import logging
+# from telegram import Bot
+# from telegram.ext import Updater, CommandHandler
+# from .models import Project, Company
+
+# logging.basicConfig(level=logging.INFO) # set up logging
+
+# bot_token = '5869913658:AAFD72OPZzvOTfbHPwNzXsGlxafWXDXSpwA'
+# bot = Bot(token=bot_token)
+
+# def start_handler(update, context): # def the command handler
+#     context.bot.send_message(chat_id=update.effective_chat.id, text="Bot is running!")
+
+# updater = Updater(token=bot_token, use_context=True) # set up the updater and dispatcher
+# dispatcher = updater.dispatcher
+# dispatcher.add_handler(CommandHandler('start', start_handler))
+
+# updater.start_polling()
 
 
 
@@ -69,6 +69,11 @@ updater.start_polling()
 # bot_token = '5869913658:AAFD72OPZzvOTfbHPwNzXsGlxafWXDXSpwA'
 # bot = telegram.Bot(token=bot_token)
 
+
+# def start_bot (update, context):
+#     update.message.reply_text('Hey, I am your assistant, lets keep in touch')
+
+
 # def send_notification(chat_id, company_name, payment_amount):
 #     print('helloooo')
 #     message = f"Hi, you have a new customer {company_name}. They paid {payment_amount} shekels. Don't forget to call them within 1 hour. Details are available on your CRM."
@@ -89,7 +94,6 @@ updater.start_polling()
 # updater = Updater(token=bot_token, use_context=True)
 # dispatcher = updater.dispatcher
 # dispatcher.add_handler(CommandHandler('newproject', new_project_handler))
-
 
 
 
