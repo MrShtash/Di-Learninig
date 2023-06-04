@@ -1,3 +1,35 @@
+# import logging
+# from django.db.models.signals import post_save
+# from django.dispatch import receiver
+# from aiogram import Bot
+# from your_app.models import Project, Company
+
+# logging.basicConfig(level=logging.INFO)
+
+# bot_token = '5869913658:AAFD72OPZzvOTfbHPwNzXsGlxafWXDXSpwA'
+# bot = Bot(token=bot_token)
+
+# @receiver(post_save, sender=Project)
+# def new_project_handler(sender, instance, created, **kwargs):
+#     if created:
+#         project = instance
+#         company = project.company
+
+#         manager_chat_id = '194757893'
+
+#         message_text = f"Hi, you have a new customer ({company.name}). They paid {project.payment_amount} shekels. Don't forget to call them within 1 hour. Details are available on your CRM."
+#         bot.send_message(chat_id=manager_chat_id, text=message_text)
+
+# if __name__ == '__main__': # Start the bot
+#     bot.run_polling()
+
+
+
+
+
+
+
+
 import telegram
 from django.shortcuts import render
 from django.conf import settings
@@ -17,13 +49,13 @@ bot_token = '5869913658:AAFD72OPZzvOTfbHPwNzXsGlxafWXDXSpwA'
 bot = telegram.Bot(token=bot_token)
 
 def send_notification(chat_id, company_name, payment_amount):
-    message = f"Hi, you have a new customer ({company_name}). They paid {payment_amount} shekels. Don't forget to call them within 1 hour. Details are available on your CRM."
+    print('helloooo')
+    message = f"Hi, you have a new customer {company_name}. They paid {payment_amount} shekels. Don't forget to call them within 1 hour. Details are available on your CRM."
     bot.send_message(chat_id=chat_id, text=message)
 
 def new_project_handler(update: telegram.Update, context: CallbackContext):
-    
-    # Get the details of the new project from your database or form input
-    project_id = context.args[0]
+    print ('message')
+    project_id = context.args[0] # details of the new project from  DB or input
     project = Project.objects.get(id=project_id)
     company_name = project.company.name
     payment_amount = project.cash_amount
