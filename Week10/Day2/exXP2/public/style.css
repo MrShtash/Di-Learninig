@@ -1,0 +1,42 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.header {
+    text-align: center;
+    border-color: red;
+    border-style: dashed;
+    padding: 10px;
+}
+
+.main {
+    color: red;
+}
+
+span {
+    font-style: italic;
+}
+
+.middle {
+    font-weight: bold;
+}
+
+.button {
+    background-color: lightgray;
+    color: #0a1bb1;
+    border-width: 1px;
+    border-radius: 5px;
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Week10/Day2/exXP2/public/style.css">
+    <title>Week 10 Day 2 ExXP 2 Pt 3 — Express & Static Files</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="main">This is a <span>Static</span> HTML file with CSS and JavaScript running on a server</h1>
+        </div>
+        <p class="middle">Here is some JavaScript <button class="button" id="submit" type="submit">Click Me</button> <p>
+    </div>
+    <script>
+        const button = document.getElementById('submit')
+        button.addEventListener('click', function() {
+            alert('localhost:3000 says: Hello from JavaScript')
+            // alert('Hello from JavaScript')
+        })
+    </script>
+    <script src="script2.js" charset="utf-8"></script>
+</body>
+</html>
