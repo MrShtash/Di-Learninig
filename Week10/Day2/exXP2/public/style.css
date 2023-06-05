@@ -17,7 +17,7 @@ body {
 
 .header {
     text-align: center;
-    border-color: red;
+    border-color: blue;
     border-style: dashed;
     padding: 10px;
 }
