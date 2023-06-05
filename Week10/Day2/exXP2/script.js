@@ -17,6 +17,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
+
 app.get('/:id', (req, res) => {
     console.log('req.params:', req.params)
     // res.send(`id: ${req.params.id}`);
