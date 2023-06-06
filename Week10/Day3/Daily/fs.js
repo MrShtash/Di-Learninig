@@ -12,19 +12,19 @@ const data = "RightLeft.txt";
 // });
 
 // 3-5
-let position = 0;
-let sum = 0;
-let checked = false;
+let position = 0; // init pos
+let sum = 0; // for count
+let checked = false; // use like flag to stop 
 fs.readFile('RightLeft.txt', 'utf-8', (err, data) => {
     for (item of data){
-        sum++
+        sum++ // take each symbol from data and sum by  
         if (item == '>') {
-            position++
+            position++ // increase pos
         }
         else if (item == '<') {
-            position--
+            position-- // decrease pos
         }
-        if (position == -1 && checked == false) {
+        if (position == -1 && checked == false) { // check if pos == -1
             console.log(`Current position is ${position}. It took ${sum} steps to reach this`)
             checked = true
         }
