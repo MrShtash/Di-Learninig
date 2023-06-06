@@ -26,11 +26,11 @@ const fs = require('fs');
 // });
 
 // 4
-fs.unlink('data.txt', (err)=>{
-    if(err){
-        console.log(err);
-    }
-    else{
-        console.log('deleted');
-    }
-})
+// fs.unlink('data.txt', (err)=>{
+//     if(err){
+//         console.log(err);
+//     }
+//     else{
+//         console.log('deleted');
+//     }
+// })
