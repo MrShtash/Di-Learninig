@@ -1,7 +1,7 @@
 {%extends 'base.html'%}
 {%load static%}
 {%block css%}
-<link rel="stylesheet" type="text/css" href={% static 'compstyle.css' %} />
+    <link rel="stylesheet" type="text/css" href={% static 'compstyle.css' %} />
 {%endblock css%}
 {% if user.is_authenticated or user.is_superuser %}
     {%block title%}Manager{%endblock title%}

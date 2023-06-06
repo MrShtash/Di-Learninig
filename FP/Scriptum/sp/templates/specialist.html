@@ -1,29 +1,26 @@
 {%extends 'base.html'%}
 {%load static%}
 {%block css%}
-<link rel="stylesheet" type="text/css" href={% static 'specstyle.css' %} />
+    <link rel="stylesheet" type="text/css" href={% static 'specstyle.css' %} />
 {%endblock css%}
 {% if user.is_authenticated %}
     {%block title%}Specialist{%endblock title%}
     {%block content%}
     {% if messages %}
-        <div class="alert alert-success" role="alert" style="font-size: 20px;
-    margin-bottom: 10px;
-    background-color: green;
-    color: white;">
+        <div class="alert alert-success" role="alert" style="font-size: 20px; margin-bottom: 10px; background-color: green; color: white;">
             {%for message in messages%}
                 {{message}}
             {%endfor%}
         </div>
     {%endif%}
-    <h1 class="head">Profile</h1>
-        <p class="name">Name: {{ manager.first_name }} <a class="logout" href="{% url 'logout' %}">Logout</a></p>
-        <p class="workload">Workload: {{total_workload}} hours</p>
-    <h2 class="companies">Companies</h2>
-        <ul>
-            {% for company in companies %}
-                <li class="complink"><a class="a" href="{% url 'company' company.id %}">{{ company.name }}</a></li>
-            {% endfor %}
-        </ul>
+        <h1 class="head">Profile</h1>
+            <p class="name">Name: {{ manager.first_name }} <a class="logout" href="{% url 'logout' %}">Logout</a></p>
+            <p class="workload">Workload: {{total_workload}} hours</p>
+        <h2 class="companies">Companies</h2>
+            <ul>
+                {% for company in companies %}
+                    <li class="complink"><a class="a" href="{% url 'company' company.id %}">{{ company.name }}</a></li>
+                {% endfor %}
+            </ul>
     {%endblock content%}
 {%endif%}
