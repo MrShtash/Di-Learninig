@@ -1,6 +1,9 @@
 {%extends 'base.html'%}
 {%load static%}
+{%block css%} <link rel="stylesheet" type="text/css" href={% static 'projstyle.css' %} /> {%endblock css%}
+
 {% if user.is_authenticated or user.is_superuser %}
+    
     {%block title%}Project{%endblock title%}
     {%block content%}
         <h1 class="head">{{ project.name }} </h1>
@@ -11,7 +14,7 @@
             <p>Difference in Hours: {{ difference_hours }}</p>
 
         <h2 class="h">Works</h2>
-            <ul>
+            <ul class="list">
                 {% for work in works %}
                     <li class="statistic">{{ work.title }} - {{ work.hour }} hours</li>
                 {% endfor %}
