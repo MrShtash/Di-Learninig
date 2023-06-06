@@ -121,7 +121,7 @@ class Work (models.Model):
     deadline_date = models.DateField(blank = True)
 
     def __str__(self):
-        return f'{self.task}, {self.hour}, {self.specialist}, {self.hour}, {self.specialist}, {self.project}, {self.date_creation}, {self.date_completion}, {self.deadline_date}'
+        return f'{self.title}, {self.details}, {self.hour}, {self.specialist}, {self.project}, {self.date_creation}, {self.date_completion}, {self.deadline_date}'
     
 
 
