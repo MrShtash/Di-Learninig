@@ -16,7 +16,7 @@ let position = 0; // init pos
 let sum = 0; // for count
 let checked = false; // use like flag to stop 
 fs.readFile('RightLeft.txt', 'utf-8', (err, data) => {
-    for (item of data){
+    for (let item of data){
         sum++ // take each symbol from data and sum by  
         if (item == '>') {
             position++ // increase pos
