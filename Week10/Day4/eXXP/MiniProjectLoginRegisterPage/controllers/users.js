@@ -8,7 +8,7 @@ const _register = (req, res) => {
     register(userInfo)
     .then(data => {
         console.log("data", data);
-        res.json(`registration successful. \n hello ${data[0].username}. your id is: ${data[0].id}`)
+        res.json(`registration successful. \n hello ${data[0].username}. your id is: ${data[0].user_id}`)
     })
     .catch(err => {
         console.log("err", err);
@@ -18,9 +18,9 @@ const _register = (req, res) => {
 const _login = (req, res) => {
     let userInfo = {...req.body}
     userInfo.password = password.hash(userInfo.password)
-    register(userInfo)
+    login(userInfo)
     .then(data => {
-        res.json(`registration successful ${data[0].id}`)
+        res.json(`registration successful ${data[0].user_id}`)
     })
     .catch(err => {
         console.log(err);

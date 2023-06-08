@@ -7,11 +7,12 @@ const router = express.Router();
 //     (req,res)
 // })
 
-const {_register} = require('../controllers/users.js');
+const {_register, _login} = require('../controllers/users.js');
 
 
 router.get('/')
 router.post('/register', _register)
+router.post('/login', _login)
 
 // router.post("/register", (req, res) => {
 //   console.log("body", req.body);

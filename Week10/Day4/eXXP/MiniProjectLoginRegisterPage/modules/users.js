@@ -1,7 +1,7 @@
 const {db} = require('../config/db.js');
 
 const register = user => {
-    returndb('register')
+    return db('register')
     .insert(user)
     .returning('*')
 }
