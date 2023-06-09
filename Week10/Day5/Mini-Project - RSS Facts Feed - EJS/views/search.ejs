@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>RSS Feed</title>
+</head>
+<body>
+    <div class="main-container">
+
+        <%- include('nav') %>
+        <div class="body-container">
+
+            <div class="search-container">
+            </form>
+            <form class="search-title">
+                <h1 class="title">search</h1>
+                <h2>title</h2>
+            <input name="title" type="text">
+            <button class="search-button-title">search</button>
+            </form>
+                <form name='category' class="search-category">
+                    <h2>catergoy</h2>
+                    <select name="category">
+                        <%for(category of categories) {%>
+                            <option value=<%=category%>><%=category%></option>
+                            <%}%>
+                            
+                    </select>
+                    <button class="search-button-category">search</button>
+         
+            </div>
+            <div class="results-container">
+            <h1 class="title">results</h1>
+            
+    </div>
+</div>
+        <%- include('footer') %>
+        
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
