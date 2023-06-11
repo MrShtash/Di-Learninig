@@ -19,8 +19,10 @@ function App() {
           Learn React
         </a>
       </header> */}
-      <img src={logo} className="App-logo" alt="logo" />
-      <MyCarousel />
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <MyCarousel />
+      </header>
     </div>
   );
 }
