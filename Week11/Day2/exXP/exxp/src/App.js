@@ -1,6 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
 import CarC from './components/CarC';
+import EventC from './components/EventsC';
+import PhoneC from './components/PhoneC';
+import ColorC from './components/Color';
 
 // 1 pt 1 way
 // const carinfo = {
@@ -35,8 +38,17 @@ function App() {
         {/* <CarC carinfo={carinfo}/> */}
 
         {/* 1 pt 2 way */}
-        <CarC carinfo={carinfoData}/>
-        
+        {/* <CarC carinfo={carinfoData}/> */}
+
+        {/* 2 pt */}
+        {/* <EventC/> */}
+
+        {/* pt 3 */}
+        {/* <PhoneC/> */}
+
+        {/* pt 4 */}
+        <ColorC/>
+
       </header>
     </div>
   );

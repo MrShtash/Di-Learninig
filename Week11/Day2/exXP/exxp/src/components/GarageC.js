@@ -1,6 +1,6 @@
 import React from "react";
 
-class Garage extends React.Component {
+class GarageC extends React.Component {
     constructor(props){
         super(props);
     }
@@ -18,4 +18,4 @@ class Garage extends React.Component {
 //     return <p>Who lives in my {props.size} garage?</p>
 // }
 
-export default Garage
+export default GarageC

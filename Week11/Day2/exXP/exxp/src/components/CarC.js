@@ -1,5 +1,5 @@
 import React from 'react';
-import Garage from './Garage'
+import GarageC from './GarageC'
 
 // pt 1 way 1
 // class CarC extends React.Component {
@@ -32,7 +32,7 @@ class CarC extends React.Component {
         const {model, name} = carinfo;
         return (
             <div>
-                <h1><Garage size="big"/></h1>
+                <h1><GarageC size="big"/></h1>
                 <h1>This car is {this.state.color} {model}</h1>
             </div>
         )
