@@ -1,33 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
-import ErrorBoundary from './components/ErrorBoundary'
-import React from 'react';
-import ColorC from './components/Color';
+import logo from "./logo.svg";
+import "./App.css";
+import ErrorBoundary from "./components/ErrorBoundary";
+import React from "react";
+import ColorC from "./components/Color";
 
-class BuggyCounter extends React.Component{
-    constructor(){
-        super();
-        this.state = {
-          count:0
-        };
-    }
+// pt 1
+// class BuggyCounter extends React.Component{
+//     constructor(){
+//         super();
+//         this.state = {
+//           count:0
+//         };
+//     }
 
-    handleClick = () => {
-        this.setState({count: this.state.count + 1})
-      };
+//     handleClick = () => {
+//         this.setState({count: this.state.count + 1})
+//       };
 
-    render(){
-        if(this.state.count > 5){
-            throw Error('I Crashed!')
-          }
-        return(
-            <div>
-              {this.state.count}
-              <button onClick={this.handleClick}>Add Points</button>
-            </div>
-        );
-    }
-}
+//     render(){
+//         if(this.state.count > 5){
+//             throw Error('I Crashed!')
+//           }
+//         return(
+//             <div>
+//               {this.state.count}
+//               <button onClick={this.handleClick}>Add Points</button>
+//             </div>
+//         );
+//     }
+// }
+
+// pt3
 
 function App() {
   return (
@@ -57,9 +60,8 @@ function App() {
           <BuggyCounter/>
         </> */}
 
-
         {/* pt2 */}
-        <ColorC/>
+        <ColorC />
       </header>
     </div>
   );
