@@ -17,7 +17,8 @@ class App extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      message: null
+      message: null,
+      formValue: ''
     }
   }
 
@@ -48,6 +49,8 @@ class App extends React.Component{
       const resJson = await fetch(url, options);
       const res = await resJson.json();
       console.log('res:', res);
+      // this.props.setMessage(res.message)
+      this.setState({formValue: '', message: res.message})
     } catch (e) {
       console.log(e);
     }
@@ -60,11 +63,13 @@ class App extends React.Component{
           <h1>{this.state.message}</h1>
           <h2>Post to Server</h2>
           <form onSubmit={this.handleSubmit}>
-            <input type="text" placeholder="Type here" id="search"/>
+            <input type="text"
+                  placeholder="Type here"
+                  id="search"
+                  value={this.state.formValue}
+                  onChange={(e) => this.setState({ formValue: e.target.value })}/>
             <input type="submit" value="Submit"/>
-
-            
-
+            {/* <p>{this.res.message}</p> */}
           </form>
         </header>
       </div>
