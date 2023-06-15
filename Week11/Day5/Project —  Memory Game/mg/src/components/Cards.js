@@ -41,7 +41,7 @@ class Card extends React.Component{
                 <div className='heroesContainer'>
                     {this.state.heroes.map((hero)=>( // for each hero create card and pass name to handleClick
                         <div key={hero.id} className='heroCard' onClick={() => this.handleClick(hero.name)}>
-                            <img src={hero.image}></img>
+                            <img src={hero.image} alt={hero.name}></img>
                             <p>
                                 <span className='heroName'>Name: </span>{hero.name}
                             </p>
