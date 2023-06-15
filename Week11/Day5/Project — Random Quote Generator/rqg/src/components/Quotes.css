@@ -1,0 +1,53 @@
+:root{
+    --main-color: rgb(82, 225, 82);
+}
+
+body{
+    background-color: var(--main-color);
+	font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif; 
+}
+
+.container {
+    background-color: white;
+    border-radius: 0.5rem;
+    width: 70%;
+    margin-inline: auto;
+    /* margin top and margin bottom */
+    margin-block: 18rem;
+    padding: 20px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.container h1{
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--main-color);
+}
+
+.container p{
+    font-size: 0.83em;
+    font-style: italic;
+    text-align: end;
+    margin-bottom: 40px;
+    font-weight: bold;
+    color: var(--main-color);
+}
+
+.btn{
+    width: 100%;
+    text-align: right;
+    margin-top: auto;
+}
+
+.container button{
+    width: 100px;
+    height: 40px;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    background-color: var(--main-color);
+    color: white;
+    cursor: grab;
+    align-self: self-end;
+}
