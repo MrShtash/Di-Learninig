@@ -13,6 +13,7 @@ class Quotes extends React.Component {
     };
   }
 
+  // set an initial code when we open page
   componentDidMount() {
     const randomQuote = quotes[this.state.idx];
     this.setState({quote: randomQuote.quote, author: randomQuote.author});
