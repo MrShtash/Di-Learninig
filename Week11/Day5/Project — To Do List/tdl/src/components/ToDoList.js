@@ -43,23 +43,4 @@ const ToDoList = props => {
     )
 }
 
-
-
-
-// class ToDoList extends React.Component{
-//     constructor(){
-//         super();
-//     }
-//     render(){
-//         return(
-//             <div>
-//                 <h1>Todo's</h1>
-//                 <form>
-
-//                 </form>
-//             </div>
-//         )
-//     }
-// }
-
 export default ToDoList
