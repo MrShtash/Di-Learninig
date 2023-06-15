@@ -1,6 +1,7 @@
-import logo from './logo.svg';
-import './App.css';
-import Quotes from './components/Quotes'
+import logo from "./logo.svg";
+import "./App.css";
+import Quotes from "./components/Quotes";
+import NewQuote from "./components/NewQuote";
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
     //   </header>
     // </div>
     <div>
-      <Quotes/>
+      <Quotes />
+      {/* <NewQuote /> */}
     </div>
   );
 }

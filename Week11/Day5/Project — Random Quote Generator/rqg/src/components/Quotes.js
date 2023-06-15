@@ -13,7 +13,7 @@ class Quotes extends React.Component {
     };
   }
 
-  // set an initial code when we open page
+  // set an initial state when we open page
   componentDidMount() {
     const randomQuote = quotes[this.state.idx];
     this.setState({quote: randomQuote.quote, author: randomQuote.author});
@@ -58,5 +58,11 @@ class Quotes extends React.Component {
     );
   }
 }
+
+
+
+
+
+
 
 export default Quotes;
