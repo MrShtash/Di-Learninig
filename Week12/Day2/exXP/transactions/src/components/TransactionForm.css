@@ -1,0 +1,32 @@
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    /* width: 15rem; */
+    margin-bottom: 5rem;
+    cursor: pointer;
+}
+
+input {
+    border-radius: 5px;
+    border-color: white;
+}
+
+.container{
+    width: 25rem;
+}
+
+#transactions{
+    display: grid;
+    grid-template-columns: repeat(6, 2fr);
+}
+
+#transactions > * {
+    border: 1px solid black;
+    border-radius: 5px;
+    border-color: white;
+    /* text-align: center;
+    align-items: center;
+    justify-content: center; */
+    margin-bottom: 0.3rem;
+}
