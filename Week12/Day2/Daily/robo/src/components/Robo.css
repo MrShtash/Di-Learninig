@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: linear-gradient(to left, #071b52, teal);
+}
+
+.title {
+    font-family: 'SEGA LOGO FONT', sans-serif;
+    font-weight: 200;
+    color: #0ccac4;
+    text-align: center;
+}
+
+.RoboContainer {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}

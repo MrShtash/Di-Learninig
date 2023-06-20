@@ -1,25 +1,32 @@
-export const insert_transaction = (data) => {
-    console.log("insert", data);
+export const INSERT = 'INSERT';
+export const UPDATE = 'UPDATE';
+export const DELETE = 'DELETE';
+export const UPDATE_INDEX = 'UPDATE_INDEX';
+
+export const insert_trx = (data) => {
     return {
-        type: 'INSERT',
+        type: INSERT,
         payload: data
     }
 }
-export const update_transaction = (data) => {
+
+export const update_trx = (data) => {
     return {
-        type: 'UPDATE',
-        payload: data
+        type: UPDATE,
+        payload: data     
     }
 }
-export const delete_transaction = (id) => {
+  
+export const delete_trx = (indx) => {
     return {
-        type: 'DELETE',
-        payload: id
+        type: DELETE,
+        payload: indx 
     }
 }
-export const update_current_id = (id) => {
+
+export const update_index = (indx) => {
     return {
-        type: 'UPDATE-INDEX',
-        payload: id
-    }
+        type: UPDATE_INDEX,
+        payload: indx
+    } 
 }
