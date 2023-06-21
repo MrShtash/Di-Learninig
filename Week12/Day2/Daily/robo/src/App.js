@@ -1,11 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
-import Robo from './components/Robo'
+import logo from "./logo.svg";
+import "./App.css";
+import RoboFriends from "./components/Robot";
 
 function App() {
   return (
     <div className="">
-      <Robo/>
+      <RoboFriends />
     </div>
   );
 }

@@ -1,13 +1,6 @@
-import {combineReducers, createStore} from 'redux';
+import {createStore} from 'redux';
 import {reducer} from './reducer';
 
+const store = createStore(reducer);
 
-const rootReducer = combineReducers({
-    reducer,
-})
-
-const store = createStore(rootReducer);
-
-// // for debug
-// store.subscribe(() => console.log(store.getState()));
 export default store;
