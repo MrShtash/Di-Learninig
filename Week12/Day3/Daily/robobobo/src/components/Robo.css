@@ -1,0 +1,84 @@
+#root {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    text-align: center;
+}
+
+h1 {
+    font-family: "SEGA LOGO FONT";
+    font-weight: 200;
+    color: #0ccac4;
+    font-size: 50px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: linear-gradient(270deg,#071b52 0,teal);
+}
+
+.bg-lightest-blue {
+    background-color: #cdecff;
+}
+
+.b--green {
+    border-color: #19a974;
+}
+.ba {
+    border-style: solid;
+    border-width: 1px;
+    height: 50px;
+    width: 210px;
+    margin-bottom: 10px;
+}
+
+.robots {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    justify-content: center;
+}
+.bg-light-green {
+    background-color: #9eebcf;
+}
+.dib {
+    display: inline-block;
+}
+.shadow-5 {
+    box-shadow: 4px 4px 8px 0 rgba(0,0,0,.2);
+}
+.bw2 {
+    border-width: 0.25rem;
+}
+
+.br3 {
+    border-radius: 0.5rem;
+}
+.ma2 {
+    margin: 0.5rem;
+}
+
+.pa3 {
+    padding: 1rem;
+}
+.tc {
+    text-align: center;
+}
+
+
+.grow img {
+    width: 200px;
+    transition: transform 0.1s; 
+}
+
+.grow:hover {
+    transform: scale(1.1);
+}
+
+h2 {
+    font-size: 20px;
+}
