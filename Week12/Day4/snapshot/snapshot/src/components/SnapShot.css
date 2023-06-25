@@ -1,0 +1,95 @@
+body{
+    text-align: center;
+    color: #3f4850;
+    font-family: "Josefin Sans", Arial, Helvetica, sans-serif;
+}
+
+.title{
+    font-family: "Lobster", "Josefin Sans", Arial, Helvetica, sans-serif;
+    font-size: 3rem;
+    color: #051c33;
+}
+
+.search-form{
+    display: flex;
+    max-width: 460px;
+    margin: 0 auto 32px;
+}
+
+input{
+    font-size: 1rem;
+    width: 100%;
+    background-color: #edeff0;
+    padding: 10px 15px;
+    border: 3px solid #d7dbdf;
+    border-radius: 0.35rem 0 0 0.35rem;
+    outline: none;
+}
+
+button[type='submit']{
+    outline: none;
+    border: none;
+    padding: 0 15px;
+    border-radius: 0 0.35rem 0.35rem 0;
+    cursor: pointer;
+    /* background: url(./icon/magnifying-glass-solid.svg);
+    background-repeat: no-repeat;
+    background-position: 3px;
+    width: 15%;
+    gap: 1rem; */
+}
+
+ul{
+    list-style: none;
+    padding-left: 0;
+    gap: 1rem;
+}
+
+@media (width > 768px){
+    ul {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+nav li{
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: #051c33;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    display: block;
+    font-size: large;
+    width: 10%;
+}
+
+h2{
+    font-size: 2rem;
+    margin: 52px 0 40px;
+    text-transform: capitalize;
+    color: #051c33;
+}
+
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.container > div {
+    width: 220px;
+    height: 165px;
+    overflow: hidden;
+}
+
+.container img{
+    width: 100%;
+    scale: 1;
+    transition: scale 1.25s;
+}
+
+.container img:hover{
+    scale: 1;
+}

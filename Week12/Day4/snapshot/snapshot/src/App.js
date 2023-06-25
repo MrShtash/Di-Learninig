@@ -1,13 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
+import SnapShot from './components/SnapShot'
+
+// const apiKey = `6yhduMvRFSikO72L0csBkfZR5JdqWW7pAngVjpQaJuo3Eu26nEQfOwYi`
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        
-      </header>
+    <div className="pp">
+      <SnapShot/>
     </div>
   );
 }
