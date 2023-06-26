@@ -1,5 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import LoginForm from './Login'
+import LoginForm from './LoginForm';
+import RegisterForm from './RegisterForm';
+import GradeForm from './GradeForm';
+import HourForm from './HourForm';
+import CashForm from './CashForm';
+import GroupForm from './GroupForm';
+import DepartmentForm from './DepartmentForm';
+import CompanyForm from './CompanyForm';
+import CategoryForm from './CategoryForm';
+import SprintForm from './SprintForm';
+import ProjectForm from './ProjectForm';
+import WorkForm from './WorkForm';
 
 function Scriptum_test() {
     const [message, setMessage] = useState('');
@@ -17,7 +28,19 @@ function Scriptum_test() {
     return(
         <div>
             <h1>{message}</h1>
-            <LoginForm/>
+            <LoginForm/><br />
+            <RegisterForm/><br />
+            <GradeForm/><br />
+            <HourForm/><br />
+            <CashForm/><br />
+            <GroupForm/><br />
+            <DepartmentForm/><br />
+            <CompanyForm/><br />
+            <CategoryForm/><br />
+            <SprintForm/><br />
+            <WorkForm/><br />
+            <ProjectForm/><br />
+
         </div>
     )
 }

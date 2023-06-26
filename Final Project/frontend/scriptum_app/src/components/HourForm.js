@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 
-function LoginForm() {
+function HourForm() {
   const [formData, setFormData] = useState({
-    username: '',
-    password: ''
+    hour: '',
+    grade: ''
   });
 
   const handleChange = (e) => {
@@ -22,7 +22,7 @@ function LoginForm() {
     })
       .then(response => response.json())
       .then(data => {
-        console.log('Data saved successfully:', data);
+        console.log('Hour saved successfully:', data);
       })
       .catch(error => {
         console.error('Error saving data:', error);
@@ -31,34 +31,40 @@ function LoginForm() {
 
   return (
     <div>
-      <h1>Form Page</h1>
+      <h1>Hour Page</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          Username: 
+          Hour: 
           <input
-            type="text"
-            name="username"
-            value={formData.username}
+            type=""
+            name="hour"
+            value={formData.hour}
             onChange={handleChange}
-            placeholder = "Username"
+            placeholder = "Hour"
           />
         </label>
         <br />
+       
+
         <label>
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
+          Grade: 
+        <select
+            type=""
+            name="grade"
+            id=""
+            value={formData.grade}
             onChange={handleChange}
-            placeholder = "Password"
-          />
+          >
+          <option value="">--Please choose a grade--</option>
+          </select>
+
         </label>
         <br />
-        <button type="submit">Login</button>
+
+        <button type="submit">Create Hour Cost</button>
       </form>
     </div>
   );
 }
 
-export default LoginForm;
+export default HourForm;
