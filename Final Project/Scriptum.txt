@@ -1,0 +1,162 @@
+SCRIPTUM
+Service description
+
+The service is intended for internal use of companies operating in B2C, B2B, B2G segments. It is the basic version for implementation and further customization is possible (integration with CRM systems, accounting programs for automatic display of payments, and other services at the request of the client company).
+Goals
+
+Project development for:
+determining the effectiveness of a specialist:
+checking the workload of a specialist
+checking the compliance of the task assessment with the fact of its completion time
+checking the content of the task
+preparing a report for a meeting with a company client:
+what tasks are done in what period
+budget spending
+planning sprints for project work
+checking project progress
+see the receipt of money from the client in real-time
+
+Tasks
+
+optimize the company's production costs
+visual analytics of budget expenditure
+visual analytics of progress in production
+The target audience
+
+The service is designed for company management (heads of departments, project-product managers), who need analytics and control over the execution of tasks.
+System requirements
+Layout requirements
+
+The layout of the site pages is adaptive for desktop and tablet PCs, as well as mobile devices (smartphones) with a small resolution. The minimum resolution for the desktop version of the site is 1280x1024px; a Correct display of the site should be achieved when viewing in diagonals from 11 to 27 ”inclusive.
+
+When loading a site on a desktop at a resolution lower than 1280x1024px, the layout elements are displayed taking into account the behavior of the elements by adaptive layouts.
+
+Design Requirements
+
+No corporate identity.
+Functionality
+Structure Requirements
+
+The site should be developed in a modular way. All independent blocks should be divided into corresponding components, styles, and scripts of these components should be in component templates. If third-party libraries are needed for the components to work, they must also be included in the component templates without duplication.
+
+All sections must be readable. Authorization of users is supposed to access confidential information in the service sections.
+
+Authorization to work with the administrative sections of the subsystem must be carried out using personal usernames and passwords. Each user can be granted the right to perform certain actions with certain sections (subsections) and functional blocks of the subsystem.
+
+The administrator has accept to:
+— viewing elements;
+— adding elements;
+— element editing;
+— deleting elements;
+— editing access rights.
+
+Each of the above actions can be individually enabled or disabled for a specific user for each of the sections (functional blocks) of the subsystem.
+
+
+It should be possible to log in under the main administrative password, which provides the right to perform any actions provided for by the functionality of the subsystem in any section of the subsystem.
+General terms and concepts
+
+User — service user.
+
+Website (site) — A website is a collection of web pages and related content that is identified by a common domain name and published on at least one web server. 
+
+Web page — A web page (or webpage) is a hypertext document on the World Wide Web. Web pages are delivered by a web server to the user and displayed in a web browser. A website consists of many web pages linked together under a common domain name.
+
+Web content (content) — Web content is the text, visual or audio content that is made available online and user encountered as part of the online usage and experience on websites.
+
+Site structure — The pages and posts on your website and how this content is grouped, linked and presented to the visitor.
+
+DataBase — a collection of data organized according to certain rules, providing general principles for describing, storing, and manipulating data, independent of application programs.
+
+Internal site page — any other site pge, except the home page.
+
+Header — the HTML element represents introductory content, typically a group of introductory or navigational aids. It may contain some heading elements but also a logo, a search form, an author name, and other elements.
+
+Footer — the HTML element represents a footer for its nearest ancestor sectioning content or sectioning root element.  A <footer> typically contains information about the author of the section, copyright data or links to related documents.
+
+Content section — a static page, the content of which is text, images, links, and files.
+
+Navigation Menu — a set of links to various pages. Each such link is called a menu item.
+A list of users
+
+
+User access group
+Available functionality
+Administrator 
+Has the ability to:
+— Grant rights;
+— Add, delete and edit sections and users;
+— Add, delete and edit information;
+— View data
+User
+Has the ability to:
+— View data and add works.
+
+System of access to information by the user
+
+Users are classified according to their type into authorized and unauthorized.
+An unauthorized user does not have access to all public information on the site, except the authorization form.
+
+An authorized user of the site has access to the service and sections according to the assigned access rights.
+Specification
+Structure
+
+Head:
+— Logo
+Footer:
+— Logo
+Admin Page
+— Form for adding/changing an employee
+— Form for adding/changing a company
+— Form for adding/changing a project
+— Add/Change Job Form
+— Add/Change Payment Form
+— Grade add/change form
+— Form for adding/changing a department
+— Group add/change form (QA, front-end dev, etc.)
+Developer page::
+— Personal data
+— List of projects
+— List of works
+— Workload per month
+— Grade
+— Status (active/inactive)
+Company page:
+— Contact details
+— List of projects
+— Payment details
+— Company Category
+Manager Page:
+— Personal data
+— List of companies
+— — List of projects
+— — — List of works
+— Workload
+— Grade
+Project page:
+— Company Link
+— Command structure
+— Add a job
+— Payment details
+— Details (description) of the project
+— Graphics
+Job Adding Page:
+— date
+— Description of work
+— Specialist (substituted automatically)
+— Number of hours plan (substituted automatically)
+— Number of hours actual
+— Result (GitHub link)
+Work list page:
+— Date (selected period)
+— Composition of the work
+— Specialist
+— Number of hours plan
+— Number of hours actual
+Department page:
+— List of employees with contacts
+— Branch turnover per month
+— List of companies
+— — List of projects
+
+
