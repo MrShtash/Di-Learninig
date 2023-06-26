@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import LoginForm from './Login'
 
 function Scriptum_test() {
     const [message, setMessage] = useState('');
@@ -16,6 +17,7 @@ function Scriptum_test() {
     return(
         <div>
             <h1>{message}</h1>
+            <LoginForm/>
         </div>
     )
 }

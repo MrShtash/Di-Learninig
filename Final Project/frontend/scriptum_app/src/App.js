@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import Scriptum_test from './components/Scriptum'
+import Scriptum_test from './components/Scriptum_test'
 
 function App() {
   return (
