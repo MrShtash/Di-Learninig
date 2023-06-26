@@ -1,10 +1,10 @@
 SCRIPTUM
 
-Service description
+SERVICE DESCRIPTION
 
 The service is intended for internal use of companies operating in B2C, B2B, B2G segments. It is the basic version for implementation and further customization is possible (integration with CRM systems, accounting programs for automatic display of payments, and other services at the request of the client company).
 
-Goals
+GOALS
 
 Project development for:
 - determining the effectiveness of a specialist:
@@ -18,29 +18,29 @@ Project development for:
 - checking project progress
 - see the receipt of money from the client in real-time
 
-Tasks
+TASKS
 
 - optimize the company's production costs
 - visual analytics of budget expenditure
 - visual analytics of progress in production
 
-The target audience
+THE TARGET AUDIENCE
 
 The service is designed for company management (heads of departments, project-product managers), who need analytics and control over the execution of tasks.
 
-System requirements
-Layout requirements
+SYSTEM REQUIREMENTS
+LAYOUT REQUIREMENTS
 
 The layout of the site pages is adaptive for desktop and tablet PCs, as well as mobile devices (smartphones) with a small resolution. The minimum resolution for the desktop version of the site is 1280x1024px; a Correct display of the site should be achieved when viewing in diagonals from 11 to 27 ”inclusive.
 
 When loading a site on a desktop at a resolution lower than 1280x1024px, the layout elements are displayed taking into account the behavior of the elements by adaptive layouts.
 
-Design Requirements
+DESIGN REQUIREMENTS
 
 No corporate identity.
 
-Functionality
-Structure Requirements
+FUNCTIONALUTY
+STRUCTURE REQUIREMENTS
 
 The site should be developed in a modular way. All independent blocks should be divided into corresponding components, styles, and scripts of these components should be in component templates. If third-party libraries are needed for the components to work, they must also be included in the component templates without duplication.
 
@@ -59,7 +59,7 @@ Each of the above actions can be individually enabled or disabled for a specific
 
 It should be possible to log in under the main administrative password, which provides the right to perform any actions provided for by the functionality of the subsystem in any section of the subsystem.
 
-General terms and concepts
+GENERAL TERMS AND CONCEPTS
 
 User — service user.
 
@@ -83,7 +83,7 @@ Content section — a static page, the content of which is text, images, links, 
 
 Navigation Menu — a set of links to various pages. Each such link is called a menu item.
 
-A list of users
+A LIST OF USERS
 
 User access group
 Available functionality
@@ -99,16 +99,15 @@ User
 Has the ability to:
 — View data and add works.
 
-System of access to information by the user
+SYSTEM OF ACCESS TO INFORMATION BY THE USER
 
 Users are classified according to their type into authorized and unauthorized.
 An unauthorized user does not have access to all public information on the site, except the authorization form.
 
 An authorized user of the site has access to the service and sections according to the assigned access rights.
 
-Specification
-
-Structure
+SPECIFICATION
+STRUCTURE
 
 Head:
 — Logo
