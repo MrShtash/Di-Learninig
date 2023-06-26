@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-function Scriptum() {
+function Scriptum_test() {
     const [message, setMessage] = useState('');
     useEffect(() => {
         fetch(`/api/data`)
@@ -20,4 +20,4 @@ function Scriptum() {
     )
 }
 
-export default Scriptum
+export default Scriptum_test
