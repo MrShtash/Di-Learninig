@@ -50,24 +50,6 @@ function WorkForm() {
       .catch((error) => {
         console.log("Error getting data: ", error);
       });
-
-    // fetch('/api/getSpecialists') // NEED CORRECT URL
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     setSpecialists(data);
-    //   })
-    //   .catch(error => {
-    //     console.log('Error getting specialists: ', error);
-    //   });
-
-    // fetch('/api/getSprints') // NEED CORRECT URL
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     setSprints(data);
-    //   })
-    //   .catch(error => {
-    //     console.log('Error getting sprints: ', error);
-    //   });
   }, []);
 
   return (
@@ -109,7 +91,7 @@ function WorkForm() {
                   onChange = {handleChange}>
           <option value = "">--Please choose a Specialist--</option>
           {specialists.map((specialist, index) => (
-              <option key = {index} value = {specialist}>
+              <option key = {index} value = {specialist.id}>
                 {specialist}
               </option>
             ))}
@@ -160,7 +142,7 @@ function WorkForm() {
                   onChange = {handleChange}>
           <option value = "">--Please choose a Sprint--</option>
           {sprints.map((sprint, index) => (
-              <option key = {index} value = {sprint}>
+              <option key = {index} value = {sprint.id}>
                 {sprint}
               </option>
             ))}

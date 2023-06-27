@@ -20,14 +20,30 @@ app.get('/api/data', (req, res) => {
 app.get("/api/getAllData", (req, res) => {
   const data = [
     {
-      grades: ["Junior", "Middle", "Senior"],
-      sprints: ["S1", "S2"],
-      specialists: ["John", "Maria"],
-      companies: ["Apple", "Google"],
-      departments: ["Development", "Subscription services"],
-      groups: ["Designer", "Back-end Developer", "QA"],
-      projects: ["Design", "DEBUG"],
-      categories: ["A", "B", "C"]
+      grades: [
+        // "Junior", "Middle", "Senior"
+    ],
+      sprints: [
+        // "S1", "S2"
+    ],
+      specialists: [
+        // "John", "Maria"
+    ],
+      companies: [
+        // "Apple", "Google"
+    ],
+      departments: [
+        // "Development", "Subscription services"
+    ],
+      groups: [
+        // "Designer", "Back-end Developer", "QA"
+    ],
+      projects: [
+        // "Design", "DEBUG"
+    ],
+      categories: [
+        // "A", "B", "C"
+    ]
     },
   ];
   res.json(data);

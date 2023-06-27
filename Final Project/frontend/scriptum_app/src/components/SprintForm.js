@@ -49,24 +49,6 @@ function SprintForm() {
       .catch((error) => {
         console.log("Error getting data: ", error);
       });
-
-    // fetch('/api/getProjects') // NEED CORRECT URL
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     setProjects(data);
-    //   })
-    //   .catch(error => {
-    //     console.log('Error getting projects: ', error);
-    //   });
-
-    // fetch('/api/getSpecialists') // NEED CORRECT URL
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     setSpecialists(data);
-    //   })
-    //   .catch(error => {
-    //     console.log('Error getting specialists: ', error);
-    //   });
   }, []);
 
   return (
@@ -81,7 +63,7 @@ function SprintForm() {
                   onChange = {handleChange}>
           <option value = "">--Please choose a project--</option>
           {projects.map((project, index) => (
-              <option key = {index} value = {project}>
+              <option key = {index} value = {project.id}>
                 {project}
               </option>
             ))}
@@ -153,7 +135,7 @@ function SprintForm() {
                   multiple>
           <option value = "">--Please choose a Specialist--</option>
           {specialists.map((specialist, index) => (
-              <option key = {index} value = {specialist}>
+              <option key = {index} value = {specialist.id}>
                 {specialist}
               </option>
             ))}

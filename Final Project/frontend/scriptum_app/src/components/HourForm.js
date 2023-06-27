@@ -42,15 +42,6 @@ function HourForm() {
       .catch((error) => {
         console.log("Error getting data: ", error);
       });
-
-    // fetch('api/getGrades') // NEED CORRECT URL
-    // .then(response => response.json())
-    // .then(data => {
-    //   setGrades(data);
-    // })
-    // .catch(error => {
-    //   console.log('Error getting grades: ', error);
-    // })
   }, [])
 
   return (
@@ -74,7 +65,7 @@ function HourForm() {
                   onChange = {handleChange}>
           <option value = "">--Please choose a grade--</option>
           {grades.map((grade, index) => (
-              <option key = {index} value = {grade}>
+              <option key = {index} value = {grade.id}>
                 {grade}
               </option>
             ))}

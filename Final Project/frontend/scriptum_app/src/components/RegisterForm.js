@@ -52,37 +52,6 @@ function RegisterForm() {
       .catch((error) => {
         console.log("Error getting data: ", error);
       });
-
-    // fetch("/api/getGrades") // NEED CORRECT URL
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     // console.log(data);
-    //     setGrades(data[0].grades);
-    //     setDepartments(data[0].departments);
-    //     setGroups(data[0].groups);
-
-    //   })
-    //   .catch((error) => {
-    //     console.log("Error getting grades: ", error);
-    //   });
-
-    // fetch('/api/getDepartments') // NEED CORRECT URL
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     setDepartments(data);
-    //   })
-    //   .catch(error => {
-    //     console.log('Error getting departments: ', error);
-    //   });
-
-    // fetch('/api/getGroups') // NEED CORRECT URL
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     setGroups(data);
-    //   })
-    //   .catch(error => {
-    //     console.log('Error getting groups: ', error);
-    //   });
   }, []);
 
   return (
@@ -143,7 +112,7 @@ function RegisterForm() {
                     placeholder = "Group">
             <option value="">--Please choose a grade--</option>
             {grades.map((grade, index) => (
-              <option key = {index} value = {grade}>
+              <option key = {index} value = {grade.id}>
                 {grade}
               </option>
             ))}
@@ -158,7 +127,7 @@ function RegisterForm() {
                     onChange = {handleChange}>
             <option value = "">--Please choose a department--</option>
             {departments.map((department, index) => (
-              <option key = {index} value = {department}>
+              <option key = {index} value = {department.id}>
                 {department}
               </option>
             ))}
@@ -173,7 +142,7 @@ function RegisterForm() {
                     onChange = {handleChange}>
             <option value = "">--Please choose a group--</option>
             {groups.map((group, index) => (
-              <option key = {index} value = {group}>
+              <option key = {index} value = {group.id}>
                 {group}
               </option>
             ))}

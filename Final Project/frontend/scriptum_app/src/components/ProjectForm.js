@@ -50,33 +50,6 @@ function ProjectForm() {
       .catch((error) => {
         console.log("Error getting data: ", error);
       });
-
-    // fetch('/api/getCompanies') // NEED CORECT URL
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     setCompanies(data);
-    //   })
-    //   .catch(error => {
-    //     console.log('Error getting companies: ', error);
-    //   });
-
-    // fetch('/api/getSpecialists') // NEED CORECT URL
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     setSpecialists(data);
-    //   })
-    //   .catch(error => {
-    //     console.log('Error getting specialists: ', error);
-    //   });
-
-    // fetch('/api/getDepartments') // NEED CORECT URL
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     setDepartments(data);
-    //   })
-    //   .catch(error => {
-    //     console.log('Error getting departments: ', error);
-    //   });
   }, []);
   
   return (
@@ -100,7 +73,7 @@ function ProjectForm() {
                   onChange = {handleChange}>
           <option value = "">--Please choose a company--</option>
           {companies.map((company, index) => (
-              <option key = {index} value = {company}>
+              <option key = {index} value = {company.id}>
                 {company}
               </option>
             ))}
@@ -152,7 +125,7 @@ function ProjectForm() {
                   multiple>
           <option value = "">--Please choose a Department--</option>
           {departments.map((department, index) => (
-              <option key = {index} value = {department}>
+              <option key = {index} value = {department.id}>
                 {department}
               </option>
             ))}
@@ -168,7 +141,7 @@ function ProjectForm() {
                   multiple>
           <option value = "">--Please choose a specialist--</option>
            {specialists.map((specialist, index) => (
-              <option key = {index} value = {specialist}>
+              <option key = {index} value = {specialist.id}>
                 {specialist}
               </option>
             ))}

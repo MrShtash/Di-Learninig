@@ -40,7 +40,6 @@ function Scriptum_test() {
             <SprintForm/><br />
             <WorkForm/><br />
             <ProjectForm/><br />
-
         </div>
     )
 }

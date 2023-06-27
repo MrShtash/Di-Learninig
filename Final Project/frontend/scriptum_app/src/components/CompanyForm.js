@@ -48,15 +48,6 @@ function CompanyForm() {
       .catch((error) => {
         console.log("Error getting data: ", error);
       });
-
-    // fetch('/api/getCategories') // NEED CORRECT URL
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     setCategories(data);
-    //   })
-    //   .catch(error => {
-    //     console.log('Error getting categories: ', error);
-    //   });
   }, []);
 
   return (
@@ -143,7 +134,7 @@ function CompanyForm() {
                   onChange = {handleChange}>
           <option value = "">--Please choose a category--</option>
           {categories.map((category, index) => (
-              <option key = {index} value = {category}>
+              <option key = {index} value = {category.id}>
                 {category}
               </option>
             ))}
