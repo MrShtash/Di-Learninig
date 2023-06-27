@@ -7,7 +7,7 @@ function GradeForm() {
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({...formData, [e.target.name]: e.target.value});
   };
 
   const handleSubmit = (e) => {
@@ -25,37 +25,33 @@ function GradeForm() {
         console.log('Grade saved successfully:', data);
       })
       .catch(error => {
-        console.error('Error saving data:', error);
+        console.log('Error saving data: ', error);
       });
   };
 
   return (
     <div>
       <h1>Grade Page</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit = {handleSubmit}>
         <label>
           Grade: 
-          <input
-            type="text"
-            name="grade"
-            value={formData.grade}
-            onChange={handleChange}
-            placeholder = "Grade"
-          />
+          <input type = "text"
+                  name = "grade"
+                  value = {formData.grade}
+                  onChange = {handleChange}
+                  placeholder = "Grade"/>
         </label>
         <br />
         <label>
           Cost: 
-          <input
-            type=""
-            name="cost"
-            value={formData.cost}
-            onChange={handleChange}
-            placeholder = "Cost"
-          />
+          <input type = "number"
+                  name = "cost"
+                  value = {formData.cost}
+                  onChange = {handleChange}
+                  placeholder = "Cost"/>
         </label>
         <br />
-        <button type="submit">Create Grade</button>
+        <button type = "submit">Create Grade</button>
       </form>
     </div>
   );

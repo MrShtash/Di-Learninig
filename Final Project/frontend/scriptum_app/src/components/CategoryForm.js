@@ -6,7 +6,7 @@ function CategoryForm() {
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({...formData, [e.target.name]: e.target.value});
   };
 
   const handleSubmit = (e) => {
@@ -24,28 +24,24 @@ function CategoryForm() {
         console.log('Category saved successfully:', data);
       })
       .catch(error => {
-        console.error('Error saving data:', error);
+        console.log('Error saving data: ', error);
       });
   };
 
   return (
     <div>
       <h1>Category Page</h1>
-      <form onSubmit={handleSubmit}>
-
+      <form onSubmit = {handleSubmit}>
         <label>
           Category Name: 
-          <input
-            type="text"
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-            placeholder = "Category name"
-          />
+          <input type = "text"
+                  name = "category"
+                  value = {formData.category}
+                  onChange = {handleChange}
+                  placeholder = "Category name"/>
         </label>
         <br />
-        
-        <button type="submit">Create Category</button>
+        <button type = "submit">Create Category</button>
       </form>
     </div>
   );

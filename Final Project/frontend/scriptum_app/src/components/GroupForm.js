@@ -6,7 +6,7 @@ function GroupForm() {
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({...formData, [e.target.name]: e.target.value});
   };
 
   const handleSubmit = (e) => {
@@ -24,7 +24,7 @@ function GroupForm() {
         console.log('Group saved successfully:', data);
       })
       .catch(error => {
-        console.error('Error saving data:', error);
+        console.log('Error saving data: ', error);
       });
   };
 
@@ -34,17 +34,14 @@ function GroupForm() {
       <form onSubmit={handleSubmit}>
         <label>
           Group: 
-          <input
-            type="text"
-            name="group"
-            value={formData.group}
-            onChange={handleChange}
-            placeholder = "Group"
-          />
+          <input type = "text"
+                  name = "group"
+                  value = {formData.group}
+                  onChange = {handleChange}
+                  placeholder = "Group"/>
         </label>
         <br />
-
-        <button type="submit">Create Group Item</button>
+        <button type = "submit">Create Group Item</button>
       </form>
     </div>
   );

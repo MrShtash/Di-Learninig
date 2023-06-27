@@ -7,7 +7,7 @@ function LoginForm() {
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({...formData, [e.target.name]: e.target.value});
   };
 
   const handleSubmit = (e) => {
@@ -25,7 +25,7 @@ function LoginForm() {
         console.log('Data saved successfully:', data);
       })
       .catch(error => {
-        console.error('Error saving data:', error);
+        console.log('Error saving data: ', error);
       });
   };
 
@@ -35,24 +35,20 @@ function LoginForm() {
       <form onSubmit={handleSubmit}>
         <label>
           Username: 
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            placeholder = "Username"
-          />
+          <input type="text"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleChange}
+                  placeholder = "Username"/>
         </label>
         <br />
         <label>
           Password:
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder = "Password"
-          />
+          <input type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder = "Password"/>
         </label>
         <br />
         <button type="submit">Login</button>

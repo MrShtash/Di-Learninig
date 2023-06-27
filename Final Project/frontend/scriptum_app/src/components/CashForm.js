@@ -6,7 +6,7 @@ function CashForm() {
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({...formData, [e.target.name]: e.target.value});
   };
 
   const handleSubmit = (e) => {
@@ -24,41 +24,34 @@ function CashForm() {
         console.log('Cash saved successfully:', data);
       })
       .catch(error => {
-        console.error('Error saving data:', error);
+        console.log('Error saving data: ', error);
       });
   };
 
   return (
     <div>
       <h1>Cash Page</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit = {handleSubmit}>
         <label>
           Cash: 
-          <input
-            type=""
-            name="cash"
-            value={formData.cash}
-            onChange={handleChange}
-            placeholder = "Cash"
-          />
+          <input type = "number"
+                  name = "cash"
+                  value = {formData.cash}
+                  onChange = {handleChange}
+                  placeholder = "Cash" />
         </label>
         <br />
-       
-
-        <label>
+        {/* <label>
           Cash: 
-        <select
-            name="cash"
-            id="cash"
-            value={formData.cash}
-            onChange={handleChange}
-          >
-          <option value="">--Please choose a cash--</option>
+        <select name = "cash"
+                  id = "cash"
+                  value = {formData.cash}
+                  onChange = {handleChange}>
+          <option value = "">--Please choose a cash--</option>
           </select>
         </label>
-        <br />
-
-        <button type="submit">Create Cash</button>
+        <br /> */}
+        <button type = "submit">Create Cash</button>
       </form>
     </div>
   );

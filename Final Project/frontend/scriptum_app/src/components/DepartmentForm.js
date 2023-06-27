@@ -6,7 +6,7 @@ function DepartmentForm() {
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({...formData, [e.target.name]: e.target.value});
   };
 
   const handleSubmit = (e) => {
@@ -24,28 +24,24 @@ function DepartmentForm() {
         console.log('Department saved successfully:', data);
       })
       .catch(error => {
-        console.error('Error saving data:', error);
+        console.log('Error saving data: ', error);
       });
   };
 
   return (
     <div>
       <h1>Department Page</h1>
-      <form onSubmit={handleSubmit}>
-
+      <form onSubmit = {handleSubmit}>
         <label>
           Department Name: 
-          <input
-            type="text"
-            name="d_name"
-            value={formData.d_name}
-            onChange={handleChange}
-            placeholder = "Department name"
-          />
+          <input type = "text"
+                  name = "d_name"
+                  value = {formData.d_name}
+                  onChange = {handleChange}
+                  placeholder = "Department name"/>
         </label>
         <br />
-        
-        <button type="submit">Create Department</button>
+        <button type = "submit">Create Department</button>
       </form>
     </div>
   );

@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+// import GradeForm from './GradeForm';
 
 function HourForm() {
   const [formData, setFormData] = useState({
@@ -6,8 +7,10 @@ function HourForm() {
     grade: ''
   });
 
+  const [grades, setGrades] = useState([]);
+
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({...formData, [e.target.name]: e.target.value});
   };
 
   const handleSubmit = (e) => {
@@ -25,42 +28,50 @@ function HourForm() {
         console.log('Hour saved successfully:', data);
       })
       .catch(error => {
-        console.error('Error saving data:', error);
+        console.log('Error saving data: ', error);
       });
   };
+
+  useEffect(() => {
+    fetch('api/getGrades') // NEED CORRECT URL
+    .then(response => response.json())
+    .then(data => {
+      setGrades(data);
+    })
+    .catch(error => {
+      console.log('Error getting grades: ', error);
+    })
+  }, [])
 
   return (
     <div>
       <h1>Hour Page</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit = {handleSubmit}>
         <label>
           Hour: 
-          <input
-            type=""
-            name="hour"
-            value={formData.hour}
-            onChange={handleChange}
-            placeholder = "Hour"
-          />
+          <input type = "number"
+                  name = "hour"
+                  value = {formData.hour}
+                  onChange = {handleChange}
+                  placeholder = "Hour"/>
         </label>
         <br />
-       
-
         <label>
           Grade: 
-        <select
-            name="grade"
-            id="grade"
-            value={formData.grade}
-            onChange={handleChange}
-          >
-          <option value="">--Please choose a grade--</option>
+        <select name = "grade"
+                  id = "grade"
+                  value = {formData.grade}
+                  onChange = {handleChange}>
+          <option value = "">--Please choose a grade--</option>
+          {grades.map(grade => (
+              <option key = {grade.id} value = {grade.id}>
+                {grade.name}
+              </option>
+            ))}
           </select>
-
         </label>
         <br />
-
-        <button type="submit">Create Hour Cost</button>
+        <button type = "submit">Create Hour Cost</button>
       </form>
     </div>
   );
