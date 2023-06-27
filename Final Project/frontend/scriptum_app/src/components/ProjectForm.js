@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 function ProjectForm() {
   const [formData, setFormData] = useState({
-    name: '',
+    p_name: '',
     company: '',
     s_date: '',
     e_date: '',
@@ -52,9 +52,8 @@ function ProjectForm() {
         <label>
           Company: 
         <select
-            type=""
             name="company"
-            id=""
+            id="company"
             value={formData.company}
             onChange={handleChange}
           >
@@ -110,9 +109,8 @@ function ProjectForm() {
         <label>
           Specialists: 
         <select
-            type=""
             name="specialist"
-            id=""
+            id="specialist"
             value={formData.specialist}
             onChange={handleChange}
           >

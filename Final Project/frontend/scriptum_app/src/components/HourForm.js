@@ -49,9 +49,8 @@ function HourForm() {
         <label>
           Grade: 
         <select
-            type=""
             name="grade"
-            id=""
+            id="grade"
             value={formData.grade}
             onChange={handleChange}
           >

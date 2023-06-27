@@ -65,7 +65,7 @@ function RegisterForm() {
         <label>
           Email: 
           <input
-            type="text"
+            type=""
             name="email"
             value={formData.email}
             onChange={handleChange}
@@ -98,9 +98,8 @@ function RegisterForm() {
         <label>
           Grade: 
         <select
-            type=""
-            name=""
-            id=""
+            name="grade"
+            id="grade"
             value={formData.grade}
             onChange={handleChange}
             placeholder = "Group"
@@ -113,9 +112,8 @@ function RegisterForm() {
         <label>
           Department: 
         <select
-            type=""
             name="department"
-            id=""
+            id="department"
             value={formData.department}
             onChange={handleChange}
           >
@@ -128,9 +126,8 @@ function RegisterForm() {
         <label>
           Group: 
           <select
-            type=""
             name="group"
-            id=""
+            id="group"
             value={formData.group}
             onChange={handleChange}
           >
@@ -141,9 +138,8 @@ function RegisterForm() {
         <label>
           Status: 
           <select
-            type=""
             name="status"
-            id=""
+            id="status"
             value={formData.status}
             onChange={handleChange}
           >

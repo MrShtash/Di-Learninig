@@ -48,9 +48,8 @@ function CashForm() {
         <label>
           Cash: 
         <select
-            type=""
             name="cash"
-            id=""
+            id="cash"
             value={formData.cash}
             onChange={handleChange}
           >

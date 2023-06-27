@@ -9,7 +9,7 @@ function CompanyForm() {
     cont_name: '',
     website: '',
     deposit: '',
-    description: '',
+    с_description: '',
     category: ''
   });
 
@@ -65,7 +65,7 @@ function CompanyForm() {
         <label>
           Email: 
           <input
-            type="text"
+            type=""
             name="email"
             value={formData.email}
             onChange={handleChange}
@@ -122,8 +122,8 @@ function CompanyForm() {
           Description:
           <input
             type="text"
-            name="description"
-            value={formData.description}
+            name="с_description"
+            value={formData.с_description}
             onChange={handleChange}
             placeholder = "Description"
           />
@@ -131,9 +131,8 @@ function CompanyForm() {
         <br />
           Category: 
         <select
-            type=""
             name="category"
-            id=""
+            id="category"
             value={formData.category}
             onChange={handleChange}
           >

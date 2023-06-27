@@ -42,9 +42,8 @@ function SprintForm() {
         <label>
           Projec: 
           <select
-            type=""
             name="project"
-            id=""
+            id="project"
             value={formData.project}
             onChange={handleChange}
           >
@@ -124,9 +123,8 @@ function SprintForm() {
         <label>
           Specialist: 
         <select
-            type=""
             name="specialist"
-            id=""
+            id="specialist"
             value={formData.specialist}
             onChange={handleChange}
             placeholder = "Specialist"

@@ -66,7 +66,7 @@ function WorkForm() {
          Hours: 
           <input
             type=""
-            name="Hours"
+            name="hours"
             value={formData.hours}
             onChange={handleChange}
             placeholder = "Hours"
@@ -76,9 +76,8 @@ function WorkForm() {
         <label>
           Specialist: 
           <select
-            type=""
             name="specialist"
-            id=""
+            id="specialist"
             value={formData.specialist}
             onChange={handleChange}
           >
@@ -133,9 +132,8 @@ function WorkForm() {
         <label>
           Sprint: 
           <select
-            type=""
             name="sprint"
-            id=""
+            id="sprint"
             value={formData.sprint}
             onChange={handleChange}
           >
