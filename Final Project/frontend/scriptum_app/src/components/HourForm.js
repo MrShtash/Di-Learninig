@@ -33,14 +33,24 @@ function HourForm() {
   };
 
   useEffect(() => {
-    fetch('api/getGrades') // NEED CORRECT URL
-    .then(response => response.json())
-    .then(data => {
-      setGrades(data);
-    })
-    .catch(error => {
-      console.log('Error getting grades: ', error);
-    })
+    fetch("/api/getAllData") // NEED CORRECT URL
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log(data);
+        setGrades(data[0].grades);
+      })
+      .catch((error) => {
+        console.log("Error getting data: ", error);
+      });
+
+    // fetch('api/getGrades') // NEED CORRECT URL
+    // .then(response => response.json())
+    // .then(data => {
+    //   setGrades(data);
+    // })
+    // .catch(error => {
+    //   console.log('Error getting grades: ', error);
+    // })
   }, [])
 
   return (
@@ -63,9 +73,9 @@ function HourForm() {
                   value = {formData.grade}
                   onChange = {handleChange}>
           <option value = "">--Please choose a grade--</option>
-          {grades.map(grade => (
-              <option key = {grade.id} value = {grade.id}>
-                {grade.name}
+          {grades.map((grade, index) => (
+              <option key = {index} value = {grade}>
+                {grade}
               </option>
             ))}
           </select>

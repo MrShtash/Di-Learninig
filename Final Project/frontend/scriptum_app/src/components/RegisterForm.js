@@ -1,16 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect} from "react";
 
 function RegisterForm() {
   const [formData, setFormData] = useState({
-    f_name: '',
-    l_name: '',
-    username: '',
-    email: '',
-    password: '',
-    grade: '',
-    department: '',
-    group: '',
-    status: ''
+    f_name: "",
+    l_name: "",
+    username: "",
+    email: "",
+    password: "",
+    grade: "",
+    department: "",
+    group: "",
+    status: "",
   });
 
   const [grades, setGrades] = useState([]);
@@ -24,49 +24,65 @@ function RegisterForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch('/api/saveData', {
-      method: 'POST',
+    fetch("/api/saveData", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData)
+      body: JSON.stringify(formData),
     })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Specialist saved successfully:', data);
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Specialist saved successfully: ", data);
       })
-      .catch(error => {
-        console.log('Error saving data:', error);
+      .catch((error) => {
+        console.log("Error saving data: ", error);
       });
   };
 
   useEffect(() => {
-    fetch('/api/getGrades') // NEED CORRECT URL
-      .then(response => response.json())
-      .then(data => {
-        setGrades(data);
+    fetch("/api/getAllData") // NEED CORRECT URL
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log(data);
+        setGrades(data[0].grades);
+        setDepartments(data[0].departments);
+        setGroups(data[0].groups);
       })
-      .catch(error => {
-        console.log('Error getting grades:', error);
+      .catch((error) => {
+        console.log("Error getting data: ", error);
       });
 
-    fetch('/api/getDepartments') // NEED CORRECT URL
-      .then(response => response.json())
-      .then(data => {
-        setDepartments(data);
-      })
-      .catch(error => {
-        console.log('Error getting departments:', error);
-      });
+    // fetch("/api/getGrades") // NEED CORRECT URL
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     // console.log(data);
+    //     setGrades(data[0].grades);
+    //     setDepartments(data[0].departments);
+    //     setGroups(data[0].groups);
 
-    fetch('/api/getGroups') // NEED CORRECT URL
-      .then(response => response.json())
-      .then(data => {
-        setGroups(data);
-      })
-      .catch(error => {
-        console.log('Error getting groups:', error);
-      });
+    //   })
+    //   .catch((error) => {
+    //     console.log("Error getting grades: ", error);
+    //   });
+
+    // fetch('/api/getDepartments') // NEED CORRECT URL
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     setDepartments(data);
+    //   })
+    //   .catch(error => {
+    //     console.log('Error getting departments: ', error);
+    //   });
+
+    // fetch('/api/getGroups') // NEED CORRECT URL
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     setGroups(data);
+    //   })
+    //   .catch(error => {
+    //     console.log('Error getting groups: ', error);
+    //   });
   }, []);
 
   return (
@@ -74,7 +90,7 @@ function RegisterForm() {
       <h1>Register Page</h1>
       <form onSubmit = {handleSubmit}>
         <label>
-          First Name: 
+          First Name:
           <input type = "text"
                   name = "f_name"
                   value = {formData.f_name}
@@ -83,7 +99,7 @@ function RegisterForm() {
         </label>
         <br />
         <label>
-          Last Name: 
+          Last Name:
           <input type = "text"
                   name = "l_name"
                   value = {formData.l_name}
@@ -92,7 +108,7 @@ function RegisterForm() {
         </label>
         <br />
         <label>
-          Email: 
+          Email:
           <input type = "email"
                   name = "email"
                   value = {formData.email}
@@ -101,7 +117,7 @@ function RegisterForm() {
         </label>
         <br />
         <label>
-          Username: 
+          Username:
           <input type = "text"
                   name = "username"
                   value = {formData.username}
@@ -119,60 +135,60 @@ function RegisterForm() {
         </label>
         <br />
         <label>
-          Grade: 
-        <select name = "grade"
-                  id = "grade"
-                  value = {formData.grade}
-                  onChange = {handleChange}
-                  placeholder = "Group">
-          <option value = "">--Please choose a grade--</option>
-          {grades.map(grade => (
-              <option key = {grade.id} value = {grade.id}>
-                {grade.name}
+          Grade:
+          <select name = "grade"
+                    id = "grade"
+                    value = {formData.grade}
+                    onChange = {handleChange}
+                    placeholder = "Group">
+            <option value="">--Please choose a grade--</option>
+            {grades.map((grade, index) => (
+              <option key = {index} value = {grade}>
+                {grade}
               </option>
             ))}
           </select>
         </label>
         <br />
         <label>
-          Department: 
-        <select name = "department"
-                  id = "department"
-                  value = {formData.department}
-                  onChange = {handleChange}>
-          <option value = "">--Please choose a department--</option>
-          {departments.map(department => (
-              <option key = {department.id} value = {department.id}>
-                {department.name}
+          Department:
+          <select name = "department"
+                    id = "department"
+                    value = {formData.department}
+                    onChange = {handleChange}>
+            <option value = "">--Please choose a department--</option>
+            {departments.map((department, index) => (
+              <option key = {index} value = {department}>
+                {department}
               </option>
             ))}
           </select>
         </label>
         <br />
         <label>
-          Group: 
+          Group:
           <select name = "group"
                     id = "group"
                     value = {formData.group}
                     onChange = {handleChange}>
-          <option value = "">--Please choose a group--</option>
-          {groups.map(group => (
-              <option key = {group.id} value = {group.id}>
-                {group.name}
+            <option value = "">--Please choose a group--</option>
+            {groups.map((group, index) => (
+              <option key = {index} value = {group}>
+                {group}
               </option>
             ))}
           </select>
         </label>
         <br />
         <label>
-          Status: 
+          Status:
           <select name = "status"
                     id = "status"
                     value = {formData.status}
                     onChange = {handleChange}>
-          <option value = "">--Please choose a status--</option>
-          <option value = "active">Active</option>
-          <option value = "inactive">Inactive</option>
+            <option value = "">--Please choose a status--</option>
+            <option value = "active">Active</option>
+            <option value = "inactive">Inactive</option>
           </select>
         </label>
         <br />

@@ -31,7 +31,7 @@ function CompanyForm() {
     })
       .then(response => response.json())
       .then(data => {
-        console.log('Company saved successfully:', data);
+        console.log('Company saved successfully: ', data);
       })
       .catch(error => {
         console.log('Error saving data: ', error);
@@ -39,14 +39,24 @@ function CompanyForm() {
   };
 
   useEffect(() => {
-    fetch('/api/getCategories') // NEED CORRECT URL
-      .then(response => response.json())
-      .then(data => {
-        setCategories(data);
+    fetch("/api/getAllData") // NEED CORRECT URL
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log(data);
+        setCategories(data[0].categories);
       })
-      .catch(error => {
-        console.log('Error getting categories:', error);
+      .catch((error) => {
+        console.log("Error getting data: ", error);
       });
+
+    // fetch('/api/getCategories') // NEED CORRECT URL
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     setCategories(data);
+    //   })
+    //   .catch(error => {
+    //     console.log('Error getting categories: ', error);
+    //   });
   }, []);
 
   return (
@@ -132,9 +142,9 @@ function CompanyForm() {
                   value = {formData.category}
                   onChange = {handleChange}>
           <option value = "">--Please choose a category--</option>
-          {categories.map(category => (
-              <option key = {category.id} value = {category.id}>
-                {category.name}
+          {categories.map((category, index) => (
+              <option key = {index} value = {category}>
+                {category}
               </option>
             ))}
         </select>

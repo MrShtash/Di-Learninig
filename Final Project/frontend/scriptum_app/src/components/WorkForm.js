@@ -32,7 +32,7 @@ function WorkForm() {
     })
       .then(response => response.json())
       .then(data => {
-        console.log('Work saved successfully:', data);
+        console.log('Work saved successfully: ', data);
       })
       .catch(error => {
         console.log('Error saving data: ', error);
@@ -40,23 +40,34 @@ function WorkForm() {
   };
 
   useEffect(() => {
-    fetch('/api/getSpecialists') // NEED CORRECT URL
-      .then(response => response.json())
-      .then(data => {
-        setSpecialists(data);
+    fetch("/api/getAllData") // NEED CORRECT URL
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log(data);
+        setSpecialists(data[0].specialists);
+        setSprints(data[0].sprints);
       })
-      .catch(error => {
-        console.log('Error getting specialists:', error);
+      .catch((error) => {
+        console.log("Error getting data: ", error);
       });
 
-    fetch('/api/getSprints') // NEED CORRECT URL
-      .then(response => response.json())
-      .then(data => {
-        setSprints(data);
-      })
-      .catch(error => {
-        console.log('Error getting sprints:', error);
-      });
+    // fetch('/api/getSpecialists') // NEED CORRECT URL
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     setSpecialists(data);
+    //   })
+    //   .catch(error => {
+    //     console.log('Error getting specialists: ', error);
+    //   });
+
+    // fetch('/api/getSprints') // NEED CORRECT URL
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     setSprints(data);
+    //   })
+    //   .catch(error => {
+    //     console.log('Error getting sprints: ', error);
+    //   });
   }, []);
 
   return (
@@ -97,9 +108,9 @@ function WorkForm() {
                   value = {formData.specialist}
                   onChange = {handleChange}>
           <option value = "">--Please choose a Specialist--</option>
-          {specialists.map(specialist => (
-              <option key = {specialist.id} value = {specialist.id}>
-                {specialist.name}
+          {specialists.map((specialist, index) => (
+              <option key = {index} value = {specialist}>
+                {specialist}
               </option>
             ))}
           </select>
@@ -148,9 +159,9 @@ function WorkForm() {
                   value = {formData.sprint}
                   onChange = {handleChange}>
           <option value = "">--Please choose a Sprint--</option>
-          {sprints.map(sprint => (
-              <option key = {sprint.id} value = {sprint.id}>
-                {sprint.title}
+          {sprints.map((sprint, index) => (
+              <option key = {index} value = {sprint}>
+                {sprint}
               </option>
             ))}
           </select>

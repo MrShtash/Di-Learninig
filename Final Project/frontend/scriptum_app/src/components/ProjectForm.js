@@ -31,7 +31,7 @@ function ProjectForm() {
     })
       .then(response => response.json())
       .then(data => {
-        console.log('Project saved successfully:', data);
+        console.log('Project saved successfully: ', data);
       })
       .catch(error => {
         console.log('Error saving data: ', error);
@@ -39,32 +39,44 @@ function ProjectForm() {
   };
 
   useEffect(() => {
-    fetch('/api/getCompanies')
-      .then(response => response.json())
-      .then(data => {
-        setCompanies(data);
+    fetch("/api/getAllData") // NEED CORRECT URL
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log(data);
+        setCompanies(data[0].companies);
+        setDepartments(data[0].departments);
+        setSpecialists(data[0].specialists);
       })
-      .catch(error => {
-        console.log('Error getting companies:', error);
+      .catch((error) => {
+        console.log("Error getting data: ", error);
       });
 
-    fetch('/api/getSpecialists')
-      .then(response => response.json())
-      .then(data => {
-        setSpecialists(data);
-      })
-      .catch(error => {
-        console.log('Error getting specialists:', error);
-      });
+    // fetch('/api/getCompanies') // NEED CORECT URL
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     setCompanies(data);
+    //   })
+    //   .catch(error => {
+    //     console.log('Error getting companies: ', error);
+    //   });
 
-    fetch('/api/getDepartments')
-      .then(response => response.json())
-      .then(data => {
-        setDepartments(data);
-      })
-      .catch(error => {
-        console.log('Error getting departments:', error);
-      });
+    // fetch('/api/getSpecialists') // NEED CORECT URL
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     setSpecialists(data);
+    //   })
+    //   .catch(error => {
+    //     console.log('Error getting specialists: ', error);
+    //   });
+
+    // fetch('/api/getDepartments') // NEED CORECT URL
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     setDepartments(data);
+    //   })
+    //   .catch(error => {
+    //     console.log('Error getting departments: ', error);
+    //   });
   }, []);
   
   return (
@@ -87,9 +99,9 @@ function ProjectForm() {
                   value = {formData.company}
                   onChange = {handleChange}>
           <option value = "">--Please choose a company--</option>
-          {companies.map(company => (
-              <option key = {company.id} value = {company.id}>
-                {company.name}
+          {companies.map((company, index) => (
+              <option key = {index} value = {company}>
+                {company}
               </option>
             ))}
           </select>
@@ -139,9 +151,9 @@ function ProjectForm() {
                   onChange = {handleChange}
                   multiple>
           <option value = "">--Please choose a Department--</option>
-          {departments.map(department => (
-              <option key = {department.id} value = {department.id}>
-                {department.name}
+          {departments.map((department, index) => (
+              <option key = {index} value = {department}>
+                {department}
               </option>
             ))}
           </select>
@@ -155,9 +167,9 @@ function ProjectForm() {
                   onChange = {handleChange}
                   multiple>
           <option value = "">--Please choose a specialist--</option>
-           {specialists.map(specialist => (
-              <option key = {specialist.id} value = {specialist.id}>
-                {specialist.name}
+           {specialists.map((specialist, index) => (
+              <option key = {index} value = {specialist}>
+                {specialist}
               </option>
             ))}
           </select>

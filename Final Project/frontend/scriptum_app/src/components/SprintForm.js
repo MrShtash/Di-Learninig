@@ -39,23 +39,34 @@ function SprintForm() {
   };
 
   useEffect(() => {
-    fetch('/api/getProjects') // NEED CORRECT URL
-      .then(response => response.json())
-      .then(data => {
-        setProjects(data);
+    fetch("/api/getAllData") // NEED CORRECT URL
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log(data);
+        setProjects(data[0].projects);
+        setSpecialists(data[0].specialists);
       })
-      .catch(error => {
-        console.log('Error getting projects:', error);
+      .catch((error) => {
+        console.log("Error getting data: ", error);
       });
 
-    fetch('/api/getSpecialists') // NEED CORRECT URL
-      .then(response => response.json())
-      .then(data => {
-        setSpecialists(data);
-      })
-      .catch(error => {
-        console.log('Error getting specialists:', error);
-      });
+    // fetch('/api/getProjects') // NEED CORRECT URL
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     setProjects(data);
+    //   })
+    //   .catch(error => {
+    //     console.log('Error getting projects: ', error);
+    //   });
+
+    // fetch('/api/getSpecialists') // NEED CORRECT URL
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     setSpecialists(data);
+    //   })
+    //   .catch(error => {
+    //     console.log('Error getting specialists: ', error);
+    //   });
   }, []);
 
   return (
@@ -69,9 +80,9 @@ function SprintForm() {
                   value = {formData.project}
                   onChange = {handleChange}>
           <option value = "">--Please choose a project--</option>
-          {projects.map(project => (
-              <option key = {project.id} value = {project.id}>
-                {project.name}
+          {projects.map((project, index) => (
+              <option key = {index} value = {project}>
+                {project}
               </option>
             ))}
           </select>
@@ -141,9 +152,9 @@ function SprintForm() {
                   placeholder = "Specialist"
                   multiple>
           <option value = "">--Please choose a Specialist--</option>
-          {specialists.map(specialist => (
-              <option key = {specialist.id} value = {specialist.id}>
-                {specialist.name}
+          {specialists.map((specialist, index) => (
+              <option key = {index} value = {specialist}>
+                {specialist}
               </option>
             ))}
           </select>
