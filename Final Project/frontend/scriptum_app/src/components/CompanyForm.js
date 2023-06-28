@@ -43,7 +43,7 @@ function CompanyForm() {
       .then((response) => response.json())
       .then((data) => {
         // console.log(data);
-        setCategories(data[0].categories);
+        setCategories(data.categories);
       })
       .catch((error) => {
         console.log("Error getting data: ", error);

@@ -4,7 +4,7 @@ import React, {useState, useEffect} from 'react';
 function HourForm() {
   const [formData, setFormData] = useState({
     hour: '',
-    grade: ''
+    grade: '' // add grade
   });
 
   const [grades, setGrades] = useState([]);
@@ -16,7 +16,7 @@ function HourForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch('/api/saveData', {
+    fetch('/api/saveHour', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -33,11 +33,11 @@ function HourForm() {
   };
 
   useEffect(() => {
-    fetch("/api/getAllData") // NEED CORRECT URL
+    fetch("/api/getAllData") 
       .then((response) => response.json())
       .then((data) => {
         // console.log(data);
-        setGrades(data[0].grades);
+        setGrades(data.grades);
       })
       .catch((error) => {
         console.log("Error getting data: ", error);
@@ -65,8 +65,8 @@ function HourForm() {
                   onChange = {handleChange}>
           <option value = "">--Please choose a grade--</option>
           {grades.map((grade, index) => (
-              <option key = {index} value = {grade.id}>
-                {grade}
+              <option key = {index} value = {grade.grade_id}>
+                {grade.grade_type}
               </option>
             ))}
           </select>

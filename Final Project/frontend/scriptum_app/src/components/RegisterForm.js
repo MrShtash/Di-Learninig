@@ -41,13 +41,13 @@ function RegisterForm() {
   };
 
   useEffect(() => {
-    fetch("/api/getAllData") // NEED CORRECT URL
+    fetch("/api/getAllData") 
       .then((response) => response.json())
       .then((data) => {
         // console.log(data);
-        setGrades(data[0].grades);
-        setDepartments(data[0].departments);
-        setGroups(data[0].groups);
+        setGrades(data.grades);
+        setDepartments(data.departments);
+        setGroups(data.groups);
       })
       .catch((error) => {
         console.log("Error getting data: ", error);
@@ -112,8 +112,8 @@ function RegisterForm() {
                     placeholder = "Group">
             <option value="">--Please choose a grade--</option>
             {grades.map((grade, index) => (
-              <option key = {index} value = {grade.id}>
-                {grade}
+              <option key = {index} value = {grade.grade_id}>
+                {grade.grade_type}
               </option>
             ))}
           </select>

@@ -44,8 +44,8 @@ function WorkForm() {
       .then((response) => response.json())
       .then((data) => {
         // console.log(data);
-        setSpecialists(data[0].specialists);
-        setSprints(data[0].sprints);
+        setSpecialists(data.specialists);
+        setSprints(data.sprints);
       })
       .catch((error) => {
         console.log("Error getting data: ", error);

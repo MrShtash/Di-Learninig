@@ -43,9 +43,9 @@ function ProjectForm() {
       .then((response) => response.json())
       .then((data) => {
         // console.log(data);
-        setCompanies(data[0].companies);
-        setDepartments(data[0].departments);
-        setSpecialists(data[0].specialists);
+        setCompanies(data.companies);
+        setDepartments(data.departments);
+        setSpecialists(data.specialists);
       })
       .catch((error) => {
         console.log("Error getting data: ", error);

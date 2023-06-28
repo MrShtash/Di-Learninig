@@ -18,8 +18,8 @@ app.get('/api/data', (req, res) => {
     console.log(data);
 })
 
-app.get("/api/getAllData", (req, res) => {
-  const data = [
+app.get("/api/getAllData", async (req, res) => {
+  const data = 
     {
       grades: [],
       sprints: [],
@@ -29,9 +29,19 @@ app.get("/api/getAllData", (req, res) => {
       groups: [],
       projects: [],
       categories: []
-    },
-  ];
-  res.json(data);
+    };
+//   res.json(data);
+    await db.select().from('grade') 
+        .then((grades) => {
+            // console.log(grades, data);
+            data.grades = grades; 
+            res.json(data); 
+        })
+        .catch((error) => {
+            console.log("Error getting data: ", error);
+            res.status(500).json({ error: "Error getting data" });
+        });
+  
 });
 
 // app.post('/api/saveData', (req, res) => {
@@ -97,12 +107,40 @@ app.post('/api/saveGroupData', (req, res) => {
     });
 })
 
+app.post('/api/saveCash', (req, res) => {
+    const {cash} = req.body;
+    
+    db('cash')
+    .insert({cash})
+    .then(() => {
+        console.log('Cash saved successfully');
+        res.status(201).json({message: 'Cash saved successfully'});
+    })
+    .catch(error => {
+        console.log('Error saving Cash: ', error);
+        res.status(500).json({error: 'Error saving Cash'});
+    });
+})
+
+app.post('/api/saveHour', (req, res) => {
+    const {hour, grade_id} = req.body;
+    
+    db('hour')
+    .insert({hour, grade_id})
+    .then(() => {
+        console.log('Hour saved successfully');
+        res.status(201).json({message: 'Hour saved successfully'});
+    })
+    .catch(error => {
+        console.log('Error saving Hour: ', error);
+        res.status(500).json({error: 'Error saving Hour'});
+    });
+})
+
 
 // app.get('/api/getSprints', (req, res) => {
 //   const sprints = [
 //     {
-//         id: '',
-//         title: ''
 //     },
 //   ];
 //   res.json(sprints);

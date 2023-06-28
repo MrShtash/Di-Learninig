@@ -43,8 +43,8 @@ function SprintForm() {
       .then((response) => response.json())
       .then((data) => {
         // console.log(data);
-        setProjects(data[0].projects);
-        setSpecialists(data[0].specialists);
+        setProjects(data.projects);
+        setSpecialists(data.specialists);
       })
       .catch((error) => {
         console.log("Error getting data: ", error);

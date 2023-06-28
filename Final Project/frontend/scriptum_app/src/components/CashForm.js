@@ -12,7 +12,7 @@ function CashForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch('/api/saveData', {
+    fetch('/api/saveCash', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
