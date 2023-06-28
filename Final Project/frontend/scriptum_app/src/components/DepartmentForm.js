@@ -12,7 +12,7 @@ function DepartmentForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch('/api/saveData', {
+    fetch('/api/saveDepartment', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

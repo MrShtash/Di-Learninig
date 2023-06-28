@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 function GroupForm() {
   const [formData, setFormData] = useState({
-    group: '',
+    group_name: ''
   });
 
   const handleChange = (e) => {
@@ -11,8 +11,8 @@ function GroupForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    fetch('/api/saveData', {
+    console.log(formData);
+    fetch('/api/saveGroupData', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -21,7 +21,7 @@ function GroupForm() {
     })
       .then(response => response.json())
       .then(data => {
-        console.log('Group saved successfully:', data);
+        console.log('Group_data saved successfully: ', data);
       })
       .catch(error => {
         console.log('Error saving data: ', error);
@@ -35,8 +35,8 @@ function GroupForm() {
         <label>
           Group: 
           <input type = "text"
-                  name = "group"
-                  value = {formData.group}
+                  name = "group_name"
+                  value = {formData.group_name}
                   onChange = {handleChange}
                   placeholder = "Group"/>
         </label>

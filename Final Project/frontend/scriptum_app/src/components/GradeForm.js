@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 function GradeForm() {
   const [formData, setFormData] = useState({
-    grade: '',
+    grade_type: '',
     cost: ''
   });
 
@@ -12,8 +12,8 @@ function GradeForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    fetch('/api/saveData', {
+    console.log(formData);
+    fetch('/api/saveGrade', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -22,7 +22,7 @@ function GradeForm() {
     })
       .then(response => response.json())
       .then(data => {
-        console.log('Grade saved successfully:', data);
+        console.log('Grade saved successfully: ', data);
       })
       .catch(error => {
         console.log('Error saving data: ', error);
@@ -36,8 +36,8 @@ function GradeForm() {
         <label>
           Grade: 
           <input type = "text"
-                  name = "grade"
-                  value = {formData.grade}
+                  name = "grade_type"
+                  value = {formData.grade_type}
                   onChange = {handleChange}
                   placeholder = "Grade"/>
         </label>
