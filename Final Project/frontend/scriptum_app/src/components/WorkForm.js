@@ -91,8 +91,8 @@ function WorkForm() {
                   onChange = {handleChange}>
           <option value = "">--Please choose a Specialist--</option>
           {specialists.map((specialist, index) => (
-              <option key = {index} value = {specialist.id}>
-                {specialist}
+              <option key = {index} value = {specialist.specialist_id}>
+                {specialist.f_name}
               </option>
             ))}
           </select>
@@ -142,8 +142,8 @@ function WorkForm() {
                   onChange = {handleChange}>
           <option value = "">--Please choose a Sprint--</option>
           {sprints.map((sprint, index) => (
-              <option key = {index} value = {sprint.id}>
-                {sprint}
+              <option key = {index} value = {sprint.sprint_id}>
+                {sprint.sprint_id}
               </option>
             ))}
           </select>

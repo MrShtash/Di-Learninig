@@ -39,7 +39,29 @@ app.get("/api/getAllData", async (req, res) => {
         })
         .catch((error) => {
             console.log("Error getting data: ", error);
-            res.status(500).json({ error: "Error getting data" });
+            res.status(500).json({error: "Error getting data"});
+        });
+
+    await db.select().from('department') 
+        .then((departments) => {
+            // console.log(department, data);
+            data.departments = departments; 
+            res.json(data); 
+        })
+        .catch((error) => {
+            console.log("Error getting data: ", error);
+            res.status(500).json({error: "Error getting data"});
+        });
+
+    await db.select().from('group_data') 
+        .then((groups) => {
+            // console.log(group_data, data);
+            data.groups = groups; 
+            res.json(data); 
+        })
+        .catch((error) => {
+            console.log("Error getting data: ", error);
+            res.status(500).json({error: "Error getting data"});
         });
   
 });

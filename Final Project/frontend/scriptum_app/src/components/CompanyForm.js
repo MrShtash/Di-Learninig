@@ -134,8 +134,8 @@ function CompanyForm() {
                   onChange = {handleChange}>
           <option value = "">--Please choose a category--</option>
           {categories.map((category, index) => (
-              <option key = {index} value = {category.id}>
-                {category}
+              <option key = {index} value = {category.category_id}>
+                {category.name}
               </option>
             ))}
         </select>

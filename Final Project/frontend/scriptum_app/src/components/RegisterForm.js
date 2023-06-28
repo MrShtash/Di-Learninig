@@ -44,7 +44,7 @@ function RegisterForm() {
     fetch("/api/getAllData") 
       .then((response) => response.json())
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         setGrades(data.grades);
         setDepartments(data.departments);
         setGroups(data.groups);
@@ -127,8 +127,8 @@ function RegisterForm() {
                     onChange = {handleChange}>
             <option value = "">--Please choose a department--</option>
             {departments.map((department, index) => (
-              <option key = {index} value = {department.id}>
-                {department}
+              <option key = {index} value = {department.department_id}>
+                {department.d_name}
               </option>
             ))}
           </select>
@@ -142,8 +142,8 @@ function RegisterForm() {
                     onChange = {handleChange}>
             <option value = "">--Please choose a group--</option>
             {groups.map((group, index) => (
-              <option key = {index} value = {group.id}>
-                {group}
+              <option key = {index} value = {group.group_id}>
+                {group.group_name}
               </option>
             ))}
           </select>

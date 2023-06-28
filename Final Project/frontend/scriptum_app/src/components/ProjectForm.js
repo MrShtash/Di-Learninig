@@ -73,8 +73,8 @@ function ProjectForm() {
                   onChange = {handleChange}>
           <option value = "">--Please choose a company--</option>
           {companies.map((company, index) => (
-              <option key = {index} value = {company.id}>
-                {company}
+              <option key = {index} value = {company.company_id}>
+                {company.name}
               </option>
             ))}
           </select>
@@ -125,8 +125,8 @@ function ProjectForm() {
                   multiple>
           <option value = "">--Please choose a Department--</option>
           {departments.map((department, index) => (
-              <option key = {index} value = {department.id}>
-                {department}
+              <option key = {index} value = {department.department_id}>
+                {department.d_name}
               </option>
             ))}
           </select>
@@ -141,8 +141,8 @@ function ProjectForm() {
                   multiple>
           <option value = "">--Please choose a specialist--</option>
            {specialists.map((specialist, index) => (
-              <option key = {index} value = {specialist.id}>
-                {specialist}
+              <option key = {index} value = {specialist.specialist_id}>
+                {specialist.f_name}
               </option>
             ))}
           </select>

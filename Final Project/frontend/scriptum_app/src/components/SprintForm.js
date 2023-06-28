@@ -63,8 +63,8 @@ function SprintForm() {
                   onChange = {handleChange}>
           <option value = "">--Please choose a project--</option>
           {projects.map((project, index) => (
-              <option key = {index} value = {project.id}>
-                {project}
+              <option key = {index} value = {project.project_id}>
+                {project.name}
               </option>
             ))}
           </select>
@@ -135,8 +135,8 @@ function SprintForm() {
                   multiple>
           <option value = "">--Please choose a Specialist--</option>
           {specialists.map((specialist, index) => (
-              <option key = {index} value = {specialist.id}>
-                {specialist}
+              <option key = {index} value = {specialist.specialist_id}>
+                {specialist.f_name}
               </option>
             ))}
           </select>
