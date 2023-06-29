@@ -404,7 +404,7 @@ app.put('/api/updateSprint/:id', async (req, res) => {
 
     try {
         const changeSprint = await db('sprint')
-        .where('sprintId', workId)
+        .where('sprint_id', sprintId)
         .update(req.body);
         
         if (changeSprint === 0) {
@@ -415,6 +415,26 @@ app.put('/api/updateSprint/:id', async (req, res) => {
         } catch (error) {
             console.log('Error updating Sprint: ', error);
             res.status(500).json({error: 'Error updating Sprint'});
+        }
+});
+
+app.put('/api/updateGrade/:id', async (req, res) => {
+    const gradeId = req.params.id;
+    const {grade_type, cost} = req.body;
+
+    try {
+        const changeGrade = await db('grade')
+        .where('grade_id', gradeId)
+        .update(req.body);
+        
+        if (changeGrade === 0) {
+        return res.status(404).json({error: 'Grade not found'});
+        }
+        
+        res.json({message: 'Grade updated successfully'});
+        } catch (error) {
+            console.log('Error updating Grade: ', error);
+            res.status(500).json({error: 'Error updating Grade'});
         }
 });
 
