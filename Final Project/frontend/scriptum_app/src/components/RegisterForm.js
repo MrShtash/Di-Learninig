@@ -2,9 +2,9 @@ import React, {useState, useEffect} from "react";
 
 function RegisterForm() {
   const [formData, setFormData] = useState({
+    username: "",
     f_name: "",
     l_name: "",
-    username: "",
     email: "",
     password: "",
     grade: "",
@@ -24,7 +24,7 @@ function RegisterForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("/api/saveData", {
+    fetch("/api/saveSpecialist", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -59,6 +59,15 @@ function RegisterForm() {
       <h1>Register Page</h1>
       <form onSubmit = {handleSubmit}>
         <label>
+          Username:
+          <input type = "text"
+                  name = "username"
+                  value = {formData.username}
+                  onChange = {handleChange}
+                  placeholder = "Username"/>
+        </label>
+        <br />
+        <label>
           First Name:
           <input type = "text"
                   name = "f_name"
@@ -83,15 +92,6 @@ function RegisterForm() {
                   value = {formData.email}
                   onChange = {handleChange}
                   placeholder = "Email"/>
-        </label>
-        <br />
-        <label>
-          Username:
-          <input type = "text"
-                  name = "username"
-                  value = {formData.username}
-                  onChange = {handleChange}
-                  placeholder = "Username"/>
         </label>
         <br />
         <label>

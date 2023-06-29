@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 function CategoryForm() {
   const [formData, setFormData] = useState({
-    category: '',
+    name: '',
   });
 
   const handleChange = (e) => {
@@ -12,7 +12,7 @@ function CategoryForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch('/api/saveData', {
+    fetch('/api/saveCategory', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -35,7 +35,7 @@ function CategoryForm() {
         <label>
           Category Name: 
           <input type = "text"
-                  name = "category"
+                  name = "name"
                   value = {formData.category}
                   onChange = {handleChange}
                   placeholder = "Category name"/>

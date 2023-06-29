@@ -2,14 +2,14 @@ import React, {useState, useEffect} from 'react';
 
 function CompanyForm() {
   const [formData, setFormData] = useState({
-    c_name: '',
+    name: '',
     address: '',
     email: '',
     phone: '',
-    cont_name: '',
-    website: '',
+    contact_name: '',
+    web_site: '',
     deposit: '',
-    c_description: '',
+    description: '',
     category: ''
   });
 
@@ -22,7 +22,7 @@ function CompanyForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch('/api/saveData', {
+    fetch('/api/saveCompany', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -39,7 +39,7 @@ function CompanyForm() {
   };
 
   useEffect(() => {
-    fetch("/api/getAllData") // NEED CORRECT URL
+    fetch("/api/getAllData")
       .then((response) => response.json())
       .then((data) => {
         // console.log(data);
@@ -57,8 +57,8 @@ function CompanyForm() {
         <label>
         Name: 
           <input type = "text"
-                  name = "c_name"
-                  value = {formData.c_name}
+                  name = "name"
+                  value = {formData.name}
                   onChange= {handleChange}
                   placeholder = "Company Name"/>
         </label>
@@ -93,8 +93,8 @@ function CompanyForm() {
         <label>
           Contact name: 
           <input type = "text"
-                  name = "cont_name"
-                  value = {formData.cont_name}
+                  name = "contact_name"
+                  value = {formData.contact_name}
                   onChange = {handleChange}
                   placeholder = "Contact Name"/>
         </label>
@@ -102,8 +102,8 @@ function CompanyForm() {
         <label>
           Website:
           <input type = "url"
-                  name = "website"
-                  value = {formData.website}
+                  name = "web_site"
+                  value = {formData.web_site}
                   onChange = {handleChange}
                   placeholder = "Website"/>
         </label>
@@ -121,8 +121,8 @@ function CompanyForm() {
          <label>
           Description:
           <input type = "text"
-                  name = "c_description"
-                  value = {formData.c_description}
+                  name = "description"
+                  value = {formData.description}
                   onChange = {handleChange}
                   placeholder = "Description"/>
         </label>

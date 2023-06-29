@@ -6,8 +6,8 @@ function WorkForm() {
     description: '',
     hour: '',
     specialist: '',
-    s_date: '',
-    e_date: '',
+    date_creation: '',
+    date_complete: '',
     deadline: '',
     result: '',
     sprint: ''
@@ -23,7 +23,7 @@ function WorkForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch('/api/saveData', {
+    fetch('/api/saveWork', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -40,7 +40,7 @@ function WorkForm() {
   };
 
   useEffect(() => {
-    fetch("/api/getAllData") // NEED CORRECT URL
+    fetch("/api/getAllData")
       .then((response) => response.json())
       .then((data) => {
         // console.log(data);
@@ -92,7 +92,7 @@ function WorkForm() {
           <option value = "">--Please choose a Specialist--</option>
           {specialists.map((specialist, index) => (
               <option key = {index} value = {specialist.specialist_id}>
-                {specialist.f_name}
+                {specialist.f_name} {specialist.l_name}
               </option>
             ))}
           </select>
@@ -101,8 +101,8 @@ function WorkForm() {
         <label>
           Date Start: 
           <input type = "date"
-                  name = "s_date"
-                  value = {formData.s_date}
+                  name = "date_creation"
+                  value = {formData.date_creation}
                   onChange = {handleChange}
                   placeholder = "Date Start"/>
         </label>
@@ -110,8 +110,8 @@ function WorkForm() {
         <label>
           Date End: 
           <input type = "date"
-                  name = "e_date"
-                  value = {formData.e_date}
+                  name = "date_complete"
+                  value = {formData.date_complete}
                   onChange = {handleChange}
                   placeholder = "Date End"/>
         </label>
@@ -143,7 +143,7 @@ function WorkForm() {
           <option value = "">--Please choose a Sprint--</option>
           {sprints.map((sprint, index) => (
               <option key = {index} value = {sprint.sprint_id}>
-                {sprint.sprint_id}
+                {sprint.title}
               </option>
             ))}
           </select>

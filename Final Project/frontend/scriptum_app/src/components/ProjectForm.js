@@ -1,15 +1,98 @@
 import React, {useState, useEffect} from 'react';
+import Select from 'react-select';
+// import 'react-select/dist/react-select.css';
+// import {css} from '@emotion/css';
+
+// const selectStyles = {
+//   control: (provided, state) => ({
+//           ...provided,
+//           border: state.isFocused ? '2px solid blue' : '2px solid gray',
+//           borderRadius: '4px',
+//           padding: '5px',
+//           boxShadow: state.isFocused ? '0 0 5px blue' : 'none',
+//           outline: 'none',
+//           '&:hover': {
+//             border: '2px solid blue'
+//           }
+
+//     //       ...provided,
+//     // border: state.isFocused ? '2px solid blue' : '1px solid #ccc', // Цвет рамки при фокусе и без фокуса
+//     // borderRadius: '4px',
+//     // boxShadow: state.isFocused ? '0 0 0 1px blue' : 'none', // Тень при фокусе
+//     // '&:hover': {
+//     //   borderColor: state.isFocused ? 'blue' : '#aaa' // Цвет рамки при наведении курсора
+//     // }
+//         }),
+//   option: (provided, state) => ({
+//           ...provided,
+//           backgroundColor: state.isSelected ? 'blue' : 'white',
+//           color: state.isSelected ? 'white' : 'black',
+//           '&:hover': {
+//             backgroundColor: 'blue',
+//             color: 'white'
+//           }
+//         }),
+//   multiValue: (provided) => ({
+//               ...provided,
+//               backgroundColor: 'blue',
+//               color: 'white',
+//               borderRadius: '4px'
+//             }),
+//   multiValueLabel: (provided) => ({
+//                     ...provided,
+//                     color: 'white'
+//                   }),
+//   multiValueRemove: (provided) => ({
+//                     ...provided,
+//                     color: 'white',
+//                     ':hover': {
+//                       backgroundColor: 'blue',
+//                       color: 'white'
+//                     }
+//                   })
+// };
+
+
+const customStyles = {
+  control: (provided) => ({
+    ...provided,
+    borderColor: '#ccc',
+    borderRadius: '4px',
+    '&:hover': {
+      borderColor: '#aaa'
+    }
+  }),
+  placeholder: (provided) => ({
+    ...provided,
+    color: '#999'
+  }),
+  singleValue: (provided) => ({
+    ...provided,
+    color: '#000'
+  })
+};
 
 function ProjectForm() {
   const [formData, setFormData] = useState({
-    p_name: '',
+    name: '',
     company: '',
     s_date: '',
     e_date: '',
     deposit: '',
     description: '',
-    specialist: ''
+    specialist: [],
+    department: []
   });
+
+  // const defaultDepartmentOption = {
+  //   value: '',
+  //   label: 'Please select Department'
+  // };
+
+  // const defaultSpecialistOption = {
+  //   value: '',
+  //   label: 'Please select Specialist'
+  // };
 
   const [companies, setCompanies] = useState([]);
   const [specialists, setSpecialists] = useState([]);
@@ -19,10 +102,30 @@ function ProjectForm() {
     setFormData({...formData, [e.target.name]: e.target.value});
   };
 
+  // const handleDepartmentChange = (selectedOptions) => {
+  //   const selectedValues = selectedOptions.map((option) => option.value);
+  //   setFormData({...formData, department: selectedValues});
+  // };
+
+  // const handleSpecialistChange = (selectedOptions) => {
+  //   const selectedValues = selectedOptions.map((option) => option.value);
+  //   setFormData({...formData, specialist: selectedValues});
+  // };
+
+  const handleDepartmentChange = (selectedOptions) => {
+    const selectedValues = selectedOptions.map((option) => option.value);
+    setFormData({...formData, department: selectedValues});
+  };
+
+  const handleSpecialistChange = (selectedOptions) => {
+    const selectedValues = selectedOptions.map((option) => option.value);
+    setFormData({...formData, specialist: selectedValues});
+  };
+  
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch('/api/saveData', {
+    fetch('/api/saveProject', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -39,7 +142,7 @@ function ProjectForm() {
   };
 
   useEffect(() => {
-    fetch("/api/getAllData") // NEED CORRECT URL
+    fetch("/api/getAllData") 
       .then((response) => response.json())
       .then((data) => {
         // console.log(data);
@@ -59,8 +162,8 @@ function ProjectForm() {
         <label>
           Name: 
           <input type = "text"
-                  name = "p_name"
-                  value = {formData.p_name}
+                  name = "name"
+                  value = {formData.name}
                   onChange = {handleChange}
                   placeholder = "Project Name"/>
         </label>
@@ -118,10 +221,11 @@ function ProjectForm() {
         <br />
         <label>
           Department: 
-          <select name = "department"
+          {/* <select name = "department"
                   id = "department"
-                  value = {formData.department}
+                  value = {formData.department_id}
                   onChange = {handleChange}
+                  // onChange = {handleDepartmentChange}
                   multiple>
           <option value = "">--Please choose a Department--</option>
           {departments.map((department, index) => (
@@ -129,23 +233,93 @@ function ProjectForm() {
                 {department.d_name}
               </option>
             ))}
-          </select>
+          </select> */}
+
+
+          {/* <Select name="department"
+                  value={departments.filter((department) => formData.department.includes(department.department_id))}
+                  options={departments.map((department) => ({value: department.department_id, label: department.d_name}))}
+                  isMulti
+                  onChange={handleDepartmentChange}
+                  style={{selectStyles}}/> */}
+
+          {/* <Select
+            name="department"
+            value={formData.department.length > 0 ? formData.department : defaultDepartmentOption}
+            options={[defaultDepartmentOption, ...departments.map((department) => ({
+              value: department.department_id,
+              label: department.d_name
+            }))]}
+            isMulti
+            onChange={handleDepartmentChange}
+            styles={selectStyles}/> */}
+
+
+          <Select name="department"
+                  value={formData.department.map((value) => ({
+                    value: value,
+                    label: departments.find((department) => department.department_id === value).d_name
+                  }))}
+                  options={departments.map((department) => ({
+                    value: department.department_id,
+                    label: department.d_name
+                  }))}
+                  isMulti
+                  onChange={handleDepartmentChange}
+                  styles={customStyles}
+                  placeholder="Please select a department"/>
         </label>
         <br />
         <label>
           Specialists: 
-        <select name = "specialist"
+        {/* <select name = "specialist"
                   id = "specialist"
-                  value = {formData.specialist}
+                  value = {formData.specialist_id}
                   onChange = {handleChange}
+                  // onChange = {handleSpecialistChange}
                   multiple>
           <option value = "">--Please choose a specialist--</option>
            {specialists.map((specialist, index) => (
               <option key = {index} value = {specialist.specialist_id}>
-                {specialist.f_name}
+                {specialist.f_name} {specialist.l_name}
               </option>
             ))}
-          </select>
+          </select> */}
+
+          {/* <Select name="specialist"
+                  value={specialists.filter((specialist) => formData.specialist.includes(specialist.specialist_id))}
+                  options={specialists.map((specialist) => ({value: specialist.specialist_id, label: `${specialist.f_name} ${specialist.l_name}`}))}
+                  isMulti
+                  onChange={handleSpecialistChange}
+                  style={{selectStyles}}/> */}
+
+
+          {/* <Select
+            name="specialist"
+            value={formData.specialist.length > 0 ? formData.specialist : defaultSpecialistOption}
+            options={[defaultSpecialistOption, ...specialists.map((specialist) => ({
+              value: specialist.specialist_id,
+              label: `${specialist.f_name} ${specialist.l_name}`
+            }))]}
+            isMulti
+            onChange={handleSpecialistChange}
+            styles={selectStyles}
+          /> */}
+
+
+          <Select name="specialist"
+                  value={formData.specialist.map((value) => ({
+                    value: value,
+                    label: specialists.find((specialist) => specialist.specialist_id === value).f_name + ' ' + specialists.find((specialist) => specialist.specialist_id === value).l_name
+                  }))}
+                  options={specialists.map((specialist) => ({
+                    value: specialist.specialist_id,
+                    label: specialist.f_name + ' ' + specialist.l_name
+                  }))}
+                  isMulti
+                  onChange={handleSpecialistChange}
+                  styles={customStyles}
+                  placeholder="Please select a specialist"/>
         </label>
         <br />
         <button type = "submit">Create Project</button>

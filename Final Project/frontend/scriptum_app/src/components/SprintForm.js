@@ -1,15 +1,35 @@
 import React, {useState, useEffect} from 'react';
+import Select from 'react-select';
+
+const customStyles = {
+  control: (provided) => ({
+    ...provided,
+    borderColor: '#ccc',
+    borderRadius: '4px',
+    '&:hover': {
+      borderColor: '#aaa'
+    }
+  }),
+  placeholder: (provided) => ({
+    ...provided,
+    color: '#999'
+  }),
+  singleValue: (provided) => ({
+    ...provided,
+    color: '#000'
+  })
+};
 
 function SprintForm() {
   const [formData, setFormData] = useState({
     project: '',
     title: '',
     description: '',
-    s_date: '',
-    e_date: '',
+    date_start: '',
+    date_end: '',
     deadline: '',
     result: '',
-    specialist: ''
+    specialist: []
   });
 
   const [projects, setProjects] = useState([]);
@@ -19,10 +39,15 @@ function SprintForm() {
     setFormData({...formData, [e.target.name]: e.target.value});
   };
 
+  const handleSpecialistChange = (selectedOptions) => {
+    const selectedValues = selectedOptions.map((option) => option.value);
+    setFormData({...formData, specialist: selectedValues});
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch('/api/saveData', {
+    fetch('/api/saveSprint', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -39,7 +64,7 @@ function SprintForm() {
   };
 
   useEffect(() => {
-    fetch("/api/getAllData") // NEED CORRECT URL
+    fetch("/api/getAllData")
       .then((response) => response.json())
       .then((data) => {
         // console.log(data);
@@ -92,8 +117,8 @@ function SprintForm() {
         <label>
           Date Start: 
           <input type = "date"
-                  name = "s_date"
-                  value = {formData.s_date}
+                  name = "date_start"
+                  value = {formData.date_start}
                   onChange = {handleChange}
                   placeholder = "Date Start"/>
         </label>
@@ -101,8 +126,8 @@ function SprintForm() {
         <label>
           Date End: 
           <input type = "date"
-                  name = "e_date"
-                  value = {formData.e_date}
+                  name = "date_end"
+                  value = {formData.date_end}
                   onChange = {handleChange}
                   placeholder = "Date End"/>
         </label>
@@ -127,7 +152,7 @@ function SprintForm() {
         <br />
         <label>
           Specialist: 
-        <select name = "specialist"
+        {/* <select name = "specialist"
                   id = "specialist"
                   value = {formData.specialist}
                   onChange = {handleChange}
@@ -139,7 +164,35 @@ function SprintForm() {
                 {specialist.f_name}
               </option>
             ))}
-          </select>
+          </select> */}
+
+
+          {/* <Select name="specialist"
+                  value={formData.specialist.map((value) => ({
+                    value: value,
+                    label: specialists.find((specialist) => specialist.specialist_id === value).f_name + ' ' + specialists.find((specialist) => specialist.specialist_id === value).l_name
+                  }))}
+                  options={specialists.map((specialist) => ({
+                    value: specialist.specialist_id,
+                    label: specialist.f_name + ' ' + specialist.l_name
+                  }))}
+                  isMulti
+                  onChange={handleSpecialistChange}
+                  styles={customStyles}
+                  placeholder="Please select a specialist"/> */}
+
+          <Select name="specialist"
+                  value={formData.specialist.map((value) => ({
+                  value: value,
+                  label: specialists.find((specialist) => specialist.specialist_id === value).f_name + ' ' + specialists.find((specialist) => specialist.specialist_id === value).l_name
+                }))}
+                options={specialists.length > 0 ? specialists.map((specialist) => ({
+                  value: specialist.specialist_id,
+                  label: specialist.f_name + ' ' + specialist.l_name})) : []}
+                isMulti
+                onChange={handleSpecialistChange}
+                styles={customStyles}
+                placeholder="Please select a specialist"/>
         </label>
         <br />
         <button type = "submit">Create Sprint</button>
