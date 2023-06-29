@@ -25,28 +25,31 @@ dotenv.config();
 //         });
 // })
 
-app.get('/api/data', (req, res) => {
-    const data = {
-        message: 'Hello, this is Scriptum'
-    };
-    res.json(data)
-    console.log(data);
-})
+// app.get('/api/data', (req, res) => {
+//     const data = {
+//         message: 'Hello, this is Scriptum'
+//     };
+//     res.json(data)
+//     console.log(data);
+// })
 
 app.get("/api/getAllData", async (req, res) => {
   const data = 
     {
-      grades: [],
-      sprints: [],
-      specialists: [],
-      companies: [],
-      departments: [],
-      groups: [],
-      projects: [],
-      categories: [],
-      works: [],
-      cashs: [],
-      hours: []
+        cashs: [],
+        categories: [],
+        companies: [],
+        departments: [],
+        grades: [],
+        groups: [],
+        hours: [],
+        projects: [],
+        project_departments: [],
+        project_specialists: [],
+        specialists: [],
+        sprints: [],
+        sprint_specialists: [],
+        works: [],
     };
 //   res.json(data);
     await db.select().from('grade') 
@@ -57,7 +60,7 @@ app.get("/api/getAllData", async (req, res) => {
         })
         .catch((error) => {
             console.log("Error getting data: ", error);
-            res.status(500).json({error: "Error getting data"});
+            res.status(500).json({error: "Error getting grades"});
         });
 
     await db.select().from('department') 
@@ -68,7 +71,7 @@ app.get("/api/getAllData", async (req, res) => {
         })
         .catch((error) => {
             console.log("Error getting data: ", error);
-            res.status(500).json({error: "Error getting data"});
+            res.status(500).json({error: "Error getting departments"});
         });
 
     await db.select().from('group_data') 
@@ -79,7 +82,7 @@ app.get("/api/getAllData", async (req, res) => {
         })
         .catch((error) => {
             console.log("Error getting data: ", error);
-            res.status(500).json({error: "Error getting data"});
+            res.status(500).json({error: "Error getting groups"});
         });
 
         await db.select().from('specialist') 
@@ -88,7 +91,7 @@ app.get("/api/getAllData", async (req, res) => {
         })
         .catch((error) => {
             console.log("Error getting data: ", error);
-            res.status(500).json({error: "Error getting data"});
+            res.status(500).json({error: "Error getting specialists"});
         });
 
         await db.select().from('category') 
@@ -97,7 +100,7 @@ app.get("/api/getAllData", async (req, res) => {
         })
         .catch((error) => {
             console.log("Error getting data: ", error);
-            res.status(500).json({error: "Error getting data"});
+            res.status(500).json({error: "Error getting categories"});
         });
 
         await db.select().from('company') 
@@ -106,7 +109,7 @@ app.get("/api/getAllData", async (req, res) => {
         })
         .catch((error) => {
             console.log("Error getting data: ", error);
-            res.status(500).json({error: "Error getting data"});
+            res.status(500).json({error: "Error getting companies"});
         });
 
         await db.select().from('project') 
@@ -115,7 +118,7 @@ app.get("/api/getAllData", async (req, res) => {
         })
         .catch((error) => {
             console.log("Error getting data: ", error);
-            res.status(500).json({error: "Error getting data"});
+            res.status(500).json({error: "Error getting projects"});
         });
 
         await db.select().from('sprint') 
@@ -124,7 +127,7 @@ app.get("/api/getAllData", async (req, res) => {
         })
         .catch((error) => {
             console.log("Error getting data: ", error);
-            res.status(500).json({error: "Error getting data"});
+            res.status(500).json({error: "Error getting sprints"});
         });
 
         await db.select().from('work') 
@@ -133,7 +136,7 @@ app.get("/api/getAllData", async (req, res) => {
         })
         .catch((error) => {
             console.log("Error getting data: ", error);
-            res.status(500).json({error: "Error getting data"});
+            res.status(500).json({error: "Error getting works"});
         });
 
         await db.select().from('cash') 
@@ -142,7 +145,7 @@ app.get("/api/getAllData", async (req, res) => {
         })
         .catch((error) => {
             console.log("Error getting data: ", error);
-            res.status(500).json({error: "Error getting data"});
+            res.status(500).json({error: "Error getting cash"});
         });
 
         await db.select().from('hour') 
@@ -151,7 +154,7 @@ app.get("/api/getAllData", async (req, res) => {
         })
         .catch((error) => {
             console.log("Error getting data: ", error);
-            res.status(500).json({error: "Error getting data"});
+            res.status(500).json({error: "Error getting hours"});
         });
 
         res.json(data)
@@ -338,17 +341,17 @@ app.post('/api/saveSprint', (req, res) => {
             }));
 
     return trx('sprint_specialist').insert(specialistData);
-      })
-      .then(() => {
+    })
+    .then(() => {
         trx.commit();
         console.log('Sprint saved successfully');
         res.status(201).json({ message: 'Sprint saved successfully' });
-      })
+    })
       .catch((error) => {
         trx.rollback();
         console.log('Error saving Sprint: ', error);
         res.status(500).json({ error: 'Error saving Sprint' });
-      });
+    });
   })
     .catch((error) => {
       console.log('Transaction error: ', error);
@@ -371,20 +374,48 @@ app.post('/api/saveWork', (req, res) => {
     });
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
 app.listen(process.env.PORT || 3000, () => {
     console.log(`server running on port ${process.env.PORT || 3000}`)
+});
+
+app.put('/api/updateWork/:id', async (req, res) => {
+    const workId = req.params.id;
+    const {title, description, hours, specialist, date_creation, date_complete, deadline, result, sprint} = req.body;
+
+    try {
+        const changeWork = await db('work')
+        .where('work_id', workId)
+        .update(req.body);
+        
+        if (changeWork === 0) {
+        return res.status(404).json({error: 'Work not found'});
+        }
+        
+        res.json({message: 'Work updated successfully'});
+        } catch (error) {
+            console.log('Error updating work: ', error);
+            res.status(500).json({error: 'Error updating work'});
+        }
+});
+
+app.put('/api/updateSprint/:id', async (req, res) => {
+    const sprintId = req.params.id;
+    const {project, date_start, date_end, deadline, title, description, result, specialist} = req.body;
+
+    try {
+        const changeSprint = await db('sprint')
+        .where('sprintId', workId)
+        .update(req.body);
+        
+        if (changeSprint === 0) {
+        return res.status(404).json({error: 'Sprint not found'});
+        }
+        
+        res.json({message: 'Sprint updated successfully'});
+        } catch (error) {
+            console.log('Error updating Sprint: ', error);
+            res.status(500).json({error: 'Error updating Sprint'});
+        }
 });
 
 // app.set('view engine' , 'ejs');
