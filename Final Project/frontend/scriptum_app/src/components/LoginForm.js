@@ -1,4 +1,11 @@
-import React, {useState} from 'react';
+import React, {
+        useState,
+        // useEffect,
+        // useContext
+} from 'react';
+import axios from 'axios';
+
+// import {AppContext} from '../App';
 
 function LoginForm() {
   const [formData, setFormData] = useState({
@@ -13,19 +20,36 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch('/api/saveData', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData)
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Data saved successfully:', data);
+  //   fetch('/api/login', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(formData)
+  //   })
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       console.log('Data saved successfully:', data);
+  //     })
+  //     .catch(error => {
+  //       console.log('Error saving data: ', error);
+  //     });
+  // };
+
+  axios.post('/api/login', formData)
+      .then(response => {
+        const {success, token} = response.data;
+        if (success && token) {
+          // save token on localStorage or cookie
+          localStorage.setItem('token', token);
+          // redirect to protect rout
+          window.location.href = '/protected';
+        } else {
+          console.log('Error authorization:', response.data.message);
+        }
       })
       .catch(error => {
-        console.log('Error saving data: ', error);
+        console.log('Error authorization:', error);
       });
   };
 

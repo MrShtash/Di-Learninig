@@ -1,12 +1,23 @@
-const express = require('express');
+// import bcrypt from 'bcrypt';
+const express = require('express'); // import express from express package
 const cors = require('cors');
 const dotenv = require('dotenv');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 const {db} = require('./config/db.js');
+const {SECRET_KEY} = require('./config/config')
+// ~~~
+// const authRouter = require('./routes/authRouter');
 // const users_router = require('./routes/rss.js');
+// ~~~
 
-const app = express();
+const app = express(); // create app
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); // func use - to parse JSON (server parse JSON from req)
+// ~~~
+// app.use('/auth', authRouter);
+// app.use(authRouter.router);
+// ~~~
 
 dotenv.config();
 
@@ -25,6 +36,62 @@ dotenv.config();
 //         });
 // })
 
+const saltRounds = 10;
+
+const verifyPassword = (password, hashedPassword) => { // func for checking password
+    // console.log('Password test: ', password, hashedPassword);
+    return hashedPassword
+};
+
+app.post('/api/login', (req, res) => { // handle for auth and create JWT
+    const {username, password} = req.body;
+ 
+    db.select().from('specialist')
+        .where('username', username)
+        .first()
+        .then((user) => {
+        if (user && verifyPassword(password, user.password) && user.status === 'active') {
+            const token = jwt.sign({username: user.username, group: user.group_id}, SECRET_KEY, {expiresIn: '1h'});
+            res.json({success: true, token});
+        } else {
+            res.status(401).json({success: false, message: 'Wrong login or password'});
+        }
+        })
+    .catch((error) => {
+      console.log('Error getting user data:', error);
+      res.status(500).json({success: false, message: 'Error server'});
+    });
+});
+
+app.get('/api/protected', (req, res) => { // protected routh after success auth
+    const token = req.headers.authorization;
+    if (!token) {
+        return res.status(401).json({success: false, message: 'Missing authorization token'});
+    }
+
+    jwt.verify(token, SECRET_KEY, (err, decoded) => {
+    if (err) {
+        return res.status(401).json({success: false, message: 'Invalid authorization token'});
+        }
+
+    db.select().from('specialist')
+        .where('username', decoded.username)
+        .first()
+        .then((user) => {
+            if (user) {
+            console.log('User data:', user);
+            res.json({success: true, message: 'Access'});
+            } else {
+            res.status(404).json({success: false, message: 'User not found'});
+            }
+        })
+        .catch((error) => {
+            console.log('Error getting user data:', error);
+            res.status(500).json({success: false, message: 'Server Error'});
+        });
+    });
+});
+
 // app.get('/api/data', (req, res) => {
 //     const data = {
 //         message: 'Hello, this is Scriptum'
@@ -33,7 +100,7 @@ dotenv.config();
 //     console.log(data);
 // })
 
-app.get("/api/getAllData", async (req, res) => {
+app.get("/api/getAllData", async (req, res) => { // all operations with DB - allways async
   const data = 
     {
         cashs: [],
@@ -255,9 +322,10 @@ app.post('/api/saveCategory', (req, res) => {
 
 app.post('/api/saveSpecialist', (req, res) => {
     const {username, f_name, l_name, email, password, grade, department, group, status} = req.body;
-    
+    const hashedPassword = bcrypt.hashSync(password, saltRounds);
+
     db('specialist')
-    .insert({username, f_name, l_name, email, password, grade_id: grade, department_id: department, group_id: group, status})
+    .insert({username, f_name, l_name, email, password: hashedPassword, grade_id: grade, department_id: department, group_id: group, status})
     .then(() => {
         console.log('Specialist saved successfully');
         res.status(201).json({message: 'Specialist saved successfully'});
@@ -374,71 +442,71 @@ app.post('/api/saveWork', (req, res) => {
     });
 })
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log(`server running on port ${process.env.PORT || 3000}`)
-});
 
 app.put('/api/updateWork/:id', async (req, res) => {
     const workId = req.params.id;
     const {title, description, hours, specialist, date_creation, date_complete, deadline, result, sprint} = req.body;
-
+    
     try {
         const changeWork = await db('work')
         .where('work_id', workId)
         .update(req.body);
         
         if (changeWork === 0) {
-        return res.status(404).json({error: 'Work not found'});
+            return res.status(404).json({error: 'Work not found'});
         }
         
         res.json({message: 'Work updated successfully'});
-        } catch (error) {
-            console.log('Error updating work: ', error);
-            res.status(500).json({error: 'Error updating work'});
-        }
+    } catch (error) {
+        console.log('Error updating work: ', error);
+        res.status(500).json({error: 'Error updating work'});
+    }
 });
 
 app.put('/api/updateSprint/:id', async (req, res) => {
     const sprintId = req.params.id;
     const {project, date_start, date_end, deadline, title, description, result, specialist} = req.body;
-
+    
     try {
         const changeSprint = await db('sprint')
         .where('sprint_id', sprintId)
         .update(req.body);
         
         if (changeSprint === 0) {
-        return res.status(404).json({error: 'Sprint not found'});
+            return res.status(404).json({error: 'Sprint not found'});
         }
         
         res.json({message: 'Sprint updated successfully'});
-        } catch (error) {
-            console.log('Error updating Sprint: ', error);
-            res.status(500).json({error: 'Error updating Sprint'});
-        }
+    } catch (error) {
+        console.log('Error updating Sprint: ', error);
+        res.status(500).json({error: 'Error updating Sprint'});
+    }
 });
 
 app.put('/api/updateGrade/:id', async (req, res) => {
     const gradeId = req.params.id;
     const {grade_type, cost} = req.body;
-
+    
     try {
         const changeGrade = await db('grade')
         .where('grade_id', gradeId)
         .update(req.body);
         
         if (changeGrade === 0) {
-        return res.status(404).json({error: 'Grade not found'});
+            return res.status(404).json({error: 'Grade not found'});
         }
         
         res.json({message: 'Grade updated successfully'});
-        } catch (error) {
-            console.log('Error updating Grade: ', error);
-            res.status(500).json({error: 'Error updating Grade'});
-        }
+    } catch (error) {
+        console.log('Error updating Grade: ', error);
+        res.status(500).json({error: 'Error updating Grade'});
+    }
+});
+
+app.listen(process.env.PORT || 3000, () => {
+    console.log(`server running on port ${process.env.PORT || 3000}`)
 });
 
 // app.set('view engine' , 'ejs');
 app.use(express.urlencoded({extended:true}));
 // app.use(express.static(__dirname + '/public'));
-// app.use(users_router.router)
