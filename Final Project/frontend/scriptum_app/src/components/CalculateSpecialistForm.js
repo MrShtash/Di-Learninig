@@ -48,10 +48,19 @@ const Form = () => {
     const endDateObj = new Date(endDate);
 
     const filteredWorks = allData.works.filter((work) =>
-        work.specialist_id === selectedSpecialist.id &&
+        work.specialist_id === selectedSpecialist.specialist_id &&
+        // work.specialist_id === selectedSpecialist.id &&
         new Date(work.date_complete) >= startDateObj &&
         new Date(work.date_complete) <= endDateObj
     );
+
+    console.log(allData.works[0].specialist_id === selectedSpecialist.id)
+    console.log(new Date(allData.works[0].date_complete) >= startDateObj)
+    console.log(new Date(allData.works[0].date_complete) <= endDateObj) 
+
+    console.log(allData.works[0].specialist_id)
+    console.log(selectedSpecialist.id)
+    console.log(specialistsInDepartment)
 
     console.log('$$$', filteredWorks);
     console.log('%%%%%%%%%%%%%%%%%%%%%%%', allData.works);
@@ -65,6 +74,8 @@ const Form = () => {
       (grade) => {return grade.grade_id === selectedSpecialist.grade_id}
     )
     console.log('*******', allData.grades);
+    console.log(specialistsInDepartment);
+    console.log(specialistsInDepartment[0])  
     console.log('!!!!!!!', hourlyRate?.cost, totalWorkedHours);
 
     const totalAmount = totalWorkedHours * hourlyRate?.cost;

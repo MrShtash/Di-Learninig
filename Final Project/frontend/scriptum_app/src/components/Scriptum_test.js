@@ -21,9 +21,11 @@ function Scriptum_test() {
     const [message, setMessage] = useState('');
     useEffect(() => {
         fetch(`/api/data`)
-        .then(response => {console.log(response)
+        .then(response => {
+            // console.log(response)
             return response.json()})
-        .then(data => {console.log(data)
+        .then(data => {
+            // console.log(data)
             setMessage(data.message)
         })
         .catch(error => console.log(error));
