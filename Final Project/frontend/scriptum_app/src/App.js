@@ -1,21 +1,21 @@
 import {useState, createContext} from 'react';
 import './App.css';
-// import Scriptum_test from './components/Scriptum_test';
+import Scriptum_test from './components/Scriptum_test';
 // import {Auth} from './auth/Auth'
-import NavBar from './components/NavBar';
-import LoginForm from './components/LoginForm';
-import CompanyForm from './components/CompanyForm';
-import CashForm from './components/CashForm';
-import HourForm from './components/HourForm';
-import CategoryForm from './components/CategoryForm';
-import DepartmentForm from './components/DepartmentForm';
-import GradeForm from './components/GradeForm';
-import GroupForm from './components/GroupForm';
-import ProjectForm from './components/ProjectForm';
-import RegisterForm from './components/RegisterForm';
-import SprintForm from './components/SprintForm';
-// import Admin from './components/Admin';
-import WorkForm from './components/WorkForm';
+// import NavBar from './components/NavBar';
+// import LoginForm from './components/LoginForm';
+// import CompanyForm from './components/CompanyForm';
+// import CashForm from './components/CashForm';
+// import HourForm from './components/HourForm';
+// import CategoryForm from './components/CategoryForm';
+// import DepartmentForm from './components/DepartmentForm';
+// import GradeForm from './components/GradeForm';
+// import GroupForm from './components/GroupForm';
+// import ProjectForm from './components/ProjectForm';
+// import RegisterForm from './components/RegisterForm';
+// import SprintForm from './components/SprintForm';
+// // import Admin from './components/Admin';
+// import WorkForm from './components/WorkForm';
 import {
       BrowserRouter as Router,
       Switch,
@@ -32,14 +32,14 @@ function App() {
   return (
     <AppContext.Provider value={{accessToken,setAccessToken}} >
       <div>
-          {/* <Scriptum_test/> */}
-          <NavBar/>
-            <Routes>
+          <Scriptum_test/>
+          {/* <NavBar/>
+            <Routes> */}
               {/* <Router> */}
                 {/* <div> */}
                 {/* <Switch> */}
                   {/* <Route path='/admin' element={<Auth><Admin /></Auth>} /> */}
-                  <Route exact path="/" element={<LoginForm title="login"/>} />
+                  {/* <Route exact path="/" element={<LoginForm title="login"/>} />
                   <Route path="/cash" element={<CashForm />} />
                   <Route path="/company" element={<CompanyForm />} />
                   <Route path="/hour" element={<HourForm />} />
@@ -50,11 +50,11 @@ function App() {
                   <Route path="/project" element={<ProjectForm />} />
                   <Route path="/register" element={<RegisterForm />} />
                   <Route path="/sprint" element={<SprintForm />} />
-                  <Route path="/work" element={<WorkForm />} />
+                  <Route path="/work" element={<WorkForm />} /> */}
                 {/* </Switch> */}
                 {/* </div> */}
               {/* </Router> */}
-          </Routes>
+          {/* </Routes> */}
       </div>
     </AppContext.Provider>
   );

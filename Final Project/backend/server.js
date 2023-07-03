@@ -92,13 +92,13 @@ app.get('/api/protected', (req, res) => { // protected routh after success auth
     });
 });
 
-// app.get('/api/data', (req, res) => {
-//     const data = {
-//         message: 'Hello, this is Scriptum'
-//     };
-//     res.json(data)
-//     console.log(data);
-// })
+app.get('/api/data', (req, res) => {
+    const data = {
+        message: 'Hello, this is Scriptum'
+    };
+    res.json(data)
+    console.log(data);
+})
 
 app.get("/api/getAllData", async (req, res) => { // all operations with DB - allways async
   const data = 
@@ -502,6 +502,22 @@ app.put('/api/updateGrade/:id', async (req, res) => {
         res.status(500).json({error: 'Error updating Grade'});
     }
 });
+
+app.get("/api/getSpecialistsByDepartment/:departmentId", async (req, res) => {
+  const {departmentId} = req.params;
+
+  try {
+    const employees = await db.select()
+      .from('specialist')
+      .where({department_id: departmentId, status: 'active'});
+      
+    res.json(spesialists);
+  } catch (error) {
+    console.log("Error getting specialists: ", error);
+    res.status(500).json({error: "Error getting specialists"});
+  }
+});
+
 
 app.listen(process.env.PORT || 3000, () => {
     console.log(`server running on port ${process.env.PORT || 3000}`)

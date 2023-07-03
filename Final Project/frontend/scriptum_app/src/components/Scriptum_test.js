@@ -1,16 +1,21 @@
 import React, {useEffect, useState} from 'react';
-import LoginForm from './LoginForm';
-import RegisterForm from './RegisterForm';
-import GradeForm from './GradeForm';
-import HourForm from './HourForm';
-import CashForm from './CashForm';
-import GroupForm from './GroupForm';
-import DepartmentForm from './DepartmentForm';
-import CompanyForm from './CompanyForm';
-import CategoryForm from './CategoryForm';
-import SprintForm from './SprintForm';
-import ProjectForm from './ProjectForm';
-import WorkForm from './WorkForm';
+// import LoginForm from './LoginForm';
+// import RegisterForm from './RegisterForm';
+// import GradeForm from './GradeForm';
+// import HourForm from './HourForm';
+// import CashForm from './CashForm';
+// import GroupForm from './GroupForm';
+// import DepartmentForm from './DepartmentForm';
+// import CompanyForm from './CompanyForm';
+// import CategoryForm from './CategoryForm';
+// import SprintForm from './SprintForm';
+// import ProjectForm from './ProjectForm';
+// import WorkForm from './WorkForm';
+
+import Form from './CalculateSpecialistForm';
+
+// import CalculationPage from './CalculateSpecialistForm';
+// import CalculationForm from './CategoryForm';
 
 function Scriptum_test() {
     const [message, setMessage] = useState('');
@@ -28,7 +33,7 @@ function Scriptum_test() {
     return(
         <div>
             <h1>{message}</h1>
-            <LoginForm/><br />
+            {/* <LoginForm/><br />
             <RegisterForm/><br />
             <GradeForm/><br />
             <HourForm/><br />
@@ -39,7 +44,8 @@ function Scriptum_test() {
             <CategoryForm/><br />
             <SprintForm/><br />
             <WorkForm/><br />
-            <ProjectForm/><br />
+            <ProjectForm/><br /> */}
+            <Form/><br />
         </div>
     )
 }

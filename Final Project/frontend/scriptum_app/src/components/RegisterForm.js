@@ -125,7 +125,7 @@ function RegisterForm() {
                     id = "department"
                     value = {formData.department}
                     onChange = {handleChange}>
-            <option value = "">--Please choose a department--</option>
+            <option value = "">--Please select a department--</option>
             {departments.map((department, index) => (
               <option key = {index} value = {department.department_id}>
                 {department.d_name}
