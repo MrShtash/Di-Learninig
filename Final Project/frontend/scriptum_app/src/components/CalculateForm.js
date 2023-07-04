@@ -17,6 +17,10 @@ const CompanyForm = () => {
       sprints: [],
       sprint_specialists: [],
       works: [],
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+      start_date: "",
+      end_date: "",
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     });
 
   const [selectedCompany, setSelectedCompany] = useState("");
@@ -26,7 +30,10 @@ const CompanyForm = () => {
   const [selectedSprint, setSelectedSprint] = useState("");
   const [selectedWork, setSelectedWork] = useState("");
   const [filteredWorks, setFilteredWorks] = useState([]);
-
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  const [selectedStartDate, setSelectedStartDate] = useState("");
+  const [selectedEndDate, setSelectedEndDate] = useState("");
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,6 +41,12 @@ const CompanyForm = () => {
         const response = await axios.get("/api/getAllData");
         setData(response.data);
         setSelectedProject(response.data.projects[0]?.project_id);
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        // const {start_date,
+        //          end_date} = response.data;
+        setSelectedStartDate(response.data.start_date);
+        setSelectedEndDate(response.data.end_date);
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
       } catch (error) {
         console.error("Error getting data:", error);
       }
@@ -43,39 +56,114 @@ const CompanyForm = () => {
 
   useEffect(() => {
     setFilteredProjects(
-      data.projects.filter((project) => project.company_id == selectedCompany)
+      data.projects.filter((project) => project.company_id == selectedCompany
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                                        // && project.start_date >= selectedStartDate &&
+                                        // project.end_date <= selectedEndDate
+
+                                        && new Date(project.start_date) >= new Date(selectedStartDate) &&
+                                        new Date(project.end_date) <= new Date(selectedEndDate)
+
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+      )
     );
     setSelectedProject("");
     setFilteredSprints([]);
     setSelectedSprint("");
-  }, [data.projects, selectedCompany]);
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
+    setSelectedWork("");
+    setFilteredWorks([]);
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  }, [data.projects,
+      selectedCompany,
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+      selectedStartDate,
+      selectedEndDate
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    ]);
 
   useEffect(() => {
     setFilteredSprints(
-      data.sprints.filter((sprint) => sprint.project_id == selectedProject)
+      data.sprints.filter((sprint) => sprint.project_id == selectedProject
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                                      // && sprint.start_date >= selectedStartDate &&
+                                      // sprint.end_date <= selectedEndDate
+
+                                      && new Date(sprint.start_date) >= new Date(selectedStartDate) &&
+                                      new Date(sprint.end_date) <= new Date(selectedEndDate)
+
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+      )
     );
     setSelectedSprint('');
-  }, [data.sprints, selectedProject]);
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    setSelectedWork("");
+    setFilteredWorks([]);
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  }, [data.sprints,
+      selectedProject,
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+      selectedStartDate,
+      selectedEndDate
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  ]);
 
   useEffect(() => {
-    const filteredWorks = data.works.filter((work) => work.sprint_id === selectedSprint.sprint_id);
+    const filteredWorks = data.works.filter((work) => work.sprint_id === selectedSprint.sprint_id
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                                                      // && work.start_date >= selectedStartDate &&
+                                                      // work.end_date <= selectedEndDate
+
+                                                      && new Date(work.start_date) >= new Date(selectedStartDate) &&
+                                                      new Date(work.end_date) <= new Date(selectedEndDate)
+
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    );
     setFilteredWorks(filteredWorks);
     setSelectedWork(filteredWorks.work_id);
-  }, [data.works, selectedSprint]);
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    // setSelectedWork("");
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  }, [data.works,
+      selectedSprint,
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+      selectedStartDate,
+      selectedEndDate,
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+]);
 
   const handleCalculate = () => {
-    // console.log('==========');
+    console.log('==========');
     const work = filteredWorks.find((work) => work.work_id == selectedWork);
     if (work) {
       console.log("Selected Work:", work);
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+      const project = data.projects.find(
+      (project) => project.project_id == selectedProject
+    );
+    const sprint = data.sprints.find(
+      (sprint) => sprint.sprint_id == selectedSprint
+    );
+    const company = data.companies.find(
+      (company) => company.company_id == selectedCompany
+    );
+
+    console.log("Additional Information: ");
+    console.log("Project: ", project);
+    console.log("Sprint: ", sprint);
+    console.log("Company: ", company);
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     }
   };
 
-  // console.log("Data:", data);
-  // console.log("Filtered Projects: ", filteredProjects);
-  // console.log("Selected Project: ", selectedProject);
-  // console.log("Filtered Sprints: ", filteredSprints);
-  // console.log("Selected Work: ", selectedWork);
+  console.log("Data:", data);
+  console.log("data.projects:", data.projects);
+  console.log("data.sprints:", data.sprint);
+  console.log("filteredWorks:", filteredWorks);
+  console.log("Filtered Projects: ", filteredProjects);
+  console.log("Selected Project: ", selectedProject);
+  console.log("Filtered Sprints: ", filteredSprints);
+  console.log("Selected Work: ", selectedWork);
 
   return (
     <div>
@@ -90,7 +178,23 @@ const CompanyForm = () => {
           </option>
         ))}
       </select>
+{/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */}
+      <div>
+        <label htmlFor="start_date">Start Date:</label>
+        <input type="date"
+                id="start_date"
+                value={selectedStartDate}
+                onChange={(e) => setSelectedStartDate(e.target.value)}/>
+      </div>
 
+      <div>
+        <label htmlFor="end_date">End Date:</label>
+        <input type="date"
+                id="end_date"
+                value={selectedEndDate}
+                onChange={(e) => setSelectedEndDate(e.target.value)}/>
+      </div>
+{/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */}
       <div>
         <label htmlFor="project">Select Project:</label>
         <select id="project"
@@ -142,3 +246,7 @@ const CompanyForm = () => {
 };
 
 export default CompanyForm;
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
