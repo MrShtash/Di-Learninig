@@ -33,6 +33,9 @@ const CompanyForm = () => {
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   const [selectedStartDate, setSelectedStartDate] = useState("");
   const [selectedEndDate, setSelectedEndDate] = useState("");
+  const [remainingDeposit, setRemainingDeposit] = useState(0);
+  const [sprintCost, setSprintCost] = useState(0);
+  const [totalWorkCost, setTotalWorkCost] = useState(0);
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   useEffect(() => {
@@ -41,9 +44,9 @@ const CompanyForm = () => {
         const response = await axios.get("/api/getAllData");
         setData(response.data);
         setSelectedProject(response.data.projects[0]?.project_id);
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         // const {start_date,
         //          end_date} = response.data;
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         setSelectedStartDate(response.data.start_date);
         setSelectedEndDate(response.data.end_date);
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -120,9 +123,9 @@ const CompanyForm = () => {
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     );
     setFilteredWorks(filteredWorks);
-    setSelectedWork(filteredWorks.work_id);
+    // setSelectedWork(filteredWorks.work_id);
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    // setSelectedWork("");
+    setSelectedWork("");
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
   }, [data.works,
       selectedSprint,
@@ -139,19 +142,42 @@ const CompanyForm = () => {
       console.log("Selected Work:", work);
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
       const project = data.projects.find(
-      (project) => project.project_id == selectedProject
-    );
-    const sprint = data.sprints.find(
-      (sprint) => sprint.sprint_id == selectedSprint
-    );
-    const company = data.companies.find(
-      (company) => company.company_id == selectedCompany
-    );
+        (project) => project.project_id == selectedProject
+      );
+      const sprint = data.sprints.find(
+        (sprint) => sprint.sprint_id == selectedSprint
+      );
+      const company = data.companies.find(
+        (company) => company.company_id == selectedCompany
+      );
 
     console.log("Additional Information: ");
     console.log("Project: ", project);
     console.log("Sprint: ", sprint);
     console.log("Company: ", company);
+
+    // Calculate remaining deposit on the project
+      const remainingDeposit = project.deposit - work.hours * work.hourly_rate;
+
+    // Calculate the total cost of the sprint
+      const sprintCost = filteredWorks.reduce(
+        (total, work) => total + work.hours * work.hourly_rate,
+        0
+      );
+
+    // Calculate the total cost of all works
+      const totalWorkCost = filteredWorks.reduce(
+        (total, work) => total + work.hours * work.hourly_rate,
+        0
+      );
+
+      setRemainingDeposit(remainingDeposit);
+      setSprintCost(sprintCost);
+      setTotalWorkCost(totalWorkCost);
+
+      console.log("Remaining Deposit:", remainingDeposit);
+      console.log("Sprint Cost:", sprintCost);
+      console.log("Total Work Cost:", totalWorkCost);
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     }
   };
@@ -241,6 +267,19 @@ const CompanyForm = () => {
       <div>
         <button onClick={handleCalculate}>Calculate</button>
       </div>
+      <div>
+        <label>Project Deposit: </label>
+        <span>{remainingDeposit}</span>
+      </div>
+      <div>
+        <label>Sprint Cost: </label>
+        <span>{sprintCost}</span>
+      </div>
+      <div>
+        <label>Total Work Cost: </label>
+        <span>{totalWorkCost}</span>
+      </div>
+      
     </div>
   );
 };
