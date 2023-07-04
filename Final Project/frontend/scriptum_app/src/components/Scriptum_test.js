@@ -36,21 +36,21 @@ function Scriptum_test() {
     return(
         <div>
             <h1>{message}</h1>
-            {/* <LoginForm/><br />
-            <RegisterForm/><br />
-            <GradeForm/><br />
-            <HourForm/><br />
-            <CashForm/><br />
-            <GroupForm/><br />
-            <DepartmentForm/><br />
-            <CompanyForm/><br />
-            <CategoryForm/><br />
-            <SprintForm/><br />
-            <WorkForm/><br />
-            <ProjectForm/><br /> */}
+            {/* <LoginForm/><br /> */}
+            {/* <RegisterForm/><br /> */}
+            {/* <GradeForm/><br /> */}
+            {/* <HourForm/><br /> */}
+            {/* <CashForm/><br /> */}
+            {/* <GroupForm/><br /> */}
+            {/* <DepartmentForm/><br /> */}
+            {/* <CompanyForm/><br /> */}
+            {/* <CategoryForm/><br /> */}
+            {/* <SprintForm/><br /> */}
+            {/* <WorkForm/><br /> */}
+            {/* <ProjectForm/><br /> */}
             {/* <FormSpecialist/><br /> */}
             <CompanyForm/><br/>
-            <Form/>
+            {/* <Form/> */}
         </div>
     )
 }
