@@ -10,9 +10,10 @@ import React, {useEffect, useState} from 'react';
 // import CategoryForm from './CategoryForm';
 // import SprintForm from './SprintForm';
 // import ProjectForm from './ProjectForm';
-// import WorkForm from './WorkForm';
+import WorkForm from './WorkForm';
 
 import Form from './CalculateSpecialistForm';
+import CompanyForm from './CalculateForm';
 
 // import CalculationPage from './CalculateSpecialistForm';
 // import CalculationForm from './CategoryForm';
@@ -47,7 +48,9 @@ function Scriptum_test() {
             <SprintForm/><br />
             <WorkForm/><br />
             <ProjectForm/><br /> */}
-            <Form/><br />
+            {/* <FormSpecialist/><br /> */}
+            <CompanyForm/><br/>
+            <Form/>
         </div>
     )
 }

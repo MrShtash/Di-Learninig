@@ -321,11 +321,28 @@ app.post('/api/saveCategory', (req, res) => {
 })
 
 app.post('/api/saveSpecialist', (req, res) => {
-    const {username, f_name, l_name, email, password, grade, department, group, status} = req.body;
+    const {username,
+            f_name,
+            l_name,
+            email,
+            password,
+            grade,
+            department,
+            group,
+            status
+        } = req.body;
     const hashedPassword = bcrypt.hashSync(password, saltRounds);
 
     db('specialist')
-    .insert({username, f_name, l_name, email, password: hashedPassword, grade_id: grade, department_id: department, group_id: group, status})
+    .insert({username,
+            f_name,
+            l_name,
+            email,
+            password: hashedPassword,
+            grade_id: grade,
+            department_id: department,
+            group_id: group,
+            status})
     .then(() => {
         console.log('Specialist saved successfully');
         res.status(201).json({message: 'Specialist saved successfully'});
@@ -337,10 +354,27 @@ app.post('/api/saveSpecialist', (req, res) => {
 })
 
 app.post('/api/saveCompany', (req, res) => {
-    const {name, address, email, phone, contact_name, web_site, deposit, category, description} = req.body;
+    const {name, 
+            address, 
+            email, 
+            phone, 
+            contact_name, 
+            web_site, 
+            deposit, 
+            category, 
+            description
+        } = req.body;
     
     db('company')
-    .insert({name, address, email, phone, contact_name, web_site, deposit, category_id: category, description})
+    .insert({name, 
+            address, 
+            email, 
+            phone, 
+            contact_name, 
+            web_site, 
+            deposit, 
+            category_id: category, 
+            description})
     .then(() => {
         console.log('Company saved successfully');
         res.status(201).json({message: 'Company saved successfully'});
@@ -352,11 +386,24 @@ app.post('/api/saveCompany', (req, res) => {
 })
 
 app.post('/api/saveProject', (req, res) => {
-    const {name, company, s_date, e_date, deposit, description, specialist, department} = req.body;
+    const {name,
+            company,
+            s_date,
+            e_date,
+            deposit,
+            description,
+            specialist,
+            department
+        } = req.body;
     
     db.transaction((trx) => {
         trx('project')
-            .insert({name, company_id: company, s_date, e_date, deposit, description})
+            .insert({name,
+                    company_id: company,
+                    s_date,
+                    e_date,
+                    deposit,
+                    description})
             .returning('project_id')
             .then((projectIds) => {
                 const projectId = projectIds[0];
@@ -379,26 +426,40 @@ app.post('/api/saveProject', (req, res) => {
             .then(() => {
                 trx.commit();
                 console.log('Project saved successfully');
-                res.status(201).json({ message: 'Project saved successfully' });
+                res.status(201).json({message: 'Project saved successfully'});
             })
             .catch((error) => {
                 trx.rollback();
                 console.log('Error saving Project: ', error);
-                res.status(500).json({ error: 'Error saving Project' });
+                res.status(500).json({error: 'Error saving Project'});
             });
             })
             .catch((error) => {
                 console.log('Transaction error: ', error);
-                res.status(500).json({ error: 'Error saving Project' });
+                res.status(500).json({error: 'Error saving Project'});
             });
 });
 
 app.post('/api/saveSprint', (req, res) => {
-    const {project, date_start, date_end, deadline, title, description, result, specialist} = req.body;
+    const {project,
+            date_start,
+            date_end,
+            deadline,
+            title,
+            description,
+            result,
+            specialist
+        } = req.body;
     
     db.transaction((trx) => {
         trx('sprint')
-            .insert({project_id: project, date_start, date_end: null, deadline, title, description, result: null})
+            .insert({project_id: project,
+                    date_start,
+                    date_end: null,
+                    deadline,
+                    title,
+                    description,
+                    result: null})
             .returning('sprint_id')
             .then((sprintIds) => {
                 const sprintId = sprintIds[0].sprint_id;
@@ -413,25 +474,42 @@ app.post('/api/saveSprint', (req, res) => {
     .then(() => {
         trx.commit();
         console.log('Sprint saved successfully');
-        res.status(201).json({ message: 'Sprint saved successfully' });
+        res.status(201).json({message: 'Sprint saved successfully'});
     })
       .catch((error) => {
         trx.rollback();
         console.log('Error saving Sprint: ', error);
-        res.status(500).json({ error: 'Error saving Sprint' });
+        res.status(500).json({error: 'Error saving Sprint'});
     });
   })
     .catch((error) => {
       console.log('Transaction error: ', error);
-      res.status(500).json({ error: 'Error saving Sprint' });
+      res.status(500).json({error: 'Error saving Sprint'});
     });
 });
 
 app.post('/api/saveWork', (req, res) => {
-    const {title, description, hours, specialist, date_creation, date_complete, deadline, result, sprint} = req.body;
+    const {title, 
+            description, 
+            hours, 
+            specialist, 
+            date_creation, 
+            date_complete, 
+            deadline, 
+            result, 
+            sprint
+        } = req.body;
     
     db('work')
-    .insert({title, description, hours, specialist_id: specialist, date_creation, date_complete, deadline, result, sprint})
+    .insert({title, 
+            description, 
+            hours, 
+            specialist_id: specialist, 
+            date_creation, 
+            date_complete, 
+            deadline, 
+            result, 
+            sprint})
     .then(() => {
         console.log('Work saved successfully');
         res.status(201).json({message: 'Work saved successfully'});
@@ -445,7 +523,16 @@ app.post('/api/saveWork', (req, res) => {
 
 app.put('/api/updateWork/:id', async (req, res) => {
     const workId = req.params.id;
-    const {title, description, hours, specialist, date_creation, date_complete, deadline, result, sprint} = req.body;
+    const {title,
+        description,
+        hours,
+        specialist,
+        date_creation,
+        date_complete,
+        deadline,
+        result,
+        sprint
+    } = req.body;
     
     try {
         const changeWork = await db('work')
@@ -465,7 +552,16 @@ app.put('/api/updateWork/:id', async (req, res) => {
 
 app.put('/api/updateSprint/:id', async (req, res) => {
     const sprintId = req.params.id;
-    const {project, date_start, date_end, deadline, title, description, result, specialist} = req.body;
+    const {
+        project,
+        date_start,
+        date_end,
+        deadline,
+        title,
+        description,
+        result,
+        specialist
+    } = req.body;
     
     try {
         const changeSprint = await db('sprint')
@@ -510,13 +606,78 @@ app.get("/api/getSpecialistsByDepartment/:departmentId", async (req, res) => {
     const employees = await db.select()
       .from('specialist')
       .where({department_id: departmentId, status: 'active'});
-      
+
     res.json(spesialists);
   } catch (error) {
     console.log("Error getting specialists: ", error);
     res.status(500).json({error: "Error getting specialists"});
   }
 });
+
+
+app.post("/api/getFilteredData", async (req, res) => {
+  const {
+        selectedCompany,
+        selectedProject,
+        selectedSprint
+    } = req.body;
+
+  try {
+    const filteredData = await getFilteredDataFromDB(selectedCompany,
+                                                    selectedProject,
+                                                    selectedSprint);
+    res.json(filteredData);
+  } catch (error) {
+    console.log("Error getting filtered data: ", error);
+    res.status(500).json({ error: "Error getting filtered data" });
+  }
+});
+
+
+
+
+app.post("/api/getFilteredData", async (req, res) => {
+  const {selectedCompany, selectedProject, selectedSprint} = req.body;
+
+  try {
+    const filteredCompanies = await knex
+      .select()
+      .from("company")
+      .where({company_id: selectedCompany});
+
+    const filteredProjects = await knex
+      .select()
+      .from("project")
+      .where({project_id: selectedProject,
+            company_id: selectedCompany});
+
+    const filteredSprints = await knex
+      .select()
+      .from("sprint")
+      .where({ print_id: selectedSprint,
+            project_id: selectedProject});
+
+    const filteredWorks = await knex
+      .select()
+      .from("work")
+      .where({sprint_id: selectedSprint});
+
+    const filteredData = {
+            companies: filteredCompanies,
+            projects: filteredProjects,
+            sprints: filteredSprints,
+            works: filteredWorks,
+        };
+
+    res.json(filteredData);
+  } catch (error) {
+    console.error("Error getting filtered data:", error);
+    res.status(500).json({error: "Error getting filtered data"});
+  }
+});
+
+
+
 
 
 app.listen(process.env.PORT || 3000, () => {
