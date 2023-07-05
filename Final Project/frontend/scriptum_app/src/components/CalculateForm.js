@@ -17,10 +17,8 @@ const CompanyForm = () => {
       sprints: [],
       sprint_specialists: [],
       works: [],
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
       start_date: "",
       end_date: "",
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     });
 
   const [selectedCompany, setSelectedCompany] = useState("");
@@ -30,13 +28,11 @@ const CompanyForm = () => {
   const [selectedSprint, setSelectedSprint] = useState("");
   const [selectedWork, setSelectedWork] = useState("");
   const [filteredWorks, setFilteredWorks] = useState([]);
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   const [selectedStartDate, setSelectedStartDate] = useState("");
   const [selectedEndDate, setSelectedEndDate] = useState("");
   const [remainingDeposit, setRemainingDeposit] = useState(0);
   const [sprintCost, setSprintCost] = useState(0);
   const [totalWorkCost, setTotalWorkCost] = useState(0);
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,12 +40,8 @@ const CompanyForm = () => {
         const response = await axios.get("/api/getAllData");
         setData(response.data);
         setSelectedProject(response.data.projects[0]?.project_id);
-        // const {start_date,
-        //          end_date} = response.data;
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         setSelectedStartDate(response.data.start_date);
         setSelectedEndDate(response.data.end_date);
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
       } catch (error) {
         console.error("Error getting data:", error);
       }
@@ -58,142 +50,152 @@ const CompanyForm = () => {
   }, []);
 
   useEffect(() => {
-    setFilteredProjects(
-      data.projects.filter((project) => project.company_id == selectedCompany
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                                        // && project.start_date >= selectedStartDate &&
-                                        // project.end_date <= selectedEndDate
+    // console.log("*****************");
+    // console.log("selectedCompany:", selectedCompany);
+    // console.log("selectedEndDate:", selectedEndDate);
+    // console.log("selectedStartDate:", selectedStartDate);
+    // console.log(data.projects);
+    // console.log(typeof(selectedCompany));
+    if(selectedCompany !== '' &&
+        selectedStartDate !== undefined &&
+        selectedEndDate !== undefined) {
+      // console.log(data.projects[0].company_id == selectedCompany)
+      // console.log("PROJECT START", data.projects[0].s_date,"SELECTED START", new Date(selectedStartDate).toISOString())
+      // console.log(data.projects[0].s_date >= new Date(selectedStartDate).toISOString())
+      // console.log("PROJECT END", data.projects[0].e_date, "SELECTED END", new Date(selectedEndDate).toISOString())
+      // console.log(data.projects[0].e_date <= new Date(selectedEndDate).toISOString())
+      // console.log("++++++++++++");
+      const allProjects = data.projects.filter(
+                                        (project) => 
+                                          project.company_id === Number(selectedCompany)
+                                          && project.s_date >= new Date(selectedStartDate).toISOString()
+                                          && project.e_date <= new Date(selectedEndDate).toISOString())
+    setFilteredProjects(allProjects)
+    } 
 
-                                        && new Date(project.start_date) >= new Date(selectedStartDate) &&
-                                        new Date(project.end_date) <= new Date(selectedEndDate)
+    if(selectedProject !== '' &&
+        selectedStartDate !== undefined &&
+        selectedEndDate !== undefined) {
+      const allSprints = data.sprints.filter(
+                                      (sprint) => 
+                                        sprint.project_id === Number(selectedProject)
+                                        && sprint.date_start >= new Date(selectedStartDate).toISOString()
+                                        && sprint.date_end <= new Date(selectedEndDate))
+    setFilteredSprints(allSprints)
+    }
 
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-      )
-    );
-    setSelectedProject("");
-    setFilteredSprints([]);
-    setSelectedSprint("");
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
-    setSelectedWork("");
-    setFilteredWorks([]);
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-  }, [data.projects,
+    if(selectedSprint !== '' &&
+        selectedStartDate !== undefined &&
+        selectedEndDate !== undefined) {
+      const allWorks = data.works.filter(
+                                  (work) => 
+                                    work.sprint === Number(selectedSprint)
+                                    && work.date_creation >= new Date(selectedStartDate).toISOString()
+                                    && work.date_complete <= new Date(selectedEndDate).toISOString())
+    setFilteredWorks(allWorks)
+    }},
+
+    [ 
+      data.works,
+      data.sprints,  
+      data.projects,
       selectedCompany,
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-      selectedStartDate,
-      selectedEndDate
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    ]);
-
-  useEffect(() => {
-    setFilteredSprints(
-      data.sprints.filter((sprint) => sprint.project_id == selectedProject
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                                      // && sprint.start_date >= selectedStartDate &&
-                                      // sprint.end_date <= selectedEndDate
-
-                                      && new Date(sprint.start_date) >= new Date(selectedStartDate) &&
-                                      new Date(sprint.end_date) <= new Date(selectedEndDate)
-
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-      )
-    );
-    setSelectedSprint('');
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    setSelectedWork("");
-    setFilteredWorks([]);
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-  }, [data.sprints,
-      selectedProject,
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-      selectedStartDate,
-      selectedEndDate
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-  ]);
-
-  useEffect(() => {
-    const filteredWorks = data.works.filter((work) => work.sprint_id === selectedSprint.sprint_id
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                                                      // && work.start_date >= selectedStartDate &&
-                                                      // work.end_date <= selectedEndDate
-
-                                                      && new Date(work.start_date) >= new Date(selectedStartDate) &&
-                                                      new Date(work.end_date) <= new Date(selectedEndDate)
-
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    );
-    setFilteredWorks(filteredWorks);
-    // setSelectedWork(filteredWorks.work_id);
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    setSelectedWork("");
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-  }, [data.works,
       selectedSprint,
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+      selectedProject,
+      selectedWork,
       selectedStartDate,
-      selectedEndDate,
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-]);
-
+      selectedEndDate
+    ]);
+  
   const handleCalculate = () => {
     console.log('==========');
-    const work = filteredWorks.find((work) => work.work_id == selectedWork);
-    if (work) {
-      console.log("Selected Work:", work);
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-      const project = data.projects.find(
-        (project) => project.project_id == selectedProject
-      );
-      const sprint = data.sprints.find(
-        (sprint) => sprint.sprint_id == selectedSprint
-      );
-      const company = data.companies.find(
-        (company) => company.company_id == selectedCompany
-      );
+    // Rest of company deposit after separate budget to project
+    const selectedProjectData = data.projects.find(
+                                              (project) =>
+                                                project.project_id === Number(selectedProject)
+    );
 
-    console.log("Additional Information: ");
-    console.log("Project: ", project);
-    console.log("Sprint: ", sprint);
-    console.log("Company: ", company);
+    const companyRemainingDeposit = data.companies.find(
+                                                  (company) =>
+                                                    company.company_id === Number(selectedCompany)
+    ).deposit;
 
-    // Calculate remaining deposit on the project
-      const remainingDeposit = project.deposit - work.hours * work.hourly_rate;
+    const remainingDeposit = companyRemainingDeposit - selectedProjectData.deposit;
+    setRemainingDeposit(remainingDeposit);
 
-    // Calculate the total cost of the sprint
-      const sprintCost = filteredWorks.reduce(
-        (total, work) => total + work.hours * work.hourly_rate,
-        0
-      );
+    // Rest of project money after finished works
+    const selectedWorks = data.works.filter(
+                                      (work) =>
+                                        work.sprint === Number(selectedSprint)
+    );
 
-    // Calculate the total cost of all works
-      const totalWorkCost = filteredWorks.reduce(
-        (total, work) => total + work.hours * work.hourly_rate,
-        0
+    let totalWorkCost = 0;
+
+    selectedWorks.forEach((work) => {
+      const specialist = data.specialists.find(
+                                            (specialist) =>
+                                              specialist.specialist_id === work.specialist_id
       );
 
-      setRemainingDeposit(remainingDeposit);
-      setSprintCost(sprintCost);
-      setTotalWorkCost(totalWorkCost);
+      const specialistGrade = data.grades.find(
+                                            (grade) =>
+                                              grade.grade_id === specialist.grade_id
+      );
 
-      console.log("Remaining Deposit:", remainingDeposit);
-      console.log("Sprint Cost:", sprintCost);
-      console.log("Total Work Cost:", totalWorkCost);
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    }
+      const specialistHourlyRate = data.hours.find(
+                                                (hour) =>
+                                                  hour.grade_id === specialistGrade.grade_id
+      ).hour;
+
+      const workCost = specialistHourlyRate * work.hours;
+      totalWorkCost += workCost;
+    });
+    setTotalWorkCost(totalWorkCost);
+
+    // Rest of sprint money after finished works
+    const selectedSprintWorks = selectedWorks.filter(
+                                                (work) =>
+                                                  work.sprint === Number(selectedSprint)
+    );
+
+    let sprintCost = 0;
+    selectedSprintWorks.forEach((work) => {
+      const specialist = data.specialists.find(
+                                            (specialist) =>
+                                              specialist.specialist_id === work.specialist_id
+      );
+
+      const specialistGrade = data.grades.find(
+                                            (grade) =>
+                                              grade.grade_id === specialist.grade_id
+      );
+
+      const specialistHourlyRate = data.hours.find(
+                                                (hour) =>
+                                                  hour.grade_id === specialistGrade.grade_id
+      ).hour;
+      
+      const workCost = specialistHourlyRate * work.hours;
+      sprintCost += workCost;
+    });
+    setSprintCost(sprintCost);
+
+    // Number of hours spent on the sprint and project
+    const selectedSprintHours = selectedSprintWorks.reduce(
+                                                      (totalHours, work) =>
+                                                        totalHours + work.hours, 0
+    );
+    const selectedProjectHours = selectedWorks.reduce(
+                                                (totalHours, work) =>
+                                                  totalHours + work.hours, 0
+    );
+    console.log("Number of hours per sprint:", selectedSprintHours);
+    console.log("Number of hours per project:", selectedProjectHours);
   };
-
-  console.log("Data:", data);
-  console.log("data.projects:", data.projects);
-  console.log("data.sprints:", data.sprint);
-  console.log("filteredWorks:", filteredWorks);
-  console.log("Filtered Projects: ", filteredProjects);
-  console.log("Selected Project: ", selectedProject);
-  console.log("Filtered Sprints: ", filteredSprints);
-  console.log("Selected Work: ", selectedWork);
 
   return (
     <div>
-      <label htmlFor="company">Select Company:</label>
+      <label>Select Company:</label>
       <select id="company"
               value={selectedCompany}
               onChange={(e) => setSelectedCompany(e.target.value)}>
@@ -204,9 +206,8 @@ const CompanyForm = () => {
           </option>
         ))}
       </select>
-{/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */}
       <div>
-        <label htmlFor="start_date">Start Date:</label>
+        <label>Start Date:</label>
         <input type="date"
                 id="start_date"
                 value={selectedStartDate}
@@ -214,19 +215,18 @@ const CompanyForm = () => {
       </div>
 
       <div>
-        <label htmlFor="end_date">End Date:</label>
+        <label>End Date:</label>
         <input type="date"
                 id="end_date"
                 value={selectedEndDate}
                 onChange={(e) => setSelectedEndDate(e.target.value)}/>
       </div>
-{/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */}
       <div>
-        <label htmlFor="project">Select Project:</label>
+        <label>Select Project:</label>
         <select id="project"
-                value={selectedProject}
+                // value={selectedProject}
                 onChange={(e) => setSelectedProject(e.target.value)}>
-          <option value="">--Please select Project--</option>
+          <option value="" selected>--Please select Project--</option>
           {filteredProjects.map((project) => (
             <option key={project.project_id} value={project.project_id}>
               {project.name} (Rest of money: {project.deposit})
@@ -236,7 +236,7 @@ const CompanyForm = () => {
       </div>
 
       <div>
-        <label htmlFor="sprint">Select Sprint:</label>
+        <label>Select Sprint:</label>
         <select id="sprint"
                 value={selectedSprint}
                 onChange={(e) => setSelectedSprint(e.target.value)}>
@@ -250,15 +250,14 @@ const CompanyForm = () => {
       </div>
 
       <div>
-        <label htmlFor="work">Select Work:</label>
+        <label>Select Work:</label>
         <select id="work"
                 value={selectedWork}
                 onChange={(e) => setSelectedWork(e.target.value)}>
-                disabled={!selectedSprint}
           <option value="">--Please select Work--</option>
-          {selectedSprint &&
+          {// selectedSprint &&
             filteredWorks.map((work) => (
-              <option key={work.work_id} value={work.work_id}>
+              <option key={work.work_id} value={work.work_id}> 
                 {work.title}
               </option>
           ))} 
@@ -268,24 +267,13 @@ const CompanyForm = () => {
         <button onClick={handleCalculate}>Calculate</button>
       </div>
       <div>
-        <label>Project Deposit: </label>
-        <span>{remainingDeposit}</span>
+        <h2>Results:</h2>
+        <p>Remaining Deposit: {remainingDeposit}</p>
+        <p>Sprint Cost: {sprintCost}</p>
+        <p>Total Work Cost: {totalWorkCost}</p>
       </div>
-      <div>
-        <label>Sprint Cost: </label>
-        <span>{sprintCost}</span>
-      </div>
-      <div>
-        <label>Total Work Cost: </label>
-        <span>{totalWorkCost}</span>
-      </div>
-      
     </div>
   );
 };
 
 export default CompanyForm;
-
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
