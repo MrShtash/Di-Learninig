@@ -33,6 +33,10 @@ const CompanyForm = () => {
   const [remainingDeposit, setRemainingDeposit] = useState(0);
   const [sprintCost, setSprintCost] = useState(0);
   const [totalWorkCost, setTotalWorkCost] = useState(0);
+  const [projectRemainingCost, setProjectRemainingCost] = useState(0);
+  const [sprintRemainingCost, setSprintRemainingCost] = useState(0);
+ const [selectedSprintHours, setSelectedSprintHours] = useState(0);
+ const [selectedProjectHours, setSelectedProjectHours] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,15 +54,11 @@ const CompanyForm = () => {
   }, []);
 
   useEffect(() => {
-    // console.log("*****************");
-    // console.log("selectedCompany:", selectedCompany);
-    // console.log("selectedEndDate:", selectedEndDate);
-    // console.log("selectedStartDate:", selectedStartDate);
-    // console.log(data.projects);
-    // console.log(typeof(selectedCompany));
-    if(selectedCompany !== '' &&
+    if(
+        selectedCompany !== '' &&
         selectedStartDate !== undefined &&
-        selectedEndDate !== undefined) {
+        selectedEndDate !== undefined
+      ) {
       // console.log(data.projects[0].company_id == selectedCompany)
       // console.log("PROJECT START", data.projects[0].s_date,"SELECTED START", new Date(selectedStartDate).toISOString())
       // console.log(data.projects[0].s_date >= new Date(selectedStartDate).toISOString())
@@ -73,9 +73,11 @@ const CompanyForm = () => {
     setFilteredProjects(allProjects)
     } 
 
-    if(selectedProject !== '' &&
+    if(
+        selectedProject !== '' &&
         selectedStartDate !== undefined &&
-        selectedEndDate !== undefined) {
+        selectedEndDate !== undefined
+      ) {
       const allSprints = data.sprints.filter(
                                       (sprint) => 
                                         sprint.project_id === Number(selectedProject)
@@ -84,9 +86,11 @@ const CompanyForm = () => {
     setFilteredSprints(allSprints)
     }
 
-    if(selectedSprint !== '' &&
+    if(
+        selectedSprint !== '' &&
         selectedStartDate !== undefined &&
-        selectedEndDate !== undefined) {
+        selectedEndDate !== undefined
+      ) {
       const allWorks = data.works.filter(
                                   (work) => 
                                     work.sprint === Number(selectedSprint)
@@ -106,130 +110,221 @@ const CompanyForm = () => {
       selectedStartDate,
       selectedEndDate
     ]);
-  
+
+  // const handleCalculate = () => {
+  //   // console.log('==========');
+  //   // Rest of company deposit after separate budget to project
+  //   // Денег у компании за вычетом денег на проект
+  //   const selectedProjectData = data.projects.find(
+  //         (project) => project.project_id === Number(selectedProject)
+  //   );
+
+  //   const companyRemainingDeposit = data.companies.find(
+  //         (company) => company.company_id === Number(selectedCompany)
+  //   ).deposit;
+
+  //   const remainingDeposit = companyRemainingDeposit - selectedProjectData.deposit;
+  //   setRemainingDeposit(remainingDeposit);
+
+  //   // Total project work hours after finished works
+  //   // Отработанные на проекте часы
+  //   const selectedWorks = data.works.filter((work) =>
+  //     selectedWork.includes(work.work_id.toString())
+  //   );
+
+  //   let totalWorkCost = 0;
+  //   selectedWorks.forEach((work) => {
+  //     const specialist = data.specialists.find(
+  //           (specialist) => specialist.specialist_id === work.specialist_id
+  //     );
+
+  //     const specialistGrade = data.grades.find(
+  //           (grade) => grade.grade_id === specialist.grade_id
+  //     );
+
+  //     const specialistHourlyRate = data.hours.find(
+  //           (hour) => hour.grade_id === specialistGrade.grade_id
+  //     ).hour;
+
+  //     // const specialistHourlyRate = data.grades.find(
+  //     //   (grade) => grade.grade_id === specialistGrade.grade_id
+  //     // ).cost;
+
+  //     const workCost = specialistHourlyRate * work.hours;
+  //     totalWorkCost += workCost;
+  //   });
+  //   setTotalWorkCost(totalWorkCost);
+
+  //   // Rest of sprint money after finished works
+  //   const selectedSprintWorks = selectedWorks.filter(
+  //         (work) => work.sprint === Number(selectedSprint)
+  //   );
+
+  //   let sprintCost = 0;
+  //   selectedSprintWorks.forEach((work) => {
+  //     const specialist = data.specialists.find(
+  //           (specialist) => specialist.specialist_id === work.specialist_id
+  //     );
+
+  //     const specialistGrade = data.grades.find(
+  //           (grade) => grade.grade_id === specialist.grade_id
+            
+  //     );
+  //     console.log(specialistGrade);
+
+  //     const specialistHourlyRate = data.hours.find(
+  //           (hour) => hour.grade_id === specialistGrade.grade_id
+  //     ).hour;
+
+  //     // const specialistHourlyRate = data.grades.find(
+  //     //       (grade) => grade.grade_id === specialistGrade.grade_id
+  //     // ).cost;
+      
+  //     const workCost = specialistHourlyRate * work.hours;
+  //     sprintCost += workCost;
+  //     console.log(specialistHourlyRate);
+  //     console.log(work.hours);
+  //     console.log(workCost);
+  //     console.log(sprintCost);
+  //     console.log(totalWorkCost);
+  //   });
+  //   setSprintCost(sprintCost);
+
+  //   // Number of hours spent on the sprint and project
+  //   const selectedSprintHours = selectedSprintWorks.reduce(
+  //         (totalHours, work) => totalHours + work.hours, 0
+  //   );
+  //   const selectedProjectHours = selectedWorks.reduce(
+  //         (totalHours, work) => totalHours + work.hours, 0
+  //   );
+  //   console.log("Number of hours per sprint: ", selectedSprintHours);
+  //   console.log("Number of hours per project: ", selectedProjectHours);
+
+  //   // Remaining cost on project and sprint
+  //   const projectRemainingCost = selectedProjectData.deposit - totalWorkCost;
+  //   setProjectRemainingCost(projectRemainingCost);
+
+  //   const sprintRemainingCost = sprintCost - totalWorkCost;
+  //   setSprintRemainingCost(sprintRemainingCost);
+  // };
+
   const handleCalculate = () => {
-    console.log('==========');
-    // Rest of company deposit after separate budget to project
     const selectedProjectData = data.projects.find(
-                                              (project) =>
-                                                project.project_id === Number(selectedProject)
+      (project) => project.project_id === Number(selectedProject)
     );
 
     const companyRemainingDeposit = data.companies.find(
-                                                  (company) =>
-                                                    company.company_id === Number(selectedCompany)
+      (company) => company.company_id === Number(selectedCompany)
     ).deposit;
 
     const remainingDeposit = companyRemainingDeposit - selectedProjectData.deposit;
     setRemainingDeposit(remainingDeposit);
 
-    // Rest of project money after finished works
-    const selectedWorks = data.works.filter(
-                                      (work) =>
-                                        work.sprint === Number(selectedSprint)
+    const selectedWorks = data.works.filter((work) =>
+      selectedWork.includes(work.work_id.toString())
     );
 
     let totalWorkCost = 0;
-
     selectedWorks.forEach((work) => {
       const specialist = data.specialists.find(
-                                            (specialist) =>
-                                              specialist.specialist_id === work.specialist_id
+        (specialist) => specialist.specialist_id === work.specialist_id
       );
 
       const specialistGrade = data.grades.find(
-                                            (grade) =>
-                                              grade.grade_id === specialist.grade_id
+        (grade) => grade.grade_id === specialist.grade_id
       );
 
-      const specialistHourlyRate = data.hours.find(
-                                                (hour) =>
-                                                  hour.grade_id === specialistGrade.grade_id
-      ).hour;
+      const specialistHourlyCost = specialistGrade.cost;
 
-      const workCost = specialistHourlyRate * work.hours;
+      const workCost = specialistHourlyCost * work.hours;
       totalWorkCost += workCost;
     });
     setTotalWorkCost(totalWorkCost);
 
-    // Rest of sprint money after finished works
     const selectedSprintWorks = selectedWorks.filter(
-                                                (work) =>
-                                                  work.sprint === Number(selectedSprint)
+      (work) => work.sprint === Number(selectedSprint)
     );
+
+    const selectedSprintHours = selectedSprintWorks.reduce(
+      (totalHours, work) => totalHours + work.hours,
+      0
+    );
+    setSelectedSprintHours(selectedSprintHours);
+
+    const selectedProjectHours = selectedWorks.reduce(
+      (totalHours, work) => totalHours + work.hours,
+      0
+    );
+    setSelectedProjectHours(selectedProjectHours);
 
     let sprintCost = 0;
     selectedSprintWorks.forEach((work) => {
       const specialist = data.specialists.find(
-                                            (specialist) =>
-                                              specialist.specialist_id === work.specialist_id
+        (specialist) => specialist.specialist_id === work.specialist_id
       );
 
       const specialistGrade = data.grades.find(
-                                            (grade) =>
-                                              grade.grade_id === specialist.grade_id
+        (grade) => grade.grade_id === specialist.grade_id
       );
 
-      const specialistHourlyRate = data.hours.find(
-                                                (hour) =>
-                                                  hour.grade_id === specialistGrade.grade_id
-      ).hour;
-      
-      const workCost = specialistHourlyRate * work.hours;
+      const specialistHourlyCost = specialistGrade.cost;
+
+      const workCost = specialistHourlyCost * work.hours;
       sprintCost += workCost;
     });
     setSprintCost(sprintCost);
 
-    // Number of hours spent on the sprint and project
-    const selectedSprintHours = selectedSprintWorks.reduce(
-                                                      (totalHours, work) =>
-                                                        totalHours + work.hours, 0
-    );
-    const selectedProjectHours = selectedWorks.reduce(
-                                                (totalHours, work) =>
-                                                  totalHours + work.hours, 0
-    );
-    console.log("Number of hours per sprint:", selectedSprintHours);
-    console.log("Number of hours per project:", selectedProjectHours);
+    const projectRemainingCost = selectedProjectData.deposit - totalWorkCost;
+    setProjectRemainingCost(projectRemainingCost);
+
+    const sprintRemainingCost = sprintCost;
+    setSprintRemainingCost(sprintRemainingCost);
   };
 
-  return (
+return (
     <div>
+
       <label>Select Company:</label>
-      <select id="company"
-              value={selectedCompany}
-              onChange={(e) => setSelectedCompany(e.target.value)}>
-        <option value="">--Please select Company--</option>
+      <select id = "company"
+              value = {selectedCompany}
+              onChange = {(e) => setSelectedCompany(e.target.value)}>
+        <option value = "">--Please select Company--</option>
         {data.companies.map((company) => (
-          <option key={company.company_id} value={company.company_id}>
+          <option key = {company.company_id}
+                  value = {company.company_id}>
             {company.name}
           </option>
         ))}
       </select>
+
       <div>
         <label>Start Date:</label>
-        <input type="date"
-                id="start_date"
-                value={selectedStartDate}
-                onChange={(e) => setSelectedStartDate(e.target.value)}/>
+        <input type = "date"
+                id = "start_date"
+                value = {selectedStartDate}
+                onChange = {(e) => setSelectedStartDate(e.target.value)}/>
       </div>
 
       <div>
         <label>End Date:</label>
-        <input type="date"
-                id="end_date"
-                value={selectedEndDate}
-                onChange={(e) => setSelectedEndDate(e.target.value)}/>
+        <input
+          type = "date"
+          id = "end_date"
+          value = {selectedEndDate}
+          onChange = {(e) => setSelectedEndDate(e.target.value)}
+        />
       </div>
+
       <div>
         <label>Select Project:</label>
-        <select id="project"
-                // value={selectedProject}
-                onChange={(e) => setSelectedProject(e.target.value)}>
-          <option value="" selected>--Please select Project--</option>
+          <select id = "project"
+                // value = {selectedProject}
+                onChange = {(e) => setSelectedProject(e.target.value)}>
+          <option value = "" selected>--Please select Project--</option>
           {filteredProjects.map((project) => (
-            <option key={project.project_id} value={project.project_id}>
-              {project.name} (Rest of money: {project.deposit})
+            <option key = {project.project_id}
+                    value = {project.project_id}>
+              {project.name} (Deposit: {project.deposit})
             </option>
           ))}
         </select>
@@ -237,12 +332,13 @@ const CompanyForm = () => {
 
       <div>
         <label>Select Sprint:</label>
-        <select id="sprint"
-                value={selectedSprint}
-                onChange={(e) => setSelectedSprint(e.target.value)}>
-          <option value="">--Please select Sprint--</option>
+        <select id = "sprint"
+                value = {selectedSprint}
+                onChange = {(e) => setSelectedSprint(e.target.value)}>
+          <option value = "">--Please select Sprint--</option>
           {filteredSprints.map((sprint) => (
-            <option key={sprint.sprint_id} value={sprint.sprint_id}>
+            <option key = {sprint.sprint_id}
+                    value = {sprint.sprint_id}>
               {sprint.title}
             </option>
           ))}
@@ -251,27 +347,42 @@ const CompanyForm = () => {
 
       <div>
         <label>Select Work:</label>
-        <select id="work"
-                value={selectedWork}
-                onChange={(e) => setSelectedWork(e.target.value)}>
-          <option value="">--Please select Work--</option>
+        <select id = "work"
+                // multiple = 'True'
+                multiple = {true}
+                value = {selectedWork}
+                // onChange={(e) => setSelectedWork(e.target.value)}
+                onChange = {(e) =>
+                  setSelectedWork(
+                    Array.from(e.target.selectedOptions, (option) => option.value))}
+        >
+          <option value = "">--Please select Work--</option>
           {// selectedSprint &&
             filteredWorks.map((work) => (
-              <option key={work.work_id} value={work.work_id}> 
+              <option key = {work.work_id}
+                      value = {work.work_id} 
+                      // selected = {selectedWork.includes(work.work_id.toString())}
+                      defaultValue = {selectedWork.includes(work.work_id.toString())}
+              >
                 {work.title}
               </option>
           ))} 
         </select>
       </div>
+
       <div>
-        <button onClick={handleCalculate}>Calculate</button>
+        <button onClick = {handleCalculate}>Calculate</button>
       </div>
+
       <div>
         <h2>Results:</h2>
         <p>Remaining Deposit: {remainingDeposit}</p>
-        <p>Sprint Cost: {sprintCost}</p>
-        <p>Total Work Cost: {totalWorkCost}</p>
+        <p>Sprint Hours: {selectedSprintHours}</p>
+        <p>Total Project Hours: {selectedProjectHours}</p>
+        <p>Sprint budget: {sprintRemainingCost}</p>
+        <p>Selected Project Remaining Cost: {projectRemainingCost}</p>
       </div>
+
     </div>
   );
 };

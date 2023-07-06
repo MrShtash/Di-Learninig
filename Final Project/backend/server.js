@@ -520,7 +520,6 @@ app.post('/api/saveWork', (req, res) => {
     });
 })
 
-
 app.put('/api/updateWork/:id', async (req, res) => {
     const workId = req.params.id;
     const {title,
@@ -614,7 +613,6 @@ app.get("/api/getSpecialistsByDepartment/:departmentId", async (req, res) => {
   }
 });
 
-
 app.post("/api/getFilteredData", async (req, res) => {
   const {
         selectedCompany,
@@ -632,8 +630,6 @@ app.post("/api/getFilteredData", async (req, res) => {
     res.status(500).json({ error: "Error getting filtered data" });
   }
 });
-
-
 
 
 app.post("/api/getFilteredData", async (req, res) => {
@@ -675,9 +671,6 @@ app.post("/api/getFilteredData", async (req, res) => {
     res.status(500).json({error: "Error getting filtered data"});
   }
 });
-
-
-
 
 
 app.listen(process.env.PORT || 3000, () => {
