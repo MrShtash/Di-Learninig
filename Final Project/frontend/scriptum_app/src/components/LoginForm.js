@@ -38,10 +38,19 @@ function LoginForm() {
 
   axios.post('/api/login', formData)
       .then(response => {
-        const {success, token} = response.data;
+        const {
+              success,
+              token,
+              group_id
+            } = response.data;
         if (success && token) {
           // save token on localStorage or cookie
-          localStorage.setItem('token', token);
+          localStorage.setItem('token',
+                              token);
+          localStorage.setItem('group_id',
+                                // response.data.group_id
+                                group_id
+                                ); // Check group specialist
           // redirect to protect rout
           window.location.href = '/protected';
         } else {
@@ -56,26 +65,26 @@ function LoginForm() {
   return (
     <div>
       <h1>Login Page</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit = {handleSubmit}>
         <label>
           Username: 
-          <input type="text"
-                  name="username"
-                  value={formData.username}
-                  onChange={handleChange}
+          <input type = "text"
+                  name = "username"
+                  value = {formData.username}
+                  onChange = {handleChange}
                   placeholder = "Username"/>
         </label>
         <br />
         <label>
           Password:
-          <input type="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
+          <input type = "password"
+                  name = "password"
+                  value = {formData.password}
+                  onChange = {handleChange}
                   placeholder = "Password"/>
         </label>
         <br />
-        <button type="submit">Login</button>
+        <button type = "submit">Login</button>
       </form>
     </div>
   );

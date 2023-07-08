@@ -50,28 +50,40 @@ app.post('/api/login', (req, res) => { // handle for auth and create JWT
         .where('username', username)
         .first()
         .then((user) => {
-        if (user && verifyPassword(password, user.password) && user.status === 'active') {
-            const token = jwt.sign({username: user.username, group: user.group_id}, SECRET_KEY, {expiresIn: '1h'});
-            res.json({success: true, token});
+        if (user && verifyPassword(password, user.password)
+                                    && user.status === 'active') {
+            const token = jwt.sign({username: user.username,
+                                    group: user.group_id},
+                                    SECRET_KEY,
+                                    {expiresIn: '1h'});
+            res.json({
+                    success: true,
+                    token,
+                    group_id: user.group_id
+                });
         } else {
-            res.status(401).json({success: false, message: 'Wrong login or password'});
+            res.status(401).json({success: false,
+                                message: 'Wrong login or password'});
         }
         })
     .catch((error) => {
       console.log('Error getting user data:', error);
-      res.status(500).json({success: false, message: 'Error server'});
+      res.status(500).json({success: false,
+                            message: 'Error server'});
     });
 });
 
 app.get('/api/protected', (req, res) => { // protected routh after success auth
     const token = req.headers.authorization;
     if (!token) {
-        return res.status(401).json({success: false, message: 'Missing authorization token'});
+        return res.status(401).json({success: false,
+                                    message: 'Missing authorization token'});
     }
 
     jwt.verify(token, SECRET_KEY, (err, decoded) => {
     if (err) {
-        return res.status(401).json({success: false, message: 'Invalid authorization token'});
+        return res.status(401).json({success: false,
+                                    message: 'Invalid authorization token'});
         }
 
     db.select().from('specialist')
@@ -80,14 +92,17 @@ app.get('/api/protected', (req, res) => { // protected routh after success auth
         .then((user) => {
             if (user) {
             console.log('User data:', user);
-            res.json({success: true, message: 'Access'});
+            res.json({success: true,
+                    message: 'Access'});
             } else {
-            res.status(404).json({success: false, message: 'User not found'});
+            res.status(404).json({success: false,
+                                message: 'User not found'});
             }
         })
         .catch((error) => {
             console.log('Error getting user data:', error);
-            res.status(500).json({success: false, message: 'Server Error'});
+            res.status(500).json({success: false,
+                                message: 'Server Error'});
         });
     });
 });

@@ -35,8 +35,8 @@ const CompanyForm = () => {
   const [totalWorkCost, setTotalWorkCost] = useState(0);
   const [projectRemainingCost, setProjectRemainingCost] = useState(0);
   const [sprintRemainingCost, setSprintRemainingCost] = useState(0);
- const [selectedSprintHours, setSelectedSprintHours] = useState(0);
- const [selectedProjectHours, setSelectedProjectHours] = useState(0);
+  const [selectedSprintHours, setSelectedSprintHours] = useState(0);
+  const [selectedProjectHours, setSelectedProjectHours] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -110,103 +110,6 @@ const CompanyForm = () => {
       selectedStartDate,
       selectedEndDate
     ]);
-
-  // const handleCalculate = () => {
-  //   // console.log('==========');
-  //   // Rest of company deposit after separate budget to project
-  //   // Денег у компании за вычетом денег на проект
-  //   const selectedProjectData = data.projects.find(
-  //         (project) => project.project_id === Number(selectedProject)
-  //   );
-
-  //   const companyRemainingDeposit = data.companies.find(
-  //         (company) => company.company_id === Number(selectedCompany)
-  //   ).deposit;
-
-  //   const remainingDeposit = companyRemainingDeposit - selectedProjectData.deposit;
-  //   setRemainingDeposit(remainingDeposit);
-
-  //   // Total project work hours after finished works
-  //   // Отработанные на проекте часы
-  //   const selectedWorks = data.works.filter((work) =>
-  //     selectedWork.includes(work.work_id.toString())
-  //   );
-
-  //   let totalWorkCost = 0;
-  //   selectedWorks.forEach((work) => {
-  //     const specialist = data.specialists.find(
-  //           (specialist) => specialist.specialist_id === work.specialist_id
-  //     );
-
-  //     const specialistGrade = data.grades.find(
-  //           (grade) => grade.grade_id === specialist.grade_id
-  //     );
-
-  //     const specialistHourlyRate = data.hours.find(
-  //           (hour) => hour.grade_id === specialistGrade.grade_id
-  //     ).hour;
-
-  //     // const specialistHourlyRate = data.grades.find(
-  //     //   (grade) => grade.grade_id === specialistGrade.grade_id
-  //     // ).cost;
-
-  //     const workCost = specialistHourlyRate * work.hours;
-  //     totalWorkCost += workCost;
-  //   });
-  //   setTotalWorkCost(totalWorkCost);
-
-  //   // Rest of sprint money after finished works
-  //   const selectedSprintWorks = selectedWorks.filter(
-  //         (work) => work.sprint === Number(selectedSprint)
-  //   );
-
-  //   let sprintCost = 0;
-  //   selectedSprintWorks.forEach((work) => {
-  //     const specialist = data.specialists.find(
-  //           (specialist) => specialist.specialist_id === work.specialist_id
-  //     );
-
-  //     const specialistGrade = data.grades.find(
-  //           (grade) => grade.grade_id === specialist.grade_id
-            
-  //     );
-  //     console.log(specialistGrade);
-
-  //     const specialistHourlyRate = data.hours.find(
-  //           (hour) => hour.grade_id === specialistGrade.grade_id
-  //     ).hour;
-
-  //     // const specialistHourlyRate = data.grades.find(
-  //     //       (grade) => grade.grade_id === specialistGrade.grade_id
-  //     // ).cost;
-      
-  //     const workCost = specialistHourlyRate * work.hours;
-  //     sprintCost += workCost;
-  //     console.log(specialistHourlyRate);
-  //     console.log(work.hours);
-  //     console.log(workCost);
-  //     console.log(sprintCost);
-  //     console.log(totalWorkCost);
-  //   });
-  //   setSprintCost(sprintCost);
-
-  //   // Number of hours spent on the sprint and project
-  //   const selectedSprintHours = selectedSprintWorks.reduce(
-  //         (totalHours, work) => totalHours + work.hours, 0
-  //   );
-  //   const selectedProjectHours = selectedWorks.reduce(
-  //         (totalHours, work) => totalHours + work.hours, 0
-  //   );
-  //   console.log("Number of hours per sprint: ", selectedSprintHours);
-  //   console.log("Number of hours per project: ", selectedProjectHours);
-
-  //   // Remaining cost on project and sprint
-  //   const projectRemainingCost = selectedProjectData.deposit - totalWorkCost;
-  //   setProjectRemainingCost(projectRemainingCost);
-
-  //   const sprintRemainingCost = sprintCost - totalWorkCost;
-  //   setSprintRemainingCost(sprintRemainingCost);
-  // };
 
   const handleCalculate = () => {
     const selectedProjectData = data.projects.find(

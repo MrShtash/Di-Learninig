@@ -1,21 +1,19 @@
 import {useState, createContext} from 'react';
 import './App.css';
 import Scriptum_test from './components/Scriptum_test';
-// import {Auth} from './auth/Auth'
-// import NavBar from './components/NavBar';
-// import LoginForm from './components/LoginForm';
-// import CompanyForm from './components/CompanyForm';
-// import CashForm from './components/CashForm';
-// import HourForm from './components/HourForm';
-// import CategoryForm from './components/CategoryForm';
-// import DepartmentForm from './components/DepartmentForm';
-// import GradeForm from './components/GradeForm';
-// import GroupForm from './components/GroupForm';
-// import ProjectForm from './components/ProjectForm';
-// import RegisterForm from './components/RegisterForm';
-// import SprintForm from './components/SprintForm';
-// // import Admin from './components/Admin';
-// import WorkForm from './components/WorkForm';
+import NavBar from './components/NavBar';
+import LoginForm from './components/LoginForm';
+import CompanyForm from './components/CompanyForm';
+import CashForm from './components/CashForm';
+import HourForm from './components/HourForm';
+import CategoryForm from './components/CategoryForm';
+import DepartmentForm from './components/DepartmentForm';
+import GradeForm from './components/GradeForm';
+import GroupForm from './components/GroupForm';
+import ProjectForm from './components/ProjectForm';
+import RegisterForm from './components/RegisterForm';
+import SprintForm from './components/SprintForm';
+import WorkForm from './components/WorkForm';
 import {
       BrowserRouter as Router,
       Switch,
@@ -32,31 +30,30 @@ function App() {
   return (
     <AppContext.Provider value={{accessToken,setAccessToken}} >
       <div>
-          <Scriptum_test/>
-          {/* <NavBar/>
-            <Routes> */}
-              {/* <Router> */}
-                {/* <div> */}
+          {/* <NavBar/> */}
+          {/* <Scriptum_test/> */}
+            <Routes>
+              <Route>
                 {/* <Switch> */}
-                  {/* <Route path='/admin' element={<Auth><Admin /></Auth>} /> */}
-                  {/* <Route exact path="/" element={<LoginForm title="login"/>} />
-                  <Route path="/cash" element={<CashForm />} />
-                  <Route path="/company" element={<CompanyForm />} />
-                  <Route path="/hour" element={<HourForm />} />
-                  <Route path="/category" element={<CategoryForm />} />
-                  <Route path="/department" element={<DepartmentForm />} />
-                  <Route path="/grade" element={<GradeForm />} />
-                  <Route path="/group" element={<GroupForm />} />
-                  <Route path="/project" element={<ProjectForm />} />
-                  <Route path="/register" element={<RegisterForm />} />
-                  <Route path="/sprint" element={<SprintForm />} />
-                  <Route path="/work" element={<WorkForm />} /> */}
+                  <Route exact path="/" element={<LoginForm/>} />
+                  <Route path="/protected/*" element={<Scriptum_test />} />
+                  <Route path="/protected/cash" element={<CashForm />} />
+                  <Route path="/protected/company" element={<CompanyForm />} />
+                  <Route path="/protected/hour" element={<HourForm />} />
+                  <Route path="/protected/category" element={<CategoryForm />} />
+                  <Route path="/protected/department" element={<DepartmentForm />} />
+                  <Route path="/protected/grade" element={<GradeForm />} />
+                  <Route path="/protected/group" element={<GroupForm />} />
+                  <Route path="/protected/project" element={<ProjectForm />} />
+                  <Route path="/protected/register" element={<RegisterForm />} />
+                  <Route path="/protected/sprint" element={<SprintForm />} />
+                  <Route path="/protected/work" element={<WorkForm />} />
+                  {/* <Route path="*" element={<NotFoundComponent />} /> */}
                 {/* </Switch> */}
-                {/* </div> */}
-              {/* </Router> */}
-          {/* </Routes> */}
+              </Route>
+          </Routes>
       </div>
-    </AppContext.Provider>
+     </AppContext.Provider>
   );
 }
 
