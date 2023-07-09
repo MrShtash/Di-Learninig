@@ -13,6 +13,9 @@
   right: 0;
   z-index: 999;
   padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .portfolio-header h1 {
@@ -154,4 +157,135 @@
   text-decoration: none;
   color: #333;
   font-size: 16px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.project {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.project-image {
+  width: 200px;
+  height: 200px;
+  margin-right: 20px;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-details {
+  flex-grow: 1;
+}
+
+.project-details h3 {
+  margin: 0;
+}
+
+.project-details p {
+  margin-bottom: 10px;
+}
+
+.project-details a {
+  display: inline-block;
+  text-decoration: none;
+  color: blue;
+  font-weight: bold;
+}
+
+.download-cv {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.download-cv h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.download-cv a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  color: blue;
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+
+.project-slider {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+
+.project {
+  flex: 0 0 300px;
+  margin-right: 20px;
+  scroll-snap-align: start;
+}
+
+.project-image {
+  flex: 0 0 200px;
+  margin-right: 20px;
+  position: relative;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project:hover .project-hover {
+  opacity: 1;
+}
+
+.project-hover h3,
+.project-hover p,
+.project-hover a {
+  margin: 0;
+  padding: 10px;
+  text-align: center;
+}
+
+.project-hover h3 {
+  font-size: 24px;
+}
+
+.project-hover p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.project-hover a {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  background-color: blue;
+  padding: 8px 16px;
+  border-radius: 5px;
 }
