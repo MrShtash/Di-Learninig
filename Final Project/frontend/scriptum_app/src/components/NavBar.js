@@ -11,9 +11,9 @@ function NavBar(props) {
         <ul>
             {props.groupId == 13 && (
             <>
-                <li>
+                {/* <li>
                     <Link to="/">Login</Link>
-                </li>
+                </li> */}
                 <li>
                     <Link to="/protected/cash">Cash</Link>
                 </li>
@@ -51,9 +51,9 @@ function NavBar(props) {
             )}
                 {(props.groupId == 7 || props.groupId == 8) && (
             <>
-                <li>
+                {/* <li>
                     <Link to="/">Login</Link>
-                </li>
+                </li> */}
                 <li>
                     <Link to="/protected/cash">Cash</Link>
                 </li>

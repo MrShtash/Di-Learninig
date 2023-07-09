@@ -17,13 +17,7 @@ function AdminComponent() {
 
   return (
     <div>
-        {/* <ul>
-            {data.groups.map((group) => (
-                <li key={group.group_id}>{group.group_name}</li>
-            ))}
-        </ul> */}
-
-        <RegisterForm/>;
+        {/* <RegisterForm/>;
         <GradeForm/>;
         <HourForm/>;
         <CashForm/>;
@@ -34,8 +28,7 @@ function AdminComponent() {
         <SprintForm/>;
         <ProjectForm/>;
         <WorkForm/>;
-        <Form/>;
-
+        <Form/>; */}
     </div>
   );
 }

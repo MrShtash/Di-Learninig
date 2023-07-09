@@ -80,7 +80,9 @@ app.get('/api/protected', (req, res) => { // protected routh after success auth
                                     message: 'Missing authorization token'});
     }
 
-    jwt.verify(token, SECRET_KEY, (err, decoded) => {
+    jwt.verify(token,
+                SECRET_KEY,
+                (err, decoded) => {
     if (err) {
         return res.status(401).json({success: false,
                                     message: 'Invalid authorization token'});
@@ -336,16 +338,17 @@ app.post('/api/saveCategory', (req, res) => {
 })
 
 app.post('/api/saveSpecialist', (req, res) => {
-    const {username,
-            f_name,
-            l_name,
-            email,
-            password,
-            grade,
-            department,
-            group,
-            status
-        } = req.body;
+    const {
+        username,
+        f_name,
+        l_name,
+        email,
+        password,
+        grade,
+        department,
+        group,
+        status
+    } = req.body;
     const hashedPassword = bcrypt.hashSync(password, saltRounds);
 
     db('specialist')
@@ -369,16 +372,17 @@ app.post('/api/saveSpecialist', (req, res) => {
 })
 
 app.post('/api/saveCompany', (req, res) => {
-    const {name, 
-            address, 
-            email, 
-            phone, 
-            contact_name, 
-            web_site, 
-            deposit, 
-            category, 
-            description
-        } = req.body;
+    const {
+        name, 
+        address, 
+        email, 
+        phone, 
+        contact_name, 
+        web_site, 
+        deposit, 
+        category, 
+        description
+    } = req.body;
     
     db('company')
     .insert({name, 
@@ -401,15 +405,16 @@ app.post('/api/saveCompany', (req, res) => {
 })
 
 app.post('/api/saveProject', (req, res) => {
-    const {name,
-            company,
-            s_date,
-            e_date,
-            deposit,
-            description,
-            specialist,
-            department
-        } = req.body;
+    const {
+        name,
+        company,
+        s_date,
+        e_date,
+        deposit,
+        description,
+        specialist,
+        department
+    } = req.body;
     
     db.transaction((trx) => {
         trx('project')
@@ -456,15 +461,16 @@ app.post('/api/saveProject', (req, res) => {
 });
 
 app.post('/api/saveSprint', (req, res) => {
-    const {project,
-            date_start,
-            date_end,
-            deadline,
-            title,
-            description,
-            result,
-            specialist
-        } = req.body;
+    const {
+        project,
+        date_start,
+        date_end,
+        deadline,
+        title,
+        description,
+        result,
+        specialist
+    } = req.body;
     
     db.transaction((trx) => {
         trx('sprint')
@@ -504,16 +510,17 @@ app.post('/api/saveSprint', (req, res) => {
 });
 
 app.post('/api/saveWork', (req, res) => {
-    const {title, 
-            description, 
-            hours, 
-            specialist, 
-            date_creation, 
-            date_complete, 
-            deadline, 
-            result, 
-            sprint
-        } = req.body;
+    const {
+        title, 
+        description, 
+        hours, 
+        specialist, 
+        date_creation, 
+        date_complete, 
+        deadline, 
+        result, 
+        sprint
+    } = req.body;
     
     db('work')
     .insert({title, 
@@ -537,7 +544,8 @@ app.post('/api/saveWork', (req, res) => {
 
 app.put('/api/updateWork/:id', async (req, res) => {
     const workId = req.params.id;
-    const {title,
+    const {
+        title,
         description,
         hours,
         specialist,
@@ -595,7 +603,10 @@ app.put('/api/updateSprint/:id', async (req, res) => {
 
 app.put('/api/updateGrade/:id', async (req, res) => {
     const gradeId = req.params.id;
-    const {grade_type, cost} = req.body;
+    const {
+            grade_type,
+            cost
+    } = req.body;
     
     try {
         const changeGrade = await db('grade')

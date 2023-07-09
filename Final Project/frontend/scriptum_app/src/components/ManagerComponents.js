@@ -8,8 +8,6 @@ import Form from './CalculateSpecialistForm';
 import NavBar from './NavBar';
 
 function ManagerComponent() {
-
-
   return (
     <div>
       <NavBar/>
