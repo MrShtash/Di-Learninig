@@ -168,7 +168,7 @@ const Portfolio = () => {
         <h2 className="text-center">Contacts</h2>
         <div className="contact-form">
           <h3>Get in touch</h3>
-          <input type="text" placeholder="Name" />
+          {/* <input type="text" placeholder="Name" />
           <input type="email" placeholder="Example@email.com" />
           <textarea placeholder="Your message"></textarea>
           <button type="submit" style={{backgroundColor: 'white',
@@ -176,7 +176,7 @@ const Portfolio = () => {
                                         borderColor: 'white',
                                         borderRadius: '5px',
                                         cursor: 'pointer'
-                                    }}>Send</button>
+                                    }}>Send</button> */}
           <div className="social-icons">
             <a href="https://www.linkedin.com/in/stuf/"
                     target="_blank"
