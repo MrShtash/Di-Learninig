@@ -24,24 +24,54 @@ import NavBar from './NavBar';
 function Scriptum_test() {
     const [group_id, setGroup_id] = useState('');
     const [message, setMessage] = useState('');
+    const [data, setData] = useState({}); // add state for data
+    const [specialistData, setSpecialistData] = useState(''); // add srare for data authorized specialist
 
     useEffect(() => {
-        fetch(`/api/data`)
-        .then(response => {
-            // console.log(response)
-            return response.json()})
+        fetch('/api/getAllData')
+        .then(response => response.json())
         .then(data => {
-            // console.log(data)
-            setMessage(data.message)
-        })
-        .catch(error => console.log(error));
-        
-    }, [])
+            setData(data);    
+            
+            // find authorized specialist
+        const specialist_id = localStorage.getItem('specialist_id');
+        console.log(specialist_id);
+        const specialist = data.specialists.find(
+            (specialist) => {return specialist_id == specialist.specialist_id});
+            // specialist =>  specialist.specialist_id == specialist.specialist_id);
+            // (specialist) => {return specialist_id === parseInt(specialist_id)});
 
-    useEffect(() => { // take info about user group
-        const group_id = localStorage.getItem('group_id');
+            console.log(specialist);
+        setSpecialistData(specialist);
+        console.log(specialist_id);
+        console.log(specialist.specialist_id);
+        console.log(specialistData);
+        console.log(data);
+
+      })
+      .catch(error => console.log(error));
+
+    const group_id = localStorage.getItem('group_id');
         setGroup_id(group_id);
     }, []);
+
+    // useEffect(() => {
+    //     fetch(`/api/data`)
+    //     .then(response => {
+    //         // console.log(response)
+    //         return response.json()})
+    //     .then(data => {
+    //         // console.log(data)
+    //         setMessage(data.message)
+    //     })
+    //     .catch(error => console.log(error));
+        
+    // }, [])
+
+    // useEffect(() => { // take info about user group
+    //     const group_id = localStorage.getItem('group_id');
+    //     setGroup_id(group_id);
+    // }, []);
 
     return(
         <div>
@@ -50,7 +80,10 @@ function Scriptum_test() {
                 {group_id === '13' && <AdminComponent />}
                 {(group_id === '7'
                     || group_id === '8')
-                    && <ManagerComponent />}
+                    && 
+                    <ManagerComponent specialistData={specialistData} />
+                    // <ManagerComponent />
+                    }
                 {(group_id === '1'
                     || group_id === '2'
                     || group_id === '3'

@@ -5,7 +5,13 @@ const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const {db} = require('./config/db.js');
-const {SECRET_KEY} = require('./config/config')
+const {SECRET_KEY} = require('./config/config');
+const {CHAT_ID} = require('./config/config');
+const {
+        bot,
+        sendNotification
+    } = require('./telegramBot');
+
 // ~~~
 // const authRouter = require('./routes/authRouter');
 // const users_router = require('./routes/rss.js');
@@ -37,7 +43,6 @@ dotenv.config();
 // })
 
 const saltRounds = 10;
-
 const verifyPassword = (password, hashedPassword) => { // func for checking password
     // console.log('Password test: ', password, hashedPassword);
     return hashedPassword
@@ -50,16 +55,23 @@ app.post('/api/login', (req, res) => { // handle for auth and create JWT
         .where('username', username)
         .first()
         .then((user) => {
-        if (user && verifyPassword(password, user.password)
+        if (user && verifyPassword(password,
+                                    user.password)
                                     && user.status === 'active') {
             const token = jwt.sign({username: user.username,
                                     group: user.group_id},
                                     SECRET_KEY,
                                     {expiresIn: '1h'});
+//~~~
+            // localStorage.setItem('specialist_id', user.specialist_id); // save specialist_id in ls
+            // req.specialist_id = user.specialist_id;
+            // req.specialistData = user;
+//~~~
             res.json({
                     success: true,
                     token,
-                    group_id: user.group_id
+                    group_id: user.group_id,
+                    specialist_id: user.specialist_id
                 });
         } else {
             res.status(401).json({success: false,
@@ -69,7 +81,7 @@ app.post('/api/login', (req, res) => { // handle for auth and create JWT
     .catch((error) => {
       console.log('Error getting user data:', error);
       res.status(500).json({success: false,
-                            message: 'Error server'});
+                            message: 'Server error'});
     });
 });
 
@@ -446,6 +458,10 @@ app.post('/api/saveProject', (req, res) => {
             .then(() => {
                 trx.commit();
                 console.log('Project saved successfully');
+                const message = `Hi, you have a new project ${name}. They paid ${deposit} shekels. Don't forget to call them within 1 hour. Details are available on your CRM.`;
+                // const message = `Hi, you have a new customer ${companyName}. They paid ${deposit} shekels. Don't forget to call them within 1 hour. Details are available on your CRM.`;
+
+                sendNotification(CHAT_ID, message);
                 res.status(201).json({message: 'Project saved successfully'});
             })
             .catch((error) => {
@@ -459,6 +475,7 @@ app.post('/api/saveProject', (req, res) => {
                 res.status(500).json({error: 'Error saving Project'});
             });
 });
+
 
 app.post('/api/saveSprint', (req, res) => {
     const {

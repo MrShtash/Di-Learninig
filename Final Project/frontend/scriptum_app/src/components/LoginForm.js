@@ -1,6 +1,6 @@
 import React, {
         useState,
-        // useEffect,
+        useEffect,
         // useContext
 } from 'react';
 import axios from 'axios';
@@ -41,16 +41,21 @@ function LoginForm() {
         const {
               success,
               token,
-              group_id
+              group_id,
+              specialist_id
             } = response.data;
         if (success && token) {
-          // save token on localStorage or cookie
+          // save token, group_id, specialist_id on localStorage or cookie
           localStorage.setItem('token',
                               token);
           localStorage.setItem('group_id',
                                 // response.data.group_id
                                 group_id
                                 ); // Check group specialist
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          localStorage.setItem('specialist_id',
+                                specialist_id);
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
           // redirect to protect rout
           window.location.href = '/protected';
         } else {
@@ -61,6 +66,13 @@ function LoginForm() {
         console.log('Error authorization:', error);
       });
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      window.location.href = '/protected';
+    }
+  }, []);
 
   return (
     <div>
