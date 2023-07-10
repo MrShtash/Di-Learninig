@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react';
+import NavBar from './NavBar';
+
 
 function CompanyForm() {
   const [formData, setFormData] = useState({
@@ -52,6 +54,7 @@ function CompanyForm() {
 
   return (
     <div>
+      <NavBar/>
       <h1>Company Page</h1>
       <form onSubmit = {handleSubmit}>
         <label>

@@ -14,6 +14,7 @@ import ProjectForm from './components/ProjectForm';
 import RegisterForm from './components/RegisterForm';
 import SprintForm from './components/SprintForm';
 import WorkForm from './components/WorkForm';
+import Form from './components/CalculateSpecialistForm';
 import {
       BrowserRouter as Router,
       Switch,
@@ -48,6 +49,8 @@ function App() {
                   <Route path="/protected/register" element={<RegisterForm />} />
                   <Route path="/protected/sprint" element={<SprintForm />} />
                   <Route path="/protected/work" element={<WorkForm />} />
+                  <Route path="/protected/sprint" element={<SprintForm />} />
+                  <Route path="/protected/form" element={<Form />} />
                   {/* <Route path="*" element={<NotFoundComponent />} /> */}
                 {/* </Switch> */}
               </Route>

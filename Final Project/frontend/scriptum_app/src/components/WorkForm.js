@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-
+import NavBar from './NavBar';
 
 function WorkForm() {
   const [formData, setFormData] = useState({
@@ -56,8 +56,8 @@ function WorkForm() {
 
   return (
     <div>
+      <NavBar/>
       <h1>Work Page</h1>
-      {/* <Link to="/logout">Logout</Link> */}
       <form onSubmit = {handleSubmit}>
         <label>
          Title: 

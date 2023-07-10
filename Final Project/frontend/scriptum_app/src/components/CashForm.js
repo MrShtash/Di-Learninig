@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import NavBar from './NavBar';
+
 
 function CashForm() {
   const [formData, setFormData] = useState({
@@ -30,6 +32,7 @@ function CashForm() {
 
   return (
     <div>
+      <NavBar/>
       <h1>Cash Page</h1>
       <form onSubmit = {handleSubmit}>
         <label>
