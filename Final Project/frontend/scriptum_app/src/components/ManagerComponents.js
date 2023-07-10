@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
 // import CashForm from './CashForm';
 // import CompanyForm from './CompanyForm';
@@ -22,46 +22,10 @@ import axios from "axios";
 //   );
 // }
 
-function ManagerComponent({ specialistData }) {
-  console.log(specialistData);
+function ManagerComponent({specialistData}) {
+  // console.log(specialistData);
   const [departmentName, setDepartmentName] = useState("");
   const [departmentData, setDepartmentData] = useState([]);
-
-  // useEffect(() => {
-  //   if (specialistData && specialistData.department_id) {
-  //     axios.get(`/api/getAllData/${specialistData.department_id}`)
-  //       .then(response => {
-  //         const department = response.data;
-  //         setDepartmentName(department.d_name);
-  //       })
-  //       .catch(error => console.log('Error getting data:', error));
-  //   }
-  // }, [specialistData]);
-
-  // useEffect(() => {
-  //   if (specialistData && specialistData.department_id) {
-  //     const departmentId = specialistData.department_id;
-  //     axios.get(`/api/getAllData/${departmentId}`)
-  //       .then(response => {
-  //         const department = response.data;
-  //         setDepartmentName(department.d_name);
-  //       })
-  //       .catch(error => console.log('Error getting department:', error));
-  //   }
-  // }, [specialistData]);
-
-  //   useEffect(() => {
-  //   if (specialistData && specialistData.department_id) {
-  //     const departmentId = specialistData.department_id;
-
-  //     // const department = departments.find(
-  //     //   (department) => {return department.department_id === departmentId});
-  //     const department = departmentData.find(department => department.department_id === departmentId);
-  //     if (department) {
-  //       setDepartmentData(department);
-  //     }
-  //   }
-  // }, [specialistData, departments]);
 
   useEffect(() => {
     if (specialistData && specialistData.department_id) {
@@ -72,7 +36,7 @@ function ManagerComponent({ specialistData }) {
           const department = response.data.departments.filter(
             (value) => value.department_id == departmentId
           );
-          console.log("Dima department =>", department);
+          // console.log("Your department =>", department);
           setDepartmentData(department[0]);
         })
         .catch((error) => console.log("Error getting department:", error));
@@ -93,7 +57,6 @@ function ManagerComponent({ specialistData }) {
 
   return (
     <div>
-      <>testtesttest</>
       {specialistData && (
         <div>
           <h2>First Name: {specialistData.f_name}</h2>
@@ -101,7 +64,6 @@ function ManagerComponent({ specialistData }) {
           <h2>
             Department: {specialistData.department_id} {departmentData.d_name}
           </h2>
-          {/* <h2>Department: {specialistData.department_id} {departmentData?.d_name}</h2> */}
           <h2>Status: {specialistData.status}</h2>
         </div>
       )}

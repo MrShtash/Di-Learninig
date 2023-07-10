@@ -77,7 +77,7 @@ function Scriptum_test() {
         <div>
             <h1>{message}</h1>
             <NavBar groupId={group_id}/>
-                {group_id === '13' && <AdminComponent />}
+                {group_id === '13' && <AdminComponent specialistData={specialistData}/>}
                 {(group_id === '7'
                     || group_id === '8')
                     && 
@@ -94,7 +94,7 @@ function Scriptum_test() {
                     || group_id === '10'
                     || group_id === '11'
                     || group_id === '12')
-                    && <UserComponent />}
+                    && <UserComponent specialistData={specialistData}/>}
         </div>
     )
 }
