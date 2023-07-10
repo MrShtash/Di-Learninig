@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 
-const CompanyForm = () => {
+const CompanyCalcForm = () => {
   const [data, setData] = useState({
       cashs: [],
       categories: [],
@@ -289,4 +289,4 @@ return (
   );
 };
 
-export default CompanyForm;
+export default CompanyCalcForm;

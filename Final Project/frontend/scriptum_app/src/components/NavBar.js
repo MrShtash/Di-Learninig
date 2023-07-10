@@ -52,6 +52,12 @@ function NavBar(props) {
                 <li>
                     <Link to="/protected/work">Work</Link>
                 </li>
+                <li>
+                    <Link to="/protected/speccalc">Work Calculate</Link>
+                </li>
+                <li>
+                    <Link to="/protected/compclc">Company Calculate</Link>
+                </li>
             </>
             )}
                 {(props.groupId == 7
