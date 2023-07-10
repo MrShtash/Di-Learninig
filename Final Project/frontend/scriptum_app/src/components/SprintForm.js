@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import Select from 'react-select';
-import NavBar from './NavBar';
 
 const customStyles = {
   control: (provided) => ({
@@ -79,7 +78,6 @@ function SprintForm() {
 
   return (
     <div>
-      <NavBar/>
       <h1>Sprint Page</h1>
       <form onSubmit = {handleSubmit}>
         <label>

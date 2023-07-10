@@ -52,10 +52,8 @@ function LoginForm() {
                                 // response.data.group_id
                                 group_id
                                 ); // Check group specialist
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
           localStorage.setItem('specialist_id',
                                 specialist_id);
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
           // redirect to protect rout
           window.location.href = '/protected';
         } else {

@@ -42,7 +42,7 @@ const Form = () => {
   };
 
   const handleCalculate = () => {
-    console.log('=======');
+    // console.log('=======');
     const selectedSpecialist = specialistsInDepartment[0];
     const startDateObj = new Date(startDate);
     const endDateObj = new Date(endDate);
@@ -54,16 +54,16 @@ const Form = () => {
         new Date(work.date_complete) <= endDateObj
     );
 
-    console.log(allData.works[0].specialist_id === selectedSpecialist.id)
-    console.log(new Date(allData.works[0].date_complete) >= startDateObj)
-    console.log(new Date(allData.works[0].date_complete) <= endDateObj) 
+    // console.log(allData.works[0].specialist_id === selectedSpecialist.id)
+    // console.log(new Date(allData.works[0].date_complete) >= startDateObj)
+    // console.log(new Date(allData.works[0].date_complete) <= endDateObj) 
 
-    console.log(allData.works[0].specialist_id)
-    console.log(selectedSpecialist.id)
-    console.log(specialistsInDepartment)
+    // console.log(allData.works[0].specialist_id)
+    // console.log(selectedSpecialist.id)
+    // console.log(specialistsInDepartment)
 
-    console.log('$$$', filteredWorks);
-    console.log('%%%%%%%%%%%%%%%%%%%%%%%', allData.works);
+    // console.log('$$$', filteredWorks);
+    // console.log('%%%%%%%%%%%%%%%%%%%%%%%', allData.works);
 
     const totalWorkedHours = filteredWorks.reduce(
       (total, work) => total + work.hours,
@@ -73,13 +73,12 @@ const Form = () => {
     const hourlyRate = allData.grades.find(
       (grade) => {return grade.grade_id === selectedSpecialist.grade_id}
     )
-    console.log('*******', allData.grades);
-    console.log(specialistsInDepartment);
-    console.log(specialistsInDepartment[0])  
-    console.log('!!!!!!!', hourlyRate?.cost, totalWorkedHours);
+    // console.log('*******', allData.grades);
+    // console.log(specialistsInDepartment);
+    // console.log(specialistsInDepartment[0])  
+    // console.log('!!!!!!!', hourlyRate?.cost, totalWorkedHours);
 
     const totalAmount = totalWorkedHours * hourlyRate?.cost;
-    
 
     setWorkedHours(totalWorkedHours);
     setWorkedAmount(totalAmount);

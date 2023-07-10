@@ -186,7 +186,6 @@ const CompanyForm = () => {
 
 return (
     <div>
-
       <label>Select Company:</label>
       <select id = "company"
               value = {selectedCompany}

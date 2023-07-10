@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
+import NavBar from './NavBar';
+import Scriptum_test from './Scriptum_test';
 
-function AdminComponent({specialistData}) {
-  console.log(specialistData);
+function Profile({specialistData}) {
+  // console.log(specialistData);
   const [departmentName, setDepartmentName] = useState("");
   const [departmentData, setDepartmentData] = useState([]);
 
@@ -37,6 +39,9 @@ function AdminComponent({specialistData}) {
 
   return (
     <div>
+        <NavBar/>
+        {/* <Scriptum_test/> */}
+      
       {specialistData && (
         <div>
           <h2>First Name: {specialistData.f_name}</h2>
@@ -51,4 +56,4 @@ function AdminComponent({specialistData}) {
   );
 }
 
-export default AdminComponent;
+export default Profile;

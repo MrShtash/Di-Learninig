@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import Select from 'react-select';
-import NavBar from './NavBar';
 
 // import 'react-select/dist/react-select.css';
 // import {css} from '@emotion/css';
@@ -159,7 +158,6 @@ function ProjectForm() {
   
   return (
     <div>
-      <NavBar/>
       <h1>Project Page</h1>
       <form onSubmit = {handleSubmit}>
         <label>

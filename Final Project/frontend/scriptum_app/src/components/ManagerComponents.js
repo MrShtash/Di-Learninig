@@ -1,29 +1,8 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-// import CashForm from './CashForm';
-// import CompanyForm from './CompanyForm';
-// import SprintForm from './SprintForm';
-// import ProjectForm from './ProjectForm';
-// import WorkForm from './WorkForm';
-// import Form from './CalculateSpecialistForm';
-// import NavBar from './NavBar';
-
-// function ManagerComponent() {
-//   return (
-//     <div>
-//       {/* <NavBar/>
-//         <CashForm/>;
-//         <CompanyForm/>;
-//         <SprintForm/>;
-//         <ProjectForm/>;
-//         <WorkForm/>;
-//         <Form/>; */}
-//     </div>
-//   );
-// }
 
 function ManagerComponent({specialistData}) {
-  // console.log(specialistData);
+  console.log(specialistData);
   const [departmentName, setDepartmentName] = useState("");
   const [departmentData, setDepartmentData] = useState([]);
 

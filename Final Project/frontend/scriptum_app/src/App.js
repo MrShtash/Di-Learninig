@@ -15,6 +15,7 @@ import RegisterForm from './components/RegisterForm';
 import SprintForm from './components/SprintForm';
 import WorkForm from './components/WorkForm';
 import Form from './components/CalculateSpecialistForm';
+import Profile from './components/Profile';
 import {
       BrowserRouter as Router,
       Switch,
@@ -27,17 +28,23 @@ import {
 export const AppContext = createContext(null);
 
 function App() {
-  const [accessToken,setAccessToken] = useState('')
+  const [accessToken,setAccessToken] = useState('');
+  const [group_id, setGroup_id] = useState(localStorage.getItem('group_id')||'');
+  // useEffect(() => {
+  //       const group_id = localStorage.getItem('group_id');
+  //       setGroup_id(group_id);
+  //   }, []);
+
   return (
     <AppContext.Provider value={{accessToken,setAccessToken}} >
       <div>
-          {/* <NavBar/> */}
           {/* <Scriptum_test/> */}
+          <NavBar groupId={group_id}/>
             <Routes>
-              <Route>
-                {/* <Switch> */}
+
                   <Route exact path="/" element={<LoginForm/>} />
-                  <Route path="/protected/*" element={<Scriptum_test />} />
+                  <Route path="/protected/" element={<Scriptum_test />} />
+                  <Route path="/protected/profile" element={<Profile />} />
                   <Route path="/protected/cash" element={<CashForm />} />
                   <Route path="/protected/company" element={<CompanyForm />} />
                   <Route path="/protected/hour" element={<HourForm />} />
@@ -52,8 +59,7 @@ function App() {
                   <Route path="/protected/sprint" element={<SprintForm />} />
                   <Route path="/protected/form" element={<Form />} />
                   {/* <Route path="*" element={<NotFoundComponent />} /> */}
-                {/* </Switch> */}
-              </Route>
+
           </Routes>
       </div>
      </AppContext.Provider>

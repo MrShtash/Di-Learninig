@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-// import GradeForm from './GradeForm';
 
 function HourForm() {
   const [formData, setFormData] = useState({

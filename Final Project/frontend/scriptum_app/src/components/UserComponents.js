@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import WorkForm from './WorkForm';
 import axios from "axios";
 
+// function UserComponent() {
 function UserComponent({specialistData}) {
+
   console.log(specialistData);
   const [departmentName, setDepartmentName] = useState("");
   const [departmentData, setDepartmentData] = useState([]);

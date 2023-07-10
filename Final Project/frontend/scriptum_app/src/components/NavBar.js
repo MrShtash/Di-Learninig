@@ -1,12 +1,9 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-// import {useNavigate} from 'react-router-dom';
-// import Button from '@mui/material/Button';
-// import Stack from '@mui/material/Stack';
-import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
+// import axios from 'axios';
 
 function NavBar(props) {
-
     const handleLogout = () => {
     // delete token from localStorage or cookie
     localStorage.removeItem('token');
@@ -15,14 +12,13 @@ function NavBar(props) {
     window.location.href = '/';
   };
 
+  const navigate = useNavigate();
+
   return (
     <div>
         <ul>
             {props.groupId == 13 && (
             <>
-                {/* <li>
-                    <Link to="/">Login</Link>
-                </li> */}
                 <li>
                     <Link to="/protected/cash">Cash</Link>
                 </li>
@@ -58,11 +54,9 @@ function NavBar(props) {
                 </li>
             </>
             )}
-                {(props.groupId == 7 || props.groupId == 8) && (
+                {(props.groupId == 7
+                    || props.groupId == 8) && (
             <>
-                {/* <li>
-                    <Link to="/">Login</Link>
-                </li> */}
                 <li>
                     <Link to="/protected/cash">Cash</Link>
                 </li>

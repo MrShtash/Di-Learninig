@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import AdminComponent from './AdminComponents';
 import UserComponent from './UserComponents';
 import ManagerComponent from './ManagerComponents';
-import LoginForm from './LoginForm';
+// import LoginForm from './LoginForm';
+// import Profile from './Profile';
 // import RegisterForm from './RegisterForm';
 // import GradeForm from './GradeForm';
 // import HourForm from './HourForm';
@@ -16,8 +17,7 @@ import LoginForm from './LoginForm';
 // import ProjectForm from './ProjectForm';
 // import WorkForm from './WorkForm';
 // import Form from './CalculateSpecialistForm';
-import NavBar from './NavBar';
-
+// import NavBar from './NavBar';
 // import CalculationPage from './CalculateSpecialistForm';
 // import CalculationForm from './CategoryForm';
 
@@ -38,8 +38,6 @@ function Scriptum_test() {
         console.log(specialist_id);
         const specialist = data.specialists.find(
             (specialist) => {return specialist_id == specialist.specialist_id});
-            // specialist =>  specialist.specialist_id == specialist.specialist_id);
-            // (specialist) => {return specialist_id === parseInt(specialist_id)});
 
             console.log(specialist);
         setSpecialistData(specialist);
@@ -76,12 +74,17 @@ function Scriptum_test() {
     return(
         <div>
             <h1>{message}</h1>
-            <NavBar groupId={group_id}/>
-                {group_id === '13' && <AdminComponent specialistData={specialistData}/>}
+            {/* <NavBar groupId={group_id}/> */}
+                {group_id === '13' &&
+                <AdminComponent specialistData={specialistData}
+                                groupId={group_id}/>
+                // <AdminComponent />
+                }
                 {(group_id === '7'
                     || group_id === '8')
                     && 
-                    <ManagerComponent specialistData={specialistData} />
+                    <ManagerComponent specialistData={specialistData}
+                                        groupId={group_id}/>
                     // <ManagerComponent />
                     }
                 {(group_id === '1'
@@ -94,7 +97,11 @@ function Scriptum_test() {
                     || group_id === '10'
                     || group_id === '11'
                     || group_id === '12')
-                    && <UserComponent specialistData={specialistData}/>}
+                    &&
+                    <UserComponent specialistData={specialistData}
+                                    groupId={group_id}/>
+                    // <UserComponent />
+                    }
         </div>
     )
 }
