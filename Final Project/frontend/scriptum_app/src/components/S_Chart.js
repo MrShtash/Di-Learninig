@@ -15,27 +15,27 @@ import '@smart-webcomponents-react/chart/styles/smart.default.css';
 const ChartComponent = ({workedHours,
                         hourlyRate,
                         totalHours }) => {
-  const remainingHours = totalHours - workedHours;
-  const overtimeHours = workedHours > totalHours ? workedHours - totalHours : 0;
+    const remainingHours = totalHours - workedHours;
+    const overtimeHours = workedHours > totalHours ? workedHours - totalHours : 0;
 
-  const data = [
-    {department: 'Worked Hours', value: workedHours},
-    {department: 'Remaining Hours', value: remainingHours},
-    {department: 'Overtime', value: overtimeHours},
-  ];
+    const data = [
+        {department: 'Worked Hours', value: workedHours},
+        {department: 'Remaining Hours', value: remainingHours},
+        {department: 'Overtime', value: overtimeHours},
+    ];
 
-  return (
-    <Chart>
-      <Title text = "Worked Hours Chart" />
-      <Legend visible = {true} position = "right" />
-      <Tooltip visible = {true} formatFunction = {(value) => `${value} hours`} />
-      <StackedColumnSeries
-        dataField = "value"
-        displayText = "department"
-        colors = {['#00b200', '#0072c6', '#ff0000']}
-        dataSource = {data}
-      />
-    </Chart>
+    return (
+        <Chart>
+        <Title text = "Worked Hours Chart" />
+        <Legend visible = {true} position = "right" />
+        <Tooltip visible = {true} formatFunction = {(value) => `${value} hours`} />
+        <StackedColumnSeries
+            dataField = "value"
+            displayText = "department"
+            colors = {['#00b200', '#0072c6', '#ff0000']}
+            dataSource = {data}
+        />
+        </Chart>
   );
 };
 

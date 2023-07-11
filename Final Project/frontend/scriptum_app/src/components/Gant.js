@@ -70,37 +70,38 @@ const GantComponent = () => {
 
     const dataSource = filteredProjects.length > 0
                     && filteredSprints.length > 0
+                    && ganttData
                     && ganttData.works
       ? [
           {
             label: 'Projects',
             type: 'project',
             children: filteredProjects.map((project) => {
-              const sprints = filteredSprints.filter(
-                (sprint) => sprint.project_id === project.project_id
-              );
-              return {
-                label: project.name,
-                dateStart: project.s_date,
-                dateEnd: project.e_date,
-                class: 'project-team',
-                type: 'task',
-                children: sprints.map((sprint) => {
-                  const works = ganttData.works.filter(
-                    (work) => work.sprint === sprint.sprint_id
-                  );
-                  return {
-                    label: sprint.title,
-                    dateStart: sprint.date_start,
-                    dateEnd: sprint.date_end,
-                    class: 'sprint-team',
+                const sprints = filteredSprints.filter(
+                    (sprint) => sprint.project_id === project.project_id
+                );
+                return {
+                    label: project.name,
+                    dateStart: project.s_date,
+                    dateEnd: project.e_date,
+                    class: 'project-team',
                     type: 'task',
-                    children: works.map((work) => ({
-                      label: work.title,
-                      dateStart: work.date_creation,
-                      dateEnd: work.date_complete,
-                      class: 'work-team',
-                      type: 'task',
+                    children: sprints.map((sprint) => {
+                        const works = ganttData.works.filter(
+                            (work) => work.sprint === sprint.sprint_id
+                        );
+                        return {
+                            label: sprint.title,
+                            dateStart: sprint.date_start,
+                            dateEnd: sprint.date_end,
+                            class: 'sprint-team',
+                            type: 'task',
+                            children: works.map((work) => ({
+                                label: work.title,
+                                dateStart: work.date_creation,
+                                dateEnd: work.date_complete,
+                                class: 'work-team',
+                                type: 'task',
                     })),
                   };
                 }),

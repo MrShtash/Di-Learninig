@@ -4,6 +4,13 @@ import axios from "axios";
 // import {Chart} from 'chart.js';
 // import 'smart-webcomponents-react/source/styles/smart.default.css';
 // import '@smart-webcomponents-react/chart/styles/smart.default.css';
+import {
+      Bar,
+      LinearScale,
+      CategoryScale,
+      Title
+} from "react-chartjs-2";
+
 
 const Form = () => {
   const [startDate, setStartDate] = useState("");
@@ -96,6 +103,7 @@ const Form = () => {
 
   };
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// VER 3
 // const ctx = document.getElementById("chart").getContext("2d");
 //     new Chart(ctx, {
 //       type: "bar",
@@ -189,11 +197,59 @@ const Form = () => {
         <span>{workedAmount}</span>
       </div>
       <div>
+        {/* VER 1 */}
         {/* <ChartComponent workedHours = {workedHours}
                         hourlyRate = {hourlyRate}
                         totalHours={45} /> */}
+      </div>
+      <div>
+        {/* VER 2 */}
         {/* <ChartComponent/> */}
+      </div>
+      <div>
+        {/* VER 3 */}
         {/* <canvas id="chart"></canvas> */}
+      </div>
+      <div>
+        {/* VER 4 */}
+        {/* <Bar
+            data={{
+              labels: [
+                "Worked Hours",
+                "Remaining Hours",
+                "Overtime",
+                "Norm Hours",
+              ],
+              datasets: [
+                {
+                  label: "Hours",
+                  data: [
+                    workedHours,
+                    45 - workedHours,
+                    Math.max(workedHours - 45, 0),
+                    45,
+                  ],
+                  backgroundColor: [
+                    "green",
+                    "lightblue",
+                    workedHours > 45 ? "red" : "lightgreen",
+                    "gray",
+                  ],
+                },
+              ],
+            }}
+            options={{
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  max: 60,
+                  ticks: {
+                    stepSize: 10,
+                  },
+                },
+              },
+            }}
+          /> */}
       </div>
     </div>
   );
