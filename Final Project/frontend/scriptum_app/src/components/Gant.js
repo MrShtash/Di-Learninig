@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client';
 import axios from "axios";
 import {GanttChart} from 'smart-webcomponents-react/ganttchart';
 
+
 const GantComponent = () => {
 	// const treeSize = '300px';
     const treeSize = '30%';
