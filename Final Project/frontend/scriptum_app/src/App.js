@@ -37,30 +37,28 @@ function App() {
   //   }, []);
 
   return (
-    <AppContext.Provider value={{accessToken,setAccessToken}} >
+    <AppContext.Provider value = {{accessToken,setAccessToken}} >
       <div>
-          {/* <Scriptum_test/> */}
-          <NavBar groupId={group_id}/>
+            <NavBar groupId = {group_id}/>
             <Routes>
-
-                  <Route exact path="/" element={<LoginForm/>} />
-                  <Route path="/protected/" element={<Scriptum_test />} />
-                  <Route path="/protected/profile" element={<Profile />} />
-                  <Route path="/protected/cash" element={<CashForm />} />
-                  <Route path="/protected/company" element={<CompanyForm />} />
-                  <Route path="/protected/hour" element={<HourForm />} />
-                  <Route path="/protected/category" element={<CategoryForm />} />
-                  <Route path="/protected/department" element={<DepartmentForm />} />
-                  <Route path="/protected/grade" element={<GradeForm />} />
-                  <Route path="/protected/group" element={<GroupForm />} />
-                  <Route path="/protected/project" element={<ProjectForm />} />
-                  <Route path="/protected/register" element={<RegisterForm />} />
-                  <Route path="/protected/sprint" element={<SprintForm />} />
-                  <Route path="/protected/work" element={<WorkForm />} />
-                  <Route path="/protected/sprint" element={<SprintForm />} />
-                  <Route path="/protected/speccalc" element={<Form />} />
-                  <Route path="/protected/compclc" element={<CompanyCalcForm />} />
-                  {/* <Route path="*" element={<NotFoundComponent />} /> */}
+                  <Route exact path = "/" element = {<LoginForm/>} />
+                  <Route path = "/protected/" element = {<Scriptum_test />} />
+                  <Route path = "/protected/profile" element = {<Profile />} />
+                  <Route path = "/protected/cash" element = {<CashForm />} />
+                  <Route path = "/protected/company" element = {<CompanyForm />} />
+                  <Route path = "/protected/hour" element = {<HourForm />} />
+                  <Route path = "/protected/category" element = {<CategoryForm />} />
+                  <Route path = "/protected/department" element = {<DepartmentForm />} />
+                  <Route path = "/protected/grade" element = {<GradeForm />} />
+                  <Route path = "/protected/group" element = {<GroupForm />} />
+                  <Route path = "/protected/project" element = {<ProjectForm />} />
+                  <Route path = "/protected/register" element = {<RegisterForm />} />
+                  <Route path = "/protected/sprint" element = {<SprintForm />} />
+                  <Route path = "/protected/work" element = {<WorkForm />} />
+                  <Route path = "/protected/sprint" element = {<SprintForm />} />
+                  <Route path = "/protected/speccalc" element = {<Form />} />
+                  <Route path = "/protected/compclc" element = {<CompanyCalcForm />} />
+                  {/* <Route path = "*" element = {<NotFoundComponent />} /> */}
 
           </Routes>
       </div>

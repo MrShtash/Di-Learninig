@@ -256,19 +256,19 @@ function ProjectForm() {
             styles={selectStyles}/> */}
 
 
-          <Select name="department"
-                  value={formData.department.map((value) => ({
+          <Select name = "department"
+                  value = {formData.department.map((value) => ({
                     value: value,
                     label: departments.find((department) => department.department_id === value).d_name
                   }))}
-                  options={departments.map((department) => ({
+                  options = {departments.map((department) => ({
                     value: department.department_id,
                     label: department.d_name
                   }))}
                   isMulti
-                  onChange={handleDepartmentChange}
-                  styles={customStyles}
-                  placeholder="Please select a department"/>
+                  onChange = {handleDepartmentChange}
+                  styles = {customStyles}
+                  placeholder = "Please select a department"/>
         </label>
         <br />
         <label>
@@ -308,19 +308,19 @@ function ProjectForm() {
           /> */}
 
 
-          <Select name="specialist"
-                  value={formData.specialist.map((value) => ({
+          <Select name = "specialist"
+                  value = {formData.specialist.map((value) => ({
                     value: value,
                     label: specialists.find((specialist) => specialist.specialist_id === value).f_name + ' ' + specialists.find((specialist) => specialist.specialist_id === value).l_name
                   }))}
-                  options={specialists.map((specialist) => ({
+                  options = {specialists.map((specialist) => ({
                     value: specialist.specialist_id,
                     label: specialist.f_name + ' ' + specialist.l_name
                   }))}
                   isMulti
-                  onChange={handleSpecialistChange}
-                  styles={customStyles}
-                  placeholder="Please select a specialist"/>
+                  onChange = {handleSpecialistChange}
+                  styles = {customStyles}
+                  placeholder = "Please select a specialist"/>
         </label>
         <br />
         <button type = "submit">Create Project</button>

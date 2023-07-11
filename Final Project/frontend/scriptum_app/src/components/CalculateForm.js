@@ -1,5 +1,9 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
+// import {GanttChartComponent} from './Gant';
+import GantComponent from "./Gant";
+import 'smart-webcomponents-react/source/styles/smart.default.css';
+
 
 const CompanyCalcForm = () => {
   const [data, setData] = useState({
@@ -283,6 +287,9 @@ return (
         <p>Total Project Hours: {selectedProjectHours}</p>
         <p>Sprint budget: {sprintRemainingCost}</p>
         <p>Selected Project Remaining Cost: {projectRemainingCost}</p>
+      </div>
+      <div>
+        <GantComponent/>
       </div>
 
     </div>

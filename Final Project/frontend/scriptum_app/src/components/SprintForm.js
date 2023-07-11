@@ -181,8 +181,8 @@ function SprintForm() {
                   styles={customStyles}
                   placeholder="Please select a specialist"/> */}
 
-          <Select name="specialist"
-                  value={formData.specialist.map((value) => ({
+          <Select name = "specialist"
+                  value = {formData.specialist.map((value) => ({
                   value: value,
                   label: specialists.find((specialist) => specialist.specialist_id === value).f_name + ' ' + specialists.find((specialist) => specialist.specialist_id === value).l_name
                 }))}
@@ -190,9 +190,9 @@ function SprintForm() {
                   value: specialist.specialist_id,
                   label: specialist.f_name + ' ' + specialist.l_name})) : []}
                 isMulti
-                onChange={handleSpecialistChange}
-                styles={customStyles}
-                placeholder="Please select a specialist"/>
+                onChange = {handleSpecialistChange}
+                styles = {customStyles}
+                placeholder = "Please select a specialist"/>
         </label>
         <br />
         <button type = "submit">Create Sprint</button>

@@ -1,5 +1,9 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
+// import ChartComponent from './S_Chart'
+// import {Chart} from 'chart.js';
+// import 'smart-webcomponents-react/source/styles/smart.default.css';
+// import '@smart-webcomponents-react/chart/styles/smart.default.css';
 
 const Form = () => {
   const [startDate, setStartDate] = useState("");
@@ -10,6 +14,10 @@ const Form = () => {
   const [workedHours, setWorkedHours] = useState(0);
   const [workedAmount, setWorkedAmount] = useState(0);
   const [allData, setAllData] = useState({});
+
+
+  const [hourlyRate, setHourlyRate] = useState(0);
+
 
   useEffect(() => {
     axios
@@ -82,7 +90,57 @@ const Form = () => {
 
     setWorkedHours(totalWorkedHours);
     setWorkedAmount(totalAmount);
+
+    setHourlyRate(hourlyRate?.cost);
+
+
   };
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// const ctx = document.getElementById("chart").getContext("2d");
+//     new Chart(ctx, {
+//       type: "bar",
+//       data: {
+//         labels: [
+//           "Worked Hours",
+//           "Remaining Hours",
+//           "Overtime",
+//           "Norm Hours",
+//         ],
+//         datasets: [
+//           {
+//             label: "Hours",
+//             data: [
+//               totalWorkedHours,
+//               45 - totalWorkedHours,
+//               Math.max(totalWorkedHours - 45, 0),
+//               45,
+//             ],
+//             backgroundColor: [
+//               "green",
+//               "lightblue",
+//               totalWorkedHours > 45 ? "red" : "lightgreen",
+//               "gray",
+//             ],
+//           },
+//         ],
+//       },
+//       options: {
+//         scales: {
+//           y: {
+//             beginAtZero: true,
+//             max: 60,
+//             ticks: {
+//               stepSize: 10,
+//             },
+//           },
+//         },
+//       },
+//     });
+  
+
+
+
+
 
   return (
     <div>
@@ -94,7 +152,7 @@ const Form = () => {
       </div>
       <div>
         <label>End Date:</label>
-        <input type="date"
+        <input type = "date"
                 value = {endDate}
                 onChange = {handleEndDateChange} />
       </div>
@@ -129,6 +187,13 @@ const Form = () => {
       <div>
         <label>Worked Amount: </label>
         <span>{workedAmount}</span>
+      </div>
+      <div>
+        {/* <ChartComponent workedHours = {workedHours}
+                        hourlyRate = {hourlyRate}
+                        totalHours={45} /> */}
+        {/* <ChartComponent/> */}
+        {/* <canvas id="chart"></canvas> */}
       </div>
     </div>
   );
