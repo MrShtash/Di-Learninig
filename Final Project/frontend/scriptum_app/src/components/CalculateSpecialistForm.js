@@ -1,16 +1,12 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
+import BarChart from "./BarChart";
+
 // import ChartComponent from './S_Chart'
 // import {Chart} from 'chart.js';
 // import 'smart-webcomponents-react/source/styles/smart.default.css';
 // import '@smart-webcomponents-react/chart/styles/smart.default.css';
-import {
-      Bar,
-      LinearScale,
-      CategoryScale,
-      Title
-} from "react-chartjs-2";
-
+// import {Bar} from "react-chartjs-2";
 
 const Form = () => {
   const [startDate, setStartDate] = useState("");
@@ -25,6 +21,7 @@ const Form = () => {
 //~~~~~~FOR CHART~~~~~~
   const [hourlyRate, setHourlyRate] = useState(0);
   const [chartData, setChartData] = useState(null);
+
 //~~~~~~FOR CHART~~~~~~
 
 
@@ -102,95 +99,44 @@ const Form = () => {
 
     setHourlyRate(hourlyRate?.cost);
 
-//~~~~~FOR CHART
-    const newChartData = {
-      labels: ["Норма", "Отработано", "Остаток", "Переработка"],
-      datasets: [
-        {
-          label: "Часы работы",
-          data: [
-            45,
-            totalWorkedHours,
-            Math.max(0, 45 - totalWorkedHours),
-            Math.max(0, totalWorkedHours - 45),
-          ],
-          backgroundColor: [
-            "rgba(54, 162, 235, 0.2)", // norm
-            "rgba(75, 192, 192, 0.2)", // worked
-            "rgba(255, 206, 86, 0.2)", // amount
-            "rgba(255, 99, 132, 0.2)", // overworking
-          ],
-          borderColor: [
-            "rgba(54, 162, 235, 1)",
-            "rgba(75, 192, 192, 1)",
-            "rgba(255, 206, 86, 1)",
-            "rgba(255, 99, 132, 1)",
-          ],
-          borderWidth: 1,
-        },
-      ],
-    };
 
-    setChartData(newChartData);
-  
+    setChartData({
+    workedHours: totalWorkedHours,
+    normHours: 9, 
+  });
+
+//~~~~~FOR CHART
+    // const newChartData = {
+    //   labels: ["Norm", "Worked", "Amount", "Over Working"],
+    //   datasets: [
+    //     {
+    //       label: "Worked hours",
+    //       data: [
+    //         45,
+    //         totalWorkedHours,
+    //         Math.max(0, 45 - totalWorkedHours),
+    //         Math.max(0, totalWorkedHours - 45),
+    //       ],
+    //       backgroundColor: [
+    //         "rgba(54, 162, 235, 0.2)", // norm
+    //         "rgba(75, 192, 192, 0.2)", // worked
+    //         "rgba(255, 206, 86, 0.2)", // amount
+    //         "rgba(255, 99, 132, 0.2)", // overworking
+    //       ],
+    //       borderColor: [
+    //         "rgba(54, 162, 235, 1)",
+    //         "rgba(75, 192, 192, 1)",
+    //         "rgba(255, 206, 86, 1)",
+    //         "rgba(255, 99, 132, 1)",
+    //       ],
+    //       borderWidth: 1,
+    //     },
+    //   ],
+    // };
+    // setChartData(newChartData);
   //~~~FOR CHART
 
-    
-
-
-
-
-
   };
-
-  
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// VER 3
-// const ctx = document.getElementById("chart").getContext("2d");
-//     new Chart(ctx, {
-//       type: "bar",
-//       data: {
-//         labels: [
-//           "Worked Hours",
-//           "Remaining Hours",
-//           "Overtime",
-//           "Norm Hours",
-//         ],
-//         datasets: [
-//           {
-//             label: "Hours",
-//             data: [
-//               totalWorkedHours,
-//               45 - totalWorkedHours,
-//               Math.max(totalWorkedHours - 45, 0),
-//               45,
-//             ],
-//             backgroundColor: [
-//               "green",
-//               "lightblue",
-//               totalWorkedHours > 45 ? "red" : "lightgreen",
-//               "gray",
-//             ],
-//           },
-//         ],
-//       },
-//       options: {
-//         scales: {
-//           y: {
-//             beginAtZero: true,
-//             max: 60,
-//             ticks: {
-//               stepSize: 10,
-//             },
-//           },
-//         },
-//       },
-//     });
-  
-
-
-
-
 
   return (
     <div>
@@ -238,78 +184,11 @@ const Form = () => {
         <label>Worked Amount: </label>
         <span>{workedAmount}</span>
       </div>
-      <div>
-        {/* VER 1 */}
-        {/* <ChartComponent workedHours = {workedHours}
-                        hourlyRate = {hourlyRate}
-                        totalHours={45} /> */}
-      </div>
-      <div>
-        {/* VER 2 */}
-        {/* <ChartComponent/> */}
-      </div>
-      <div>
-        {/* VER 3 */}
-        {/* <canvas id="chart"></canvas> */}
-      </div>
-      <div>
-        {/* VER 4 */}
-        {/* <Bar
-            data={{
-              labels: [
-                "Worked Hours",
-                "Remaining Hours",
-                "Overtime",
-                "Norm Hours",
-              ],
-              datasets: [
-                {
-                  label: "Hours",
-                  data: [
-                    workedHours,
-                    45 - workedHours,
-                    Math.max(workedHours - 45, 0),
-                    45,
-                  ],
-                  backgroundColor: [
-                    "green",
-                    "lightblue",
-                    workedHours > 45 ? "red" : "lightgreen",
-                    "gray",
-                  ],
-                },
-              ],
-            }}
-            options={{
-              scales: {
-                y: {
-                  beginAtZero: true,
-                  max: 60,
-                  ticks: {
-                    stepSize: 10,
-                  },
-                },
-              },
-            }}
-          /> */}
-      </div>
+
       <div>
         {chartData && (
-          <div>
-            <h3>Chart</h3>
-            <Bar
-              data={chartData}
-              options={{
-                scales: {
-                  y: {
-                    beginAtZero: true,
-                    max: 60,
-                  },
-                },
-              }}
-            />
-          </div>
-        )}
+      <BarChart workedHours={chartData.workedHours} normHours={chartData.normHours} />
+    )}
       </div>
     </div>
   );

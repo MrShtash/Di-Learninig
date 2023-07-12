@@ -71,91 +71,6 @@ const GantComponent = () => {
         setSelectedProject(e.target.value);
     };
 
-    // const dataSource = filteredProjects.length > 0
-    //                 && filteredSprints.length > 0
-    //                 && ganttData
-    //                 && ganttData.works
-    //   ? [
-    //       {
-    //         label: 'Projects',
-    //         type: 'project',
-    //         children: filteredProjects.map((project) => {
-    //             const sprints = filteredSprints.filter(
-    //                 (sprint) => sprint.project_id === project.project_id
-    //             );
-    //             return {
-    //                 label: project.name,
-    //                 dateStart: project.s_date,
-    //                 dateEnd: project.e_date,
-    //                 class: 'project-team',
-    //                 type: 'task',
-    //                 children: sprints.map((sprint) => {
-    //                     const works = ganttData.works.filter(
-    //                         (work) => work.sprint === sprint.sprint_id
-    //                     );
-    //                     return {
-    //                         label: sprint.title,
-    //                         dateStart: sprint.date_start,
-    //                         dateEnd: sprint.date_end,
-    //                         class: 'sprint-team',
-    //                         type: 'task',
-    //                         children: works.map((work) => ({
-    //                             label: work.title,
-    //                             dateStart: work.date_creation,
-    //                             dateEnd: work.date_complete,
-    //                             class: 'work-team',
-    //                             type: 'task',
-    //                 })),
-    //               };
-    //             }),
-    //           };
-    //         }),
-    //       },
-    // ]: [];
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // const dataSource = filteredSprints.length > 0
-    //                     && ganttData.works
-    // ? filteredSprints.map((sprint) => {
-    //     const works = ganttData.works.filter(
-    //         (work) => work.sprint === sprint.sprint_id);
-    //     return {
-    //         label: sprint.title,
-    //         dateStart: sprint.date_start,
-    //         dateEnd: sprint.date_end,
-    //         class: 'sprint-team',
-    //         // expanded: true,
-    //         type: 'project',
-    //         tasks: [
-    //             works.map((work) => ({
-    //             label: work.title,
-    //             dateStart: work.date_creation,
-    //             dateEnd: work.date_complete,
-    //             class: 'work-team',
-    //             type: 'task',
-    //         }))
-
-
-    //         // {
-    //         //     type: 'task',
-    //         //     label: 'title',
-    //         //     dateStart: '2020-6-1',
-    //         //     dateEnd: '2020-6-1'
-    //         //     // class: 'work-team',
-    //         // }
-
-            
-    //     ]
-    //         // children: works.map((work) => ({
-    //         //     label: work.title,
-    //         //     dateStart: work.date_creation,
-    //         //     dateEnd: work.date_complete,
-    //         //     class: 'work-team',
-    //         //     type: 'task',
-    //         // })),
-    //     };
-    // }): [];
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 //~~~~~~~~~~~~~~~~~CORRECT!!!!!!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //     const dataSource = filteredSprints.length > 0
 //                         && ganttData.works
@@ -194,7 +109,7 @@ const dataSource = filteredSprints.length > 0 && ganttData.works
         tasks: works.map((work) => {
           const duration =
             typeof work.hours === 'number'
-              ? parseFloat(work.hours).toFixed(2)
+              ? parseFloat(work.hours).toFixed()
               : '0';
 
           console.log(work.title, duration);
@@ -212,11 +127,6 @@ const dataSource = filteredSprints.length > 0 && ganttData.works
       return sprintItem;
     })
   : [];
-
-
-
-
-
 
     console.log(dataSource);
     // console.log(dataSource.projects);
@@ -260,7 +170,7 @@ const dataSource = filteredSprints.length > 0 && ganttData.works
                 </select>
             </div>
             <div>
-                <GanttChart dataSource = {dataSource}
+                <GanttChart dataSource = {dataSource || []}
                             taskColumns = {taskColumns}
                             treeSize = {treeSize}
                             durationUnit = {durationUnit}

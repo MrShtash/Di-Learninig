@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import GantComponent from "./Gant";
-import 'smart-webcomponents-react/source/styles/smart.default.css';
+// import 'smart-webcomponents-react/source/styles/smart.default.css';
 
 const CompanyCalcForm = () => {
   const [data, setData] = useState({
@@ -84,10 +84,22 @@ const CompanyCalcForm = () => {
                                       (sprint) => 
                                         sprint.project_id === Number(selectedProject)
                                         && sprint.date_start >= new Date(selectedStartDate).toISOString()
-                                        && sprint.date_end <= new Date(selectedEndDate))
+                                        && sprint.date_end <= new Date(selectedEndDate).toISOString())
     setFilteredSprints(allSprints)
-    }
+    //   console.log(data.sprints[0].project_id == selectedProject)
+    //   console.log("SPRINT START", data.sprints[0].date_start,"SELECTED START", new Date(selectedStartDate).toISOString())
+    //   console.log(data.sprints[0].date_start >= new Date(selectedStartDate).toISOString())
+    //   console.log("SPRINT END", data.sprints[0].date_end, "SELECTED END", new Date(selectedEndDate).toISOString())
+    //   console.log(data.sprints[0].date_end <= new Date(selectedEndDate).toISOString())
+    //   console.log("++++++++++++");
 
+    // console.log(data.sprints);
+    // console.log(allSprints);
+    // console.log(filteredSprints);
+    // console.log(data.sprints[0].date_start);
+    // console.log(data.sprints[0].date_end);
+    }
+    
     if(
         selectedSprint !== '' &&
         selectedStartDate !== undefined &&
