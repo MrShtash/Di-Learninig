@@ -5,7 +5,7 @@ import axios from "axios";
 import {GanttChart} from 'smart-webcomponents-react/ganttchart';
 
 const GantComponent = () => {
-    const treeSize = '30%';
+    const treeSize = '40%';
 	const durationUnit = 'hour';
 
 	const taskColumns = [
@@ -18,11 +18,6 @@ const GantComponent = () => {
             label: 'Duration (hour)',
             value: 'duration',
             formatFunction: (date) => parseInt(date)
-        },
-        {
-            label: 'Duration (days)',
-            value: 'durationDays',
-            formatFunction: (date) => Math.ceil(parseInt(date) / 24)
         }
 	];
 
@@ -70,30 +65,6 @@ const GantComponent = () => {
     const handleProjectChange = (e) => {
         setSelectedProject(e.target.value);
     };
-
-//~~~~~~~~~~~~~~~~~CORRECT!!!!!!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//     const dataSource = filteredSprints.length > 0
-//                         && ganttData.works
-//     ? filteredSprints.map((sprint) => {
-//       const works = ganttData.works.filter(
-//                     (work) => work.sprint === sprint.sprint_id);
-//       const sprintItem = {
-//         label: sprint.title,
-//         dateStart: sprint.date_start,
-//         dateEnd: sprint.date_end,
-//         class: 'sprint-team',
-//         type: 'task',
-//         tasks: works.map((work) => ({
-//           label: work.title,
-//           dateStart: work.date_creation,
-//           dateEnd: work.date_complete,
-//           class: 'work-team',
-//           type: 'task',
-//         })),
-//       };
-//       return sprintItem;
-//     })
-//   : [];
 
 const dataSource = filteredSprints.length > 0 && ganttData.works
   ? filteredSprints.map((sprint) => {
@@ -174,7 +145,7 @@ const dataSource = filteredSprints.length > 0 && ganttData.works
                             taskColumns = {taskColumns}
                             treeSize = {treeSize}
                             durationUnit = {durationUnit}
-                            view = "day" 
+                            view = "week" 
                             id = "gantt">
                 </GanttChart>
             </div>

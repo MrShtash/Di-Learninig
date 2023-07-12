@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import GantComponent from "./Gant";
-// import 'smart-webcomponents-react/source/styles/smart.default.css';
 
 const CompanyCalcForm = () => {
   const [data, setData] = useState({

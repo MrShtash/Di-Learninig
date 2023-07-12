@@ -1,11 +1,15 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-// import BarChart from "./BarChart";
-import {Chart} from 'chart.js';
-// import ChartComponent from './S_Chart'
-// import 'smart-webcomponents-react/source/styles/smart.default.css';
-// import '@smart-webcomponents-react/chart/styles/smart.default.css';
-import {Bar} from "react-chartjs-2";
+import {
+        BarChart,
+        Bar,
+        XAxis,
+        YAxis,
+        CartesianGrid,
+        Tooltip,
+        Legend
+      } from "recharts";
+
 
 const Form = () => {
   const [startDate, setStartDate] = useState("");
@@ -17,12 +21,8 @@ const Form = () => {
   const [workedAmount, setWorkedAmount] = useState(0);
   const [allData, setAllData] = useState({});
 
-//~~~~~~FOR CHART~~~~~~
-  // const [workedHours, setWorkedHours] = useState(0);
-  // const [newChartData, setnewChartData] = useState(null);
   const [hourlyRate, setHourlyRate] = useState(0);
-  const [chartData, setChartData] = useState(null);
-//~~~~~~FOR CHART~~~~~~
+  const [chartData, setChartData] = useState([]);
 
 
   useEffect(() => {
@@ -96,50 +96,22 @@ const Form = () => {
 
     setWorkedHours(totalWorkedHours);
     setWorkedAmount(totalAmount);
-
     setHourlyRate(hourlyRate?.cost);
 
+const chartData = [
+      {
+        name: "Worked Hours",
+        value: totalWorkedHours,
+        color: totalWorkedHours > 181 ? "red" : "green",
+      },
+      {
+        name: "Standard Hours",
+        value: 181,
+        color: "blue",
+      },
+    ];
 
-    // setChartData({workedHours: totalWorkedHours,
-    //               normHours: 9, 
-    //     });
-
-    // setnewChartData({workedHours: totalWorkedHours,
-    //               normHours: 9, 
-    //     });
-
-//~~~~~FOR CHART
-    const newChartData = {
-      labels: ["Norm", "Worked", "Amount", "Over Working"],
-      datasets: [
-        {
-          label: "Worked hours",
-          data: [
-            45,
-            totalWorkedHours,
-            Math.max(0, 45 - totalWorkedHours),
-            Math.max(0, totalWorkedHours - 45),
-          ],
-          backgroundColor: [
-            "rgba(54, 162, 235, 0.2)", // norm
-            "rgba(75, 192, 192, 0.2)", // worked
-            "rgba(255, 206, 86, 0.2)", // amount
-            "rgba(255, 99, 132, 0.2)", // overworking
-          ],
-          borderColor: [
-            "rgba(54, 162, 235, 1)",
-            "rgba(75, 192, 192, 1)",
-            "rgba(255, 206, 86, 1)",
-            "rgba(255, 99, 132, 1)",
-          ],
-          borderWidth: 1,
-        },
-      ],
-    };
-    setChartData(newChartData);
-  //~~~FOR CHART
-
-
+    setChartData(chartData);
   };
 
   return (
@@ -188,22 +160,20 @@ const Form = () => {
         <label>Worked Amount: </label>
         <span>{workedAmount}</span>
       </div>
-
-      {/* <div>
-        {chartData && (
-            <BarChart workedHours = {chartData.workedHours}
-                      normHours = {chartData.normHours} />
-          )}
-      </div> */}
-      {/* <div>
-              {chartData && (
-                  <Bar workedHours = {chartData.workedHours}
-                            normHours = {chartData.normHours} />
-                )}
-      </div> */}
-
-
-      
+    <div>
+      {chartData.length > 0 && (
+        <BarChart width = {400}
+                  height = {300}
+                  data = {chartData}>
+          <CartesianGrid strokeDasharray = "3 3" />
+          <XAxis dataKey = "name" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey = "value" fill = {chartData[0].color} />
+        </BarChart>
+      )}
+    </div>
     </div>
   );
 };
