@@ -4,13 +4,9 @@ import ReactDOM from 'react-dom/client';
 import axios from "axios";
 import {GanttChart} from 'smart-webcomponents-react/ganttchart';
 
-
 const GantComponent = () => {
-	// const treeSize = '300px';
     const treeSize = '30%';
-	// const durationUnit = 'hour';
-    const durationUnit = 'day';
-    // const durationUnit = 'week';
+	const durationUnit = 'hour';
 
 	const taskColumns = [{
 		label: 'Tasks',
@@ -69,47 +65,116 @@ const GantComponent = () => {
         setSelectedProject(e.target.value);
     };
 
-    const dataSource = filteredProjects.length > 0
-                    && filteredSprints.length > 0
-                    && ganttData
-                    && ganttData.works
-      ? [
-          {
-            label: 'Projects',
-            type: 'project',
-            children: filteredProjects.map((project) => {
-                const sprints = filteredSprints.filter(
-                    (sprint) => sprint.project_id === project.project_id
-                );
-                return {
-                    label: project.name,
-                    dateStart: project.s_date,
-                    dateEnd: project.e_date,
-                    class: 'project-team',
-                    type: 'task',
-                    children: sprints.map((sprint) => {
-                        const works = ganttData.works.filter(
-                            (work) => work.sprint === sprint.sprint_id
-                        );
-                        return {
-                            label: sprint.title,
-                            dateStart: sprint.date_start,
-                            dateEnd: sprint.date_end,
-                            class: 'sprint-team',
-                            type: 'task',
-                            children: works.map((work) => ({
-                                label: work.title,
-                                dateStart: work.date_creation,
-                                dateEnd: work.date_complete,
-                                class: 'work-team',
-                                type: 'task',
-                    })),
-                  };
-                }),
-              };
-            }),
-          },
-    ]: [];
+    // const dataSource = filteredProjects.length > 0
+    //                 && filteredSprints.length > 0
+    //                 && ganttData
+    //                 && ganttData.works
+    //   ? [
+    //       {
+    //         label: 'Projects',
+    //         type: 'project',
+    //         children: filteredProjects.map((project) => {
+    //             const sprints = filteredSprints.filter(
+    //                 (sprint) => sprint.project_id === project.project_id
+    //             );
+    //             return {
+    //                 label: project.name,
+    //                 dateStart: project.s_date,
+    //                 dateEnd: project.e_date,
+    //                 class: 'project-team',
+    //                 type: 'task',
+    //                 children: sprints.map((sprint) => {
+    //                     const works = ganttData.works.filter(
+    //                         (work) => work.sprint === sprint.sprint_id
+    //                     );
+    //                     return {
+    //                         label: sprint.title,
+    //                         dateStart: sprint.date_start,
+    //                         dateEnd: sprint.date_end,
+    //                         class: 'sprint-team',
+    //                         type: 'task',
+    //                         children: works.map((work) => ({
+    //                             label: work.title,
+    //                             dateStart: work.date_creation,
+    //                             dateEnd: work.date_complete,
+    //                             class: 'work-team',
+    //                             type: 'task',
+    //                 })),
+    //               };
+    //             }),
+    //           };
+    //         }),
+    //       },
+    // ]: [];
+
+    // const dataSource = filteredSprints.length > 0
+    //                     && ganttData.works
+    // ? filteredSprints.map((sprint) => {
+    //     const works = ganttData.works.filter(
+    //         (work) => work.sprint === sprint.sprint_id);
+    //     return {
+    //         label: sprint.title,
+    //         dateStart: sprint.date_start,
+    //         dateEnd: sprint.date_end,
+    //         class: 'sprint-team',
+    //         // expanded: true,
+    //         type: 'project',
+    //         tasks: [
+    //             works.map((work) => ({
+    //             label: work.title,
+    //             dateStart: work.date_creation,
+    //             dateEnd: work.date_complete,
+    //             class: 'work-team',
+    //             type: 'task',
+    //         }))
+
+
+    //         // {
+    //         //     type: 'task',
+    //         //     label: 'title',
+    //         //     dateStart: '2020-6-1',
+    //         //     dateEnd: '2020-6-1'
+    //         //     // class: 'work-team',
+    //         // }
+
+            
+    //     ]
+    //         // children: works.map((work) => ({
+    //         //     label: work.title,
+    //         //     dateStart: work.date_creation,
+    //         //     dateEnd: work.date_complete,
+    //         //     class: 'work-team',
+    //         //     type: 'task',
+    //         // })),
+    //     };
+    // }): [];
+
+
+
+    const dataSource = filteredSprints.length > 0
+                        && ganttData.works
+    ? filteredSprints.map((sprint) => {
+      const works = ganttData.works.filter(
+                    (work) => work.sprint === sprint.sprint_id);
+      const sprintItem = {
+        label: sprint.title,
+        dateStart: sprint.date_start,
+        dateEnd: sprint.date_end,
+        class: 'sprint-team',
+        type: 'task',
+        tasks: works.map((work) => ({
+          label: work.title,
+          dateStart: work.date_creation,
+          dateEnd: work.date_complete,
+          class: 'work-team',
+          type: 'task',
+        })),
+      };
+      return sprintItem;
+    })
+  : [];
+
+
     console.log(dataSource);
     // console.log(dataSource.projects);
     // console.log(dataSource[0]?.children);
