@@ -170,7 +170,7 @@ const dataSource = filteredSprints.length > 0 && ganttData.works
                 </select>
             </div>
             <div>
-                <GanttChart dataSource = {dataSource || []}
+                <GanttChart dataSource = {dataSource}
                             taskColumns = {taskColumns}
                             treeSize = {treeSize}
                             durationUnit = {durationUnit}
