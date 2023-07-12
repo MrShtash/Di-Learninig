@@ -8,16 +8,22 @@ const GantComponent = () => {
     const treeSize = '30%';
 	const durationUnit = 'hour';
 
-	const taskColumns = [{
-		label: 'Tasks',
-		value: 'label',
-		size: '60%'
-	},
-	{
-		label: 'Duration (hours)',
-		value: 'duration',
-		formatFunction: (date) => parseInt(date)
-	}
+	const taskColumns = [
+        {
+            label: 'Tasks',
+            value: 'label',
+            size: '30%'
+        },
+        {
+            label: 'Duration (hour)',
+            value: 'duration',
+            formatFunction: (date) => parseInt(date)
+        },
+        {
+            label: 'Duration (days)',
+            value: 'durationDays',
+            formatFunction: (date) => Math.ceil(parseInt(date) / 24)
+        }
 	];
 
     const [ganttData, setGanttData] = useState([]);
@@ -106,7 +112,7 @@ const GantComponent = () => {
     //         }),
     //       },
     // ]: [];
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // const dataSource = filteredSprints.length > 0
     //                     && ganttData.works
     // ? filteredSprints.map((sprint) => {
@@ -148,31 +154,68 @@ const GantComponent = () => {
     //         // })),
     //     };
     // }): [];
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+//~~~~~~~~~~~~~~~~~CORRECT!!!!!!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//     const dataSource = filteredSprints.length > 0
+//                         && ganttData.works
+//     ? filteredSprints.map((sprint) => {
+//       const works = ganttData.works.filter(
+//                     (work) => work.sprint === sprint.sprint_id);
+//       const sprintItem = {
+//         label: sprint.title,
+//         dateStart: sprint.date_start,
+//         dateEnd: sprint.date_end,
+//         class: 'sprint-team',
+//         type: 'task',
+//         tasks: works.map((work) => ({
+//           label: work.title,
+//           dateStart: work.date_creation,
+//           dateEnd: work.date_complete,
+//           class: 'work-team',
+//           type: 'task',
+//         })),
+//       };
+//       return sprintItem;
+//     })
+//   : [];
 
-
-    const dataSource = filteredSprints.length > 0
-                        && ganttData.works
-    ? filteredSprints.map((sprint) => {
+const dataSource = filteredSprints.length > 0 && ganttData.works
+  ? filteredSprints.map((sprint) => {
       const works = ganttData.works.filter(
-                    (work) => work.sprint === sprint.sprint_id);
+        (work) => work.sprint === sprint.sprint_id
+      );
       const sprintItem = {
         label: sprint.title,
         dateStart: sprint.date_start,
         dateEnd: sprint.date_end,
         class: 'sprint-team',
         type: 'task',
-        tasks: works.map((work) => ({
-          label: work.title,
-          dateStart: work.date_creation,
-          dateEnd: work.date_complete,
-          class: 'work-team',
-          type: 'task',
-        })),
+        tasks: works.map((work) => {
+          const duration =
+            typeof work.hours === 'number'
+              ? parseFloat(work.hours).toFixed(2)
+              : '0';
+
+          console.log(work.title, duration);
+
+          return {
+            label: work.title,
+            dateStart: work.date_creation,
+            dateEnd: work.date_complete,
+            class: 'work-team',
+            type: 'task',
+            duration: duration !== 'NaN' ? duration : '0'
+          };
+        })
       };
       return sprintItem;
     })
   : [];
+
+
+
+
 
 
     console.log(dataSource);
@@ -220,7 +263,8 @@ const GantComponent = () => {
                 <GanttChart dataSource = {dataSource}
                             taskColumns = {taskColumns}
                             treeSize = {treeSize}
-                            durationUnit = {durationUnit} 
+                            durationUnit = {durationUnit}
+                            view = "day" 
                             id = "gantt">
                 </GanttChart>
             </div>
