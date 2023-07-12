@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import BarChart from "./BarChart";
-
-// import ChartComponent from './S_Chart'
 // import {Chart} from 'chart.js';
+// import ChartComponent from './S_Chart'
 // import 'smart-webcomponents-react/source/styles/smart.default.css';
 // import '@smart-webcomponents-react/chart/styles/smart.default.css';
 // import {Bar} from "react-chartjs-2";
@@ -21,7 +20,6 @@ const Form = () => {
 //~~~~~~FOR CHART~~~~~~
   const [hourlyRate, setHourlyRate] = useState(0);
   const [chartData, setChartData] = useState(null);
-
 //~~~~~~FOR CHART~~~~~~
 
 
@@ -100,10 +98,9 @@ const Form = () => {
     setHourlyRate(hourlyRate?.cost);
 
 
-    setChartData({
-    workedHours: totalWorkedHours,
-    normHours: 9, 
-  });
+    setChartData({workedHours: totalWorkedHours,
+                  normHours: 9, 
+        });
 
 //~~~~~FOR CHART
     // const newChartData = {
@@ -187,8 +184,9 @@ const Form = () => {
 
       <div>
         {chartData && (
-      <BarChart workedHours={chartData.workedHours} normHours={chartData.normHours} />
-    )}
+            <BarChart workedHours = {chartData.workedHours}
+                      normHours = {chartData.normHours} />
+          )}
       </div>
     </div>
   );

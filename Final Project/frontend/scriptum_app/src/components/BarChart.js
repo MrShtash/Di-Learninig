@@ -1,7 +1,8 @@
-import React from "react";
-import { Bar } from "react-chartjs-2";
+import React, {useEffect} from "react";
+import {Bar} from "react-chartjs-2";
+// import "chartjs-adapter-date-fns";
 
-const BarChart = ({ workedHours, normHours }) => {
+const BarChart = ({workedHours, normHours}) => {
   const chartData = {
     labels: ["Worked Hours", "Norm Hours"],
     datasets: [
@@ -9,6 +10,7 @@ const BarChart = ({ workedHours, normHours }) => {
         label: "Hours",
         data: [workedHours, normHours],
         backgroundColor: workedHours > normHours ? "red" : "lightblue",
+        type: "bar",
       },
     ],
   };
@@ -37,8 +39,9 @@ const BarChart = ({ workedHours, normHours }) => {
   };
 
   return (
-    <div style={{ width: 400 }}>
-      <Bar data={chartData} options={options} />
+    <div style = {{width: 400}}>
+      <Bar data= {chartData}
+          options = {options}/>
     </div>
   );
 };
