@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-import BarChart from "./BarChart";
-// import {Chart} from 'chart.js';
+// import BarChart from "./BarChart";
+import {Chart} from 'chart.js';
 // import ChartComponent from './S_Chart'
 // import 'smart-webcomponents-react/source/styles/smart.default.css';
 // import '@smart-webcomponents-react/chart/styles/smart.default.css';
-// import {Bar} from "react-chartjs-2";
+import {Bar} from "react-chartjs-2";
 
 const Form = () => {
   const [startDate, setStartDate] = useState("");
@@ -18,6 +18,8 @@ const Form = () => {
   const [allData, setAllData] = useState({});
 
 //~~~~~~FOR CHART~~~~~~
+  // const [workedHours, setWorkedHours] = useState(0);
+  // const [newChartData, setnewChartData] = useState(null);
   const [hourlyRate, setHourlyRate] = useState(0);
   const [chartData, setChartData] = useState(null);
 //~~~~~~FOR CHART~~~~~~
@@ -98,40 +100,45 @@ const Form = () => {
     setHourlyRate(hourlyRate?.cost);
 
 
-    setChartData({workedHours: totalWorkedHours,
-                  normHours: 9, 
-        });
+    // setChartData({workedHours: totalWorkedHours,
+    //               normHours: 9, 
+    //     });
+
+    // setnewChartData({workedHours: totalWorkedHours,
+    //               normHours: 9, 
+    //     });
 
 //~~~~~FOR CHART
-    // const newChartData = {
-    //   labels: ["Norm", "Worked", "Amount", "Over Working"],
-    //   datasets: [
-    //     {
-    //       label: "Worked hours",
-    //       data: [
-    //         45,
-    //         totalWorkedHours,
-    //         Math.max(0, 45 - totalWorkedHours),
-    //         Math.max(0, totalWorkedHours - 45),
-    //       ],
-    //       backgroundColor: [
-    //         "rgba(54, 162, 235, 0.2)", // norm
-    //         "rgba(75, 192, 192, 0.2)", // worked
-    //         "rgba(255, 206, 86, 0.2)", // amount
-    //         "rgba(255, 99, 132, 0.2)", // overworking
-    //       ],
-    //       borderColor: [
-    //         "rgba(54, 162, 235, 1)",
-    //         "rgba(75, 192, 192, 1)",
-    //         "rgba(255, 206, 86, 1)",
-    //         "rgba(255, 99, 132, 1)",
-    //       ],
-    //       borderWidth: 1,
-    //     },
-    //   ],
-    // };
-    // setChartData(newChartData);
+    const newChartData = {
+      labels: ["Norm", "Worked", "Amount", "Over Working"],
+      datasets: [
+        {
+          label: "Worked hours",
+          data: [
+            45,
+            totalWorkedHours,
+            Math.max(0, 45 - totalWorkedHours),
+            Math.max(0, totalWorkedHours - 45),
+          ],
+          backgroundColor: [
+            "rgba(54, 162, 235, 0.2)", // norm
+            "rgba(75, 192, 192, 0.2)", // worked
+            "rgba(255, 206, 86, 0.2)", // amount
+            "rgba(255, 99, 132, 0.2)", // overworking
+          ],
+          borderColor: [
+            "rgba(54, 162, 235, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(255, 99, 132, 1)",
+          ],
+          borderWidth: 1,
+        },
+      ],
+    };
+    setChartData(newChartData);
   //~~~FOR CHART
+
 
   };
 
@@ -182,12 +189,21 @@ const Form = () => {
         <span>{workedAmount}</span>
       </div>
 
-      <div>
+      {/* <div>
         {chartData && (
             <BarChart workedHours = {chartData.workedHours}
                       normHours = {chartData.normHours} />
           )}
-      </div>
+      </div> */}
+      {/* <div>
+              {chartData && (
+                  <Bar workedHours = {chartData.workedHours}
+                            normHours = {chartData.normHours} />
+                )}
+      </div> */}
+
+
+      
     </div>
   );
 };
