@@ -1,6 +1,6 @@
 .speccontainer {
   text-align: center;
-  margin-top: 200px;
+  margin-top: 150px;
 }
 
 .speccontainer .content {
@@ -12,6 +12,10 @@
   /* align-items: flex-start; */
   justify-content: space-between;
 
+}
+
+.form-container{
+  align-items: center;
 }
 
 .speccontainer h1 {
@@ -49,6 +53,7 @@
   cursor: pointer;
   width: 150px;
   align-items: center;
+  margin-top: 20px;
   margin-left: 80px;
 }
 
@@ -72,5 +77,6 @@
 }
 
 .work-info {
+  margin-top: 20px;
     width: 300px;
 }

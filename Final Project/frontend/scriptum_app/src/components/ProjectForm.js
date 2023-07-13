@@ -159,6 +159,7 @@ function ProjectForm() {
   
   return (
     <div class="project-page">
+      
       <h1>Project Page</h1>
       <h2>Create New Project</h2>
       <p>Create a new project, do not forget to correctly indicate the project timeline, budget and company.</p>

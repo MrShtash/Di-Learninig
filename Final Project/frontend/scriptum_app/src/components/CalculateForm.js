@@ -234,7 +234,7 @@ const CompanyCalcForm = () => {
 
 
 return (
-    <div className = "company-page">
+    <div className = "companycalcpage">
 
       <div className = "header">
         <h1>Information about the company</h1>

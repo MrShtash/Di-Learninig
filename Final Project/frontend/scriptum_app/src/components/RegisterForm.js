@@ -56,7 +56,7 @@ function RegisterForm() {
   }, []);
 
   return (
-    <div className = "container">
+    <div className = "regcontainer">
       <h1>Register Page</h1>
       <p>Create a new Specialist</p>
       <p>Check the Department, grade and personal data</p><br></br>

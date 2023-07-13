@@ -2,56 +2,52 @@
     --color: #ccc
 }
 
-.company-page {
+.companycalcpage {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-top: 650;
+  margin-top: 650px;
   margin-bottom: 50px;
 }
 
-.company-page h1 {
+.companycalcpage h1 {
   margin-bottom: 20px;
 }
 
-.company-page p {
+.companycalcpage p {
   margin-bottom: 10px;
 }
 
-.company-page .header {
+.companycalcpage .header {
   margin-bottom: 20px;
 }
 
-.company-page .content {
+.companycalcpage .content {
   display: flex;
   gap: 200px;
-  /* flex-direction: column; */
-  /* flex-direction: row; */
   justify-content: center;
-  /* margin-top: 20px; */
-
 }
 
-.company-page .form-container {
+.companycalcpage .form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.company-page .form-group {
+.companycalcpage .form-group {
   margin-bottom: 10px;
 }
 
-.company-page select,
-.company-page input[type="date"] {
-  width: 300px;
+.companycalcpage select,
+.companycalcpage input[type="date"] {
+  width: z;
   padding: 8px;
   border: 1px solid var(--color);
   border-radius: 5px;
 }
 
-.company-page button {
+.companycalcpage button {
   padding: 8px 16px;
   background-color: #333;
   color: #fff;
@@ -60,32 +56,31 @@
   cursor: pointer;
 }
 
-.company-page h2 {
+.companycalcpage h2 {
   margin: 20px 0;
 }
 
-.company-page .results p {
+.companycalcpage .results p {
   margin-bottom: 5px;
 }
 
-.company-page .results p:last-child {
+.companycalcpage .results p:last-child {
   margin-bottom: 20px;
 }
 
-.company-page .results-chart-container {
-  display: flex;
-  flex-direction: column;
-  /* justify-content: space-between; */
-  align-items: center;
-}
-
-.company-page .charts {
+.companycalcpage .results-chart-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.company-page .bar-chart {
+.companycalcpage .charts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.companycalcpage .bar-chart {
   width: 400px;
   height: 300px;
   margin-bottom: 20px;
@@ -93,7 +88,7 @@
   border-radius: 5px;
 }
 
-.company-page .gantt-chart {
+.companycalcpage .gantt-chart {
   width: 100%;
   height: 400px;
   margin-bottom: 20px;
@@ -112,4 +107,30 @@
   display: block;
   margin-bottom: 10px;
   text-align: left !important;
+}
+
+.companycalcpage .form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.companycalcpage .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.companycalcpage label {
+  margin-bottom: 5px;
+}
+
+.companycalcpage select,
+.companycalcpage input[type="date"] {
+  width: 300px;
+  padding: 8px;
+  border: 1px solid var(--color);
+  border-radius: 5px;
+  margin-top: 5px;
 }
