@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Select from 'react-select';
+import './Sprint.css'
 
 const customStyles = {
   control: (provided) => ({
@@ -77,8 +78,11 @@ function SprintForm() {
   }, []);
 
   return (
-    <div>
+    <div class="sprint-page">
       <h1>Sprint Page</h1>
+      <h2>Add Your Sprint</h2>
+      <p>Create a sprint and name the project correctly. Don't forget to add all the necessary specialists to the sprint.</p>
+      <p>Do not forget to indicate the planned dates and the result upon completion.</p><br></br>
       <form onSubmit = {handleSubmit}>
         <label>
           Project: 

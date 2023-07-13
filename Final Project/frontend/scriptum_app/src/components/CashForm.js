@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import './Cash.css'
 
 function CashForm() {
   const [formData, setFormData] = useState({
@@ -29,17 +30,19 @@ function CashForm() {
   };
 
   return (
-    <div>
+    <div className = "container">
       <h1>Cash Page</h1>
+      <p>Enter amount</p><br></br>
       <form onSubmit = {handleSubmit}>
         <label>
           Cash: 
+          </label>
           <input type = "number"
                   name = "cash"
                   value = {formData.cash}
                   onChange = {handleChange}
                   placeholder = "Cash" />
-        </label>
+        
         <br />
         {/* <label>
           Cash: 

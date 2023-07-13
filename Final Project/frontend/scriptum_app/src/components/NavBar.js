@@ -1,7 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 // import axios from 'axios';
+import './NavBar.css';
+import Logo from '../static/Logo.jpg';
+
 
 function NavBar(props) {
   const handleLogout = () => {
@@ -12,12 +15,15 @@ function NavBar(props) {
     window.location.href = "/";
   };
 
-  const navigate = useNavigate();
-  console.log('77777',props.groupId);
+  // const navigate = useNavigate();
+  // console.log('77777',props.groupId);
 
   return (
-    <div>
-      <ul>
+    <div className = "navbar">
+      <div className = "logo">
+        <img src = {Logo} alt = "Logo" style = {{width: '150px'}} />
+      </div>
+      <ul className="navigation-links">
         {props.groupId == 13 && (
           <>
             <li>
@@ -63,9 +69,9 @@ function NavBar(props) {
         )}
         {(props.groupId == 7 || props.groupId == 8) && (
           <>
-            <li>
+            {/* <li>
               <Link to = "/protected/cash">Cash</Link>
-            </li>
+            </li> */}
             <li>
               <Link to = "/protected/company">Company</Link>
             </li>
@@ -95,7 +101,9 @@ function NavBar(props) {
           </>
         )}
       </ul>
-      {props.groupId && props.groupId!=='' ? <button onClick = {handleLogout}>Logout</button>:null}
+      {props.groupId && props.groupId!=='' ? <button
+                                              className="logout-button"
+                                              onClick = {handleLogout}>Logout</button>:null}
     </div>
   );
 }

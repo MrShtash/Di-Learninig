@@ -1,0 +1,115 @@
+:root{
+    --color: #ccc
+}
+
+.company-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 650;
+  margin-bottom: 50px;
+}
+
+.company-page h1 {
+  margin-bottom: 20px;
+}
+
+.company-page p {
+  margin-bottom: 10px;
+}
+
+.company-page .header {
+  margin-bottom: 20px;
+}
+
+.company-page .content {
+  display: flex;
+  gap: 200px;
+  /* flex-direction: column; */
+  /* flex-direction: row; */
+  justify-content: center;
+  /* margin-top: 20px; */
+
+}
+
+.company-page .form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.company-page .form-group {
+  margin-bottom: 10px;
+}
+
+.company-page select,
+.company-page input[type="date"] {
+  width: 300px;
+  padding: 8px;
+  border: 1px solid var(--color);
+  border-radius: 5px;
+}
+
+.company-page button {
+  padding: 8px 16px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.company-page h2 {
+  margin: 20px 0;
+}
+
+.company-page .results p {
+  margin-bottom: 5px;
+}
+
+.company-page .results p:last-child {
+  margin-bottom: 20px;
+}
+
+.company-page .results-chart-container {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  align-items: center;
+}
+
+.company-page .charts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.company-page .bar-chart {
+  width: 400px;
+  height: 300px;
+  margin-bottom: 20px;
+  border: 1px solid var(--color);
+  border-radius: 5px;
+}
+
+.company-page .gantt-chart {
+  width: 100%;
+  height: 400px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  overflow: auto;
+}
+
+.gantt-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.gantt-controls label {
+  display: block;
+  margin-bottom: 10px;
+  text-align: left !important;
+}

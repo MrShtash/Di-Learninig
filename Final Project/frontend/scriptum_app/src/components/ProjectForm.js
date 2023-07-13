@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Select from 'react-select';
+import './Project.css'
 
 // import 'react-select/dist/react-select.css';
 // import {css} from '@emotion/css';
@@ -157,8 +158,12 @@ function ProjectForm() {
   }, []);
   
   return (
-    <div>
+    <div class="project-page">
       <h1>Project Page</h1>
+      <h2>Create New Project</h2>
+      <p>Create a new project, do not forget to correctly indicate the project timeline, budget and company.</p>
+      <p>Describe the project - the essence and the planned result.</p>
+      <p>Make sure to add all the necessary specialists.</p><br></br>
       <form onSubmit = {handleSubmit}>
         <label>
           Name: 

@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import './Company.css'
 
 function CompanyForm() {
   const [formData, setFormData] = useState({
@@ -51,8 +52,17 @@ function CompanyForm() {
   }, []);
 
   return (
-    <div>
+    <div class="company-page">
       <h1>Company Page</h1>
+      <p>Create a company, correctly enter all the data from the CRM system.</p>
+      <p>Make sure that the deposit amount is correct, this will affect the report and the execution of work.</p>
+      <p>Make sure you select the correct category for the company.</p>
+      <div class="reference-box">
+        <p>Reference:</p>
+        <p>Payment up to 100,000 per month - category C company</p>
+        <p>Payment up to 500,000 per month - category B company</p>
+        <p>Payment above 500,000 per month - category A company</p>
+      </div><br></br>
       <form onSubmit = {handleSubmit}>
         <label>
         Name: 

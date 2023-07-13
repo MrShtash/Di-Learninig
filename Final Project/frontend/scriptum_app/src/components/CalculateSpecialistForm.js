@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import './CalcSpec.css'
 import axios from "axios";
 import {
         BarChart,
@@ -102,7 +103,7 @@ const chartData = [
       {
         name: "Worked Hours",
         value: totalWorkedHours,
-        color: totalWorkedHours > 181 ? "red" : "green",
+        color: totalWorkedHours > 181 ? "red" : "#8b7b74",
       },
       {
         name: "Standard Hours",
@@ -115,65 +116,78 @@ const chartData = [
   };
 
   return (
-    <div>
-      <div>
-        <label>Start Date:</label>
-        <input type = "date"
-                value = {startDate}
-                onChange = {handleStartDateChange} />
+    <div className = "container">
+      <h1>Calculate Workload</h1>
+      <p>Select a period, correct Department and Specialist</p><br></br>
+
+      <div className="contet">
+          <div className = "flex-container">
+
+            <div className = "form-container">
+              <div>
+                <label>Start Date:</label>
+                <input type = "date"
+                        value = {startDate}
+                        onChange = {handleStartDateChange} />
+              </div>
+              <div>
+                <label>End Date:</label>
+                <input type = "date"
+                        value = {endDate}
+                        onChange = {handleEndDateChange} />
+              </div>
+              <div>
+                <label>Department:</label>
+                <select value = {selectedDepartment}
+                        onChange = {handleDepartmentChange}>
+                  <option value = "">Please select Department</option>
+                  {departments.map((department, index) => (
+                    <option key = {index} value = {department.department_id}>
+                      {department.d_name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label>Specialist:</label>
+                <select>
+                    <option value = "">Please select Specialist</option>
+                  {specialistsInDepartment.map((specialist, index) => (
+                    <option key = {index} value = {specialist.id}>
+                      {specialist.f_name} {specialist.l_name}
+                    </option>
+                  ))}
+                </select>
+              </div >
+              <div>
+                <button onClick={handleCalculate}>Calculate</button>
+              </div>
+              <div className="work-info">
+                <div>
+                  <label>Worked Hours: {workedHours}</label>
+                </div>
+                <div>
+                  <label>Worked Amount: {workedAmount}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="chart-container">
+            {chartData.length > 0 && (
+              <BarChart width = {400}
+                        height = {300}
+                        data = {chartData}>
+                <CartesianGrid strokeDasharray = "3 3" />
+                <XAxis dataKey = "name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey = "value"
+                      fill = {chartData[0].color} />
+              </BarChart>
+            )}
+          </div>
       </div>
-      <div>
-        <label>End Date:</label>
-        <input type = "date"
-                value = {endDate}
-                onChange = {handleEndDateChange} />
-      </div>
-      <div>
-        <label>Department:</label>
-        <select value = {selectedDepartment}
-                onChange = {handleDepartmentChange}>
-          <option value = "">Please select Department</option>
-          {departments.map((department, index) => (
-            <option key = {index} value = {department.department_id}>
-              {department.d_name}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div>
-        <label>Specialist:</label>
-        <select>
-            <option value = "">Please select Specialist</option>
-          {specialistsInDepartment.map((specialist, index) => (
-            <option key = {index} value = {specialist.id}>
-              {specialist.f_name} {specialist.l_name}
-            </option>
-          ))}
-        </select>
-      </div>
-      <button onClick = {handleCalculate}>Calculate</button>
-      <div>
-        <label>Worked Hours: </label>
-        <span>{workedHours}</span>
-      </div>
-      <div>
-        <label>Worked Amount: </label>
-        <span>{workedAmount}</span>
-      </div>
-    <div>
-      {chartData.length > 0 && (
-        <BarChart width = {400}
-                  height = {300}
-                  data = {chartData}>
-          <CartesianGrid strokeDasharray = "3 3" />
-          <XAxis dataKey = "name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey = "value" fill = {chartData[0].color} />
-        </BarChart>
-      )}
-    </div>
     </div>
   );
 };

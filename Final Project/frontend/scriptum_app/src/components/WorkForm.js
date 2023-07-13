@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import './Work.css'
 
 function WorkForm() {
   const [formData, setFormData] = useState({
@@ -53,8 +54,12 @@ function WorkForm() {
   }, []);
 
   return (
-    <div>
+    <div className="work-page">
       <h1>Work Page</h1>
+      <h2>Add Your work</h2>
+      <p>Enter the title of the job, a short full description, and the number of hours you spent on the job.</p>
+      <p>Correctly indicate the start and end dates of the work, indicate the specialist and the result upon completion of the work.</p>
+      <p>Correctly select the sprint for entering work data.</p><br></br>
       <form onSubmit = {handleSubmit}>
         <label>
          Title: 

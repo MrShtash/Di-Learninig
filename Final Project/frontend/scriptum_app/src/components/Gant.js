@@ -111,7 +111,7 @@ const dataSource = filteredSprints.length > 0 && ganttData.works
     // console.log(dataSource.works);
     
 	return (
-		<div>
+		<div className="gantt-controls">
             <div>
                 <label>Select Company:</label>
                     <select id = "company"
@@ -125,8 +125,8 @@ const dataSource = filteredSprints.length > 0 && ganttData.works
                         </option>
                     ))}
                     </select>
-            </div>
-            <div>
+            </div><br></br>
+            <div >
                 <label>Select Project:</label>
                     <select id = "project"
                             value = {selectedProject}
@@ -139,14 +139,16 @@ const dataSource = filteredSprints.length > 0 && ganttData.works
                     </option>
                 ))}
                 </select>
-            </div>
+            </div><br></br>
             <div>
                 <GanttChart dataSource = {dataSource}
                             taskColumns = {taskColumns}
                             treeSize = {treeSize}
                             durationUnit = {durationUnit}
                             view = "week" 
-                            id = "gantt">
+                            id = "gantt"
+                            style={{height: '200px',
+                                    width: '1500px'}}>
                 </GanttChart>
             </div>
 		</div>

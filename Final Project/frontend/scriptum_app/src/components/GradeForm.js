@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import './Grade.css'
 
 function GradeForm() {
   const [formData, setFormData] = useState({
@@ -30,26 +31,28 @@ function GradeForm() {
   };
 
   return (
-    <div>
+    <div className = "container">
       <h1>Grade Page</h1>
+      <p>Create a Grade for Specialist</p><br></br>
       <form onSubmit = {handleSubmit}>
         <label>
           Grade: 
+          </label>
           <input type = "text"
                   name = "grade_type"
                   value = {formData.grade_type}
                   onChange = {handleChange}
                   placeholder = "Grade"/>
-        </label>
         <br />
         <label>
           Cost: 
+          </label>
           <input type = "number"
                   name = "cost"
                   value = {formData.cost}
                   onChange = {handleChange}
                   placeholder = "Cost"/>
-        </label>
+        
         <br />
         <button type = "submit">Create Grade</button>
       </form>

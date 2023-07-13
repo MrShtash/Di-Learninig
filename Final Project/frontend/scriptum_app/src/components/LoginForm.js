@@ -4,6 +4,8 @@ import React, {
         // useContext
 } from 'react';
 import axios from 'axios';
+import './Login.css'
+import Logo from '../static/Logo.jpg'
 
 // import {AppContext} from '../App';
 
@@ -74,10 +76,13 @@ function LoginForm() {
 
   return (
     <div>
-      <h1>Login Page</h1>
+      {/* <h1>Login Page</h1> */}
+      <div className="logo">
+        <img src={Logo} alt="Logo" />
+      </div>
       <form onSubmit = {handleSubmit}>
         <label>
-          Username: 
+          {/* Username   */}
           <input type = "text"
                   name = "username"
                   value = {formData.username}
@@ -86,7 +91,7 @@ function LoginForm() {
         </label>
         <br />
         <label>
-          Password:
+          {/* Password */}
           <input type = "password"
                   name = "password"
                   value = {formData.password}

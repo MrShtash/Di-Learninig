@@ -1,6 +1,18 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import GantComponent from "./Gant";
+import {
+      BarChart,
+      Bar,
+      XAxis,
+      YAxis,
+      CartesianGrid,
+      Tooltip,
+      Legend
+    } from "recharts";
+import './CalculateForm.css'
+// import 'smart-webcomponents-react/source/styles/smart.default.css';
+
 
 const CompanyCalcForm = () => {
   const [data, setData] = useState({
@@ -38,6 +50,7 @@ const CompanyCalcForm = () => {
   const [sprintRemainingCost, setSprintRemainingCost] = useState(0);
   const [selectedSprintHours, setSelectedSprintHours] = useState(0);
   const [selectedProjectHours, setSelectedProjectHours] = useState(0);
+  const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -195,111 +208,180 @@ const CompanyCalcForm = () => {
 
     const sprintRemainingCost = sprintCost;
     setSprintRemainingCost(sprintRemainingCost);
+
+    const chartData = [
+        {
+        name: "Remaining Deposit",
+        value: remainingDeposit,
+        // color: "blue"
+        color: "#8b7b74"
+      },
+        {
+        name: "Project Remaining Cost",
+        value: projectRemainingCost,
+        // color: "green"
+        color: "#00C49F"
+      },
+        {
+        name: "Sprint Remaining Cost",
+        value: sprintRemainingCost,
+        // color: "red"
+        color: "#FF0000"
+      },
+      ];
+      setChartData(chartData);
   };
 
+
 return (
-    <div>
-      <label>Select Company:</label>
-      <select id = "company"
-              value = {selectedCompany}
-              onChange = {(e) => setSelectedCompany(e.target.value)}>
-        <option value = "">--Please select Company--</option>
-        {data.companies.map((company) => (
-          <option key = {company.company_id}
-                  value = {company.company_id}>
-            {company.name}
-          </option>
-        ))}
-      </select>
+    <div className = "company-page">
 
-      <div>
-        <label>Start Date:</label>
-        <input type = "date"
-                id = "start_date"
-                value = {selectedStartDate}
-                onChange = {(e) => setSelectedStartDate(e.target.value)}/>
+      <div className = "header">
+        <h1>Information about the company</h1>
+        <p>Select a company to review financial performance and work progress.</p>
+        <p>Correctly specify the period for which you want to see analytics.</p>
+        <p>Select the company project, sprint and work of interest for greater accuracy.</p>
+        <p>If you want to see the progress of work in a sprint, select a specific project.</p><br></br>
       </div>
 
-      <div>
-        <label>End Date:</label>
-        <input
-          type = "date"
-          id = "end_date"
-          value = {selectedEndDate}
-          onChange = {(e) => setSelectedEndDate(e.target.value)}
-        />
+      <div className = "content">
+
+        <div className = "form-container">
+
+          <div className = "form-group">
+            <label>Select Company:</label>
+            <select id = "company"
+                    value = {selectedCompany}
+                    onChange = {(e) => setSelectedCompany(e.target.value)}>
+              <option value = "">--Please select Company--</option>
+              {data.companies.map((company) => (
+                <option key = {company.company_id}
+                        value = {company.company_id}>
+                  {company.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className = "form-group">
+            <label>Start Date:</label>
+            <input type = "date"
+                    id = "start_date"
+                    value = {selectedStartDate}
+                    onChange = {(e) => setSelectedStartDate(e.target.value)}/>
+          </div>
+
+          <div className = "form-group">
+            <label>End Date:</label>
+            <input
+              type = "date"
+              id = "end_date"
+              value = {selectedEndDate}
+              onChange = {(e) => setSelectedEndDate(e.target.value)}
+            />
+          </div>
+
+          <div className = "form-group">
+            <label>Select Project:</label>
+              <select id = "project"
+                    // value = {selectedProject}
+                    onChange = {(e) => setSelectedProject(e.target.value)}>
+              <option value = "" selected>--Please select Project--</option>
+              {filteredProjects.map((project) => (
+                <option key = {project.project_id}
+                        value = {project.project_id}>
+                  {project.name} (Deposit: {project.deposit})
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className = "form-group">
+            <label>Select Sprint:</label>
+            <select id = "sprint"
+                    value = {selectedSprint}
+                    onChange = {(e) => setSelectedSprint(e.target.value)}>
+              <option value = "">--Please select Sprint--</option>
+              {filteredSprints.map((sprint) => (
+                <option key = {sprint.sprint_id}
+                        value = {sprint.sprint_id}>
+                  {sprint.title}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className = "form-group">
+            <label>Select Work:</label>
+            <select id = "work"
+                    // multiple = 'True'
+                    multiple = {true}
+                    value = {selectedWork}
+                    // onChange={(e) => setSelectedWork(e.target.value)}
+                    onChange = {(e) =>
+                      setSelectedWork(
+                        Array.from(e.target.selectedOptions, (option) => option.value))}
+            >
+              <option value = "">--Please select Work--</option>
+              {// selectedSprint &&
+                filteredWorks.map((work) => (
+                  <option key = {work.work_id}
+                          value = {work.work_id} 
+                          // selected = {selectedWork.includes(work.work_id.toString())}
+                          defaultValue = {selectedWork.includes(work.work_id.toString())}
+                  >
+                    {work.title}
+                  </option>
+              ))} 
+            </select>
+          </div>
+
+          <div className = "form-group">
+            <button onClick = {handleCalculate}>Calculate</button>
+          </div>
+
+        </div>
+      
+        <div className = "results-chart-container">
+
+          <div className = "results">
+            <h2>Results:</h2>
+            <p>Remaining Deposit: {remainingDeposit}</p>
+            <p>Sprint Hours: {selectedSprintHours}</p>
+            <p>Total Project Hours: {selectedProjectHours}</p>
+            <p>Sprint budget: {sprintRemainingCost}</p>
+            <p>Selected Project Remaining Cost: {projectRemainingCost}</p>
+          </div>
+
+          <div className = "charts">
+            <div className = "bar-chart">
+              {chartData.length > 0 && (
+              <BarChart width = {400}
+                        height = {300}
+                        data = {chartData}>
+                <CartesianGrid strokeDasharray = "3 3" />
+                <XAxis dataKey = "name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey = "value"
+                      fill = {chartData[0].color}
+                      // fill = {chartData.map((data) => data.color)}
+                      // fill={(entry, index) => chartData[index].color}
+                      // fill={(entry) => entry.color} 
+                      />
+              </BarChart>
+            )}
+            </div>
+          </div>
+
+        </div>
+
       </div>
 
-      <div>
-        <label>Select Project:</label>
-          <select id = "project"
-                // value = {selectedProject}
-                onChange = {(e) => setSelectedProject(e.target.value)}>
-          <option value = "" selected>--Please select Project--</option>
-          {filteredProjects.map((project) => (
-            <option key = {project.project_id}
-                    value = {project.project_id}>
-              {project.name} (Deposit: {project.deposit})
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div>
-        <label>Select Sprint:</label>
-        <select id = "sprint"
-                value = {selectedSprint}
-                onChange = {(e) => setSelectedSprint(e.target.value)}>
-          <option value = "">--Please select Sprint--</option>
-          {filteredSprints.map((sprint) => (
-            <option key = {sprint.sprint_id}
-                    value = {sprint.sprint_id}>
-              {sprint.title}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div>
-        <label>Select Work:</label>
-        <select id = "work"
-                // multiple = 'True'
-                multiple = {true}
-                value = {selectedWork}
-                // onChange={(e) => setSelectedWork(e.target.value)}
-                onChange = {(e) =>
-                  setSelectedWork(
-                    Array.from(e.target.selectedOptions, (option) => option.value))}
-        >
-          <option value = "">--Please select Work--</option>
-          {// selectedSprint &&
-            filteredWorks.map((work) => (
-              <option key = {work.work_id}
-                      value = {work.work_id} 
-                      // selected = {selectedWork.includes(work.work_id.toString())}
-                      defaultValue = {selectedWork.includes(work.work_id.toString())}
-              >
-                {work.title}
-              </option>
-          ))} 
-        </select>
-      </div>
-
-      <div>
-        <button onClick = {handleCalculate}>Calculate</button>
-      </div>
-
-      <div>
-        <h2>Results:</h2>
-        <p>Remaining Deposit: {remainingDeposit}</p>
-        <p>Sprint Hours: {selectedSprintHours}</p>
-        <p>Total Project Hours: {selectedProjectHours}</p>
-        <p>Sprint budget: {sprintRemainingCost}</p>
-        <p>Selected Project Remaining Cost: {projectRemainingCost}</p>
-      </div>
-      <div>
+      <div className = "gantt-chart">
         <GantComponent/>
-      </div>
+      </div><br></br>
 
     </div>
   );

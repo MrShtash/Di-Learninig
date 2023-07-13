@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import './Category.css'
 
 function CategoryForm() {
   const [formData, setFormData] = useState({
@@ -29,17 +30,18 @@ function CategoryForm() {
   };
 
   return (
-    <div>
+    <div className = "container">
       <h1>Category Page</h1>
+      <p>Create a Company Category</p><br></br>
       <form onSubmit = {handleSubmit}>
         <label>
           Category Name: 
+          </label>
           <input type = "text"
                   name = "name"
                   value = {formData.category}
                   onChange = {handleChange}
                   placeholder = "Category name"/>
-        </label>
         <br />
         <button type = "submit">Create Category</button>
       </form>

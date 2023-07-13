@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import './Register.css'
 
 function RegisterForm() {
   const [formData, setFormData] = useState({
@@ -55,56 +56,59 @@ function RegisterForm() {
   }, []);
 
   return (
-    <div>
+    <div className = "container">
       <h1>Register Page</h1>
+      <p>Create a new Specialist</p>
+      <p>Check the Department, grade and personal data</p><br></br>
       <form onSubmit = {handleSubmit}>
         <label>
           Username:
+          </label>
           <input type = "text"
                   name = "username"
                   value = {formData.username}
                   onChange = {handleChange}
                   placeholder = "Username"/>
-        </label>
         <br />
         <label>
           First Name:
+          </label>
           <input type = "text"
                   name = "f_name"
                   value = {formData.f_name}
                   onChange = {handleChange}
                   placeholder = "First Name"/>
-        </label>
         <br />
         <label>
           Last Name:
+          </label>
           <input type = "text"
                   name = "l_name"
                   value = {formData.l_name}
                   onChange = {handleChange}
                   placeholder = "Last Name"/>
-        </label>
         <br />
         <label>
           Email:
+          </label>
           <input type = "email"
                   name = "email"
                   value = {formData.email}
                   onChange = {handleChange}
                   placeholder = "Email"/>
-        </label>
         <br />
         <label>
           Password:
+          </label>
           <input type = "password"
                   name = "password"
                   value = {formData.password}
                   onChange = {handleChange}
                   placeholder = "Password"/>
-        </label>
         <br />
         <label>
           Grade:
+          </label>
           <select name = "grade"
                     id = "grade"
                     value = {formData.grade}
@@ -117,10 +121,10 @@ function RegisterForm() {
               </option>
             ))}
           </select>
-        </label>
         <br />
         <label>
           Department:
+          </label>
           <select name = "department"
                     id = "department"
                     value = {formData.department}
@@ -132,10 +136,10 @@ function RegisterForm() {
               </option>
             ))}
           </select>
-        </label>
         <br />
         <label>
           Group:
+          </label>
           <select name = "group"
                     id = "group"
                     value = {formData.group}
@@ -147,10 +151,10 @@ function RegisterForm() {
               </option>
             ))}
           </select>
-        </label>
         <br />
         <label>
           Status:
+          </label>
           <select name = "status"
                     id = "status"
                     value = {formData.status}
@@ -159,7 +163,6 @@ function RegisterForm() {
             <option value = "active">Active</option>
             <option value = "inactive">Inactive</option>
           </select>
-        </label>
         <br />
         <button type = "submit">Create Specialist</button>
       </form>

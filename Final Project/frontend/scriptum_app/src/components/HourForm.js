@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import './Hour.css'
 
 function HourForm() {
   const [formData, setFormData] = useState({
@@ -44,20 +45,23 @@ function HourForm() {
   }, [])
 
   return (
-    <div>
+    <div className = "container">
       <h1>Hour Page</h1>
+      <p>Create an hour instance</p>
       <form onSubmit = {handleSubmit}>
         <label>
           Hour: 
+          </label>
           <input type = "number"
                   name = "hour"
                   value = {formData.hour}
                   onChange = {handleChange}
                   placeholder = "Hour"/>
-        </label>
+        
         <br />
         <label>
           Grade: 
+          </label>
         <select name = "grade"
                   id = "grade"
                   value = {formData.grade}
@@ -69,7 +73,6 @@ function HourForm() {
               </option>
             ))}
           </select>
-        </label>
         <br />
         <button type = "submit">Create Hour Cost</button>
       </form>

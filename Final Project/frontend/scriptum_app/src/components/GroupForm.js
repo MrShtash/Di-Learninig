@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import './Group.css'
 
 function GroupForm() {
   const [formData, setFormData] = useState({
@@ -29,17 +30,19 @@ function GroupForm() {
   };
 
   return (
-    <div>
+    <div className = "container">
       <h1>Group Page</h1>
+      <p>Create a Group for Specialist</p><br></br>
       <form onSubmit={handleSubmit}>
         <label>
           Group: 
+           </label>
           <input type = "text"
                   name = "group_name"
                   value = {formData.group_name}
                   onChange = {handleChange}
                   placeholder = "Group"/>
-        </label>
+       
         <br />
         <button type = "submit">Create Group Item</button>
       </form>

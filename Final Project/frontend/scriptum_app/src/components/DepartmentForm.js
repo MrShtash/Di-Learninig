@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import './Department.css'
 
 function DepartmentForm() {
   const [formData, setFormData] = useState({
@@ -29,17 +30,19 @@ function DepartmentForm() {
   };
 
   return (
-    <div>
+    <div className = "container">
       <h1>Department Page</h1>
+      <p>Create a New Department</p><br></br>
       <form onSubmit = {handleSubmit}>
         <label>
           Department Name: 
+          </label>
           <input type = "text"
                   name = "d_name"
                   value = {formData.d_name}
                   onChange = {handleChange}
                   placeholder = "Department name"/>
-        </label>
+        
         <br />
         <button type = "submit">Create Department</button>
       </form>
