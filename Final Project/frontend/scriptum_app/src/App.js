@@ -15,7 +15,7 @@ import RegisterForm from './components/RegisterForm';
 import SprintForm from './components/SprintForm';
 import WorkForm from './components/WorkForm';
 import Form from './components/CalculateSpecialistForm';
-import CompanyCalcForm from './components/CalculateForm'
+import CompanyCalcForm from './components/CalculateForm';
 import Profile from './components/Profile';
 import {
       BrowserRouter as Router,

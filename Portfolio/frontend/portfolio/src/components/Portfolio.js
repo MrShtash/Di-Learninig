@@ -15,8 +15,9 @@ import {
 import icondjango from '../static/icondjango.jpeg';
 import ovi from '../static/ovi.png';
 import ca from '../static/ca.png';
-import code from '../static/5764018.jpg'
-
+import code from '../static/5764018.jpg';
+import Robofriends from '../static/Robofriends.png'
+import scriptum1 from '../static/scriptum1.png';
 import './Portfolio.css'
 
 const Portfolio = () => {
@@ -111,8 +112,8 @@ const Portfolio = () => {
       <div id="education" className="portfolio-section">
         <h2 className="text-center">Education</h2>
         <div className="education-logos">
-          <img src="./static/di.png" alt="" />
-          <img src="./static/gb.jpeg" alt="" />
+          <img src="../static/di.png" alt="" />
+          <img src="../static/gb.jpeg" alt="" />
         </div>
       </div>
 
@@ -149,11 +150,11 @@ const Portfolio = () => {
           </div>
           <div className="project">
             <div className="project-image">
-              <img src={code} alt="" style={{width: '300px', height: '100%'}}/>
+              <img src={Robofriends} alt="" style={{width: '300px', height: '100%'}}/>
               <div className="project-hover">
-                <h3>See Soon</h3>
-                <p>See Soon</p>
-                <a href="https://github.com/MrShtash/DI_Hackathon_1"
+                <h3>Robofriends</h3>
+                <p>Mini-project</p>
+                <a href="https://github.com/MrShtash/Di-Learninig/tree/45df9940a2e07a37d2bab22f19e052f2f40d5ecc/Week12/Day2/Daily/robo"
                         target="_blank"
                         rel="noopener noreferrer">
                   Learn More
@@ -161,6 +162,41 @@ const Portfolio = () => {
               </div>
             </div>
           </div>
+
+          <div className="project">
+            <div className="project-image">
+              <img src={scriptum1} alt="" style={{width: '300px', height: '100%'}}/>
+              <div className="project-hover">
+                <h3>Scriptum</h3>
+                <p>Bootcamp final project</p>
+                <a href="https://scriptum.onrender.com/"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                  Learn More
+                </a>
+              </div>
+            </div>
+          </div>
+
+
+          <div className="project">
+            <div className="project-image">
+              <img src={code} alt="" style={{width: '300px', height: '100%'}}/>
+              <div className="project-hover">
+                <h3>See Soon</h3>
+                <p>See Soon</p>
+                <a href="https://github.com/MrShtash"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                  Learn More
+                </a>
+              </div>
+            </div>
+          </div>
+
+
+
+
         </div>
       </div>
 

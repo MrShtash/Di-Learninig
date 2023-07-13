@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
+import AdminDashboard from './AdminDashBoard';
 
 function AdminComponent({specialistData}) {
   console.log(specialistData);
@@ -43,6 +44,7 @@ function AdminComponent({specialistData}) {
           <p>{specialistData.f_name} {specialistData.l_name}</p>
           <p>From {departmentData.d_name} Department </p>
           <p>Your status is {specialistData.status} and you can start work</p>
+          <AdminDashboard/>
         </div>
       )}
     </div>
