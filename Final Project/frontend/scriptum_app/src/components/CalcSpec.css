@@ -1,9 +1,9 @@
-.container {
+.speccontainer {
   text-align: center;
   margin-top: 200px;
 }
 
-.container .content {
+.speccontainer .content {
   display: flex;
   /* gap: 50px; */
   /* flex-direction: column; */
@@ -14,11 +14,11 @@
 
 }
 
-.container h1 {
-  margin-bottom: 10px;
+.speccontainer h1 {
+  margin-bottom: 0px;
 }
 
-.container p {
+.speccontainer p {
   margin-bottom: 20px;
 }
 
@@ -26,21 +26,21 @@
   margin-bottom: 10px;
 }
 
-.container label {
+.speccontainer label {
   display: block;
   margin-bottom: 5px;
   text-align: left;
 }
 
-.container input[type="date"],
-.container select {
+.speccontainer input[type="date"],
+.speccontainer select {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 300px;
 }
 
-.container button {
+.speccontainer button {
   padding: 8px 16px;
   background-color: #333;
   color: #fff;

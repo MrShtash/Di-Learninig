@@ -116,7 +116,7 @@ const chartData = [
   };
 
   return (
-    <div className = "container">
+    <div className = "speccontainer">
       <h1>Calculate Workload</h1>
       <p>Select a period, correct Department and Specialist</p><br></br>
 

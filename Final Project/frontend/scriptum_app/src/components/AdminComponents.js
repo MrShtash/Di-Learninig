@@ -36,15 +36,13 @@ function AdminComponent({specialistData}) {
 
 
   return (
-    <div>
+    <div className="user-info">
       {specialistData && (
         <div>
-          <h2>First Name: {specialistData.f_name}</h2>
-          <h2>Last Name: {specialistData.l_name}</h2>
-          <h2>
-            Department: {specialistData.department_id} {departmentData.d_name}
-          </h2>
-          <h2>Status: {specialistData.status}</h2>
+          <h3>Hello,</h3>
+          <p>{specialistData.f_name} {specialistData.l_name}</p>
+          <p>From {departmentData.d_name} Department </p>
+          <p>Your status is {specialistData.status} and you can start work</p>
         </div>
       )}
     </div>
