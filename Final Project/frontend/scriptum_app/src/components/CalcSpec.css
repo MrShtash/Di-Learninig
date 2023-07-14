@@ -14,8 +14,12 @@
 
 }
 
-.form-container{
+.form-container {
   align-items: center;
+
+  width: 50%;
+  text-align: left;
+
 }
 
 .speccontainer h1 {
@@ -36,7 +40,7 @@
   text-align: left;
 }
 
-.speccontainer input[type="date"],
+.speccontainer input[type = "date"],
 .speccontainer select {
   padding: 8px;
   border: 1px solid #ccc;
@@ -71,7 +75,7 @@
   width: 50%;
 }
 
-.container > div {
+.speccontainer > div {
   display: flex;
   align-items: center;
 }
