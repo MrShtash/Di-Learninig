@@ -1,3 +1,8 @@
+.container {
+  box-shadow: none;
+}
+
+
 .container label {
   display: flex;
   align-items: center;
