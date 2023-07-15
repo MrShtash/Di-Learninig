@@ -18,13 +18,7 @@
 }
 
 .container label {
-  /* display: flex;
-  margin-bottom: 10px;
-  text-align: left;
-  align-items: left; */
-    /* justify-self: flex-start; */
-    margin-right: auto;
-
+  margin-right: auto;
 }
 
 .container input[type="number"] {

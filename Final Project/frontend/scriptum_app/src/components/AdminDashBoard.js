@@ -16,53 +16,122 @@ import './AdminashBoard.css'
 
 const AdminDashboard = () => {
   return (
-    <div className='admin'>
+    <div className="admin">
       <h1>Admin Dashboard</h1>
 
-      <div className = "grid-container">
-        <div className = "grid-item">
-          <CashForm/>
+      <div className="grid-container">
+        <div className="grid-line">
+          <div className="grid-item">
+            <CashForm />
+          </div>
+          <div className="grid-item">
+            <HourForm />
+          </div>
+          <div className="grid-item">
+            <CategoryForm />
+          </div>
         </div>
-        <div className = "grid-item">
-          <HourForm/>
+        <div className="grid-line">
+          <div className="grid-item">
+            <GradeForm />
+          </div>
+          <div className="grid-item">
+            <GroupForm />
+          </div>
+          <div className="grid-item">
+            <DepartmentForm />
+          </div>
         </div>
-        <div className = "grid-item">
-          <CategoryForm/>
+        <div className="grid-line">
+          <div className="grid-item">
+            <RegisterForm />
+          </div>
+          <div className="grid-item">
+            <CompanyForm />
+          </div>
         </div>
-        <div className = "grid-item">
-          <GradeForm/>
+        <div className="grid-line">
+          <div className="grid-item">
+            <ProjectForm />
+          </div>
+          <div className="grid-item">
+            <SprintForm />
+          </div>
         </div>
-        <div className = "grid-item">
-          <GroupForm/>
+        <div className="grid-line">
+          <div className="grid-item">
+            <WorkForm />
+          </div>
+          <div className="grid-item">
+            <Form />
+          </div>
         </div>
-        <div className = "grid-item">
-          <DepartmentForm/>
+        <div className="grid-line">
+          <div className="grid-item">
+            <CompanyCalcForm />
+          </div>
         </div>
-        <div className = "grid-item">
-          <RegisterForm/>
-        </div>
-        <div className = "grid-item">
-          <CompanyForm/>
-        </div>
-        <div className = "grid-item">
-          <ProjectForm/>
-        </div>
-        <div className = "grid-item">
-          <SprintForm/>
-        </div>
-        <div className = "grid-item">
-          <WorkForm/>
-        </div>
-        <div className = "grid-item">
-          <CompanyCalcForm/>
-        </div>
-        <div className = "grid-item">
-          <Form/>
-        </div>
-
       </div>
-
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    // <div className = "admin">
+    //   <h1>Admin Dashboard</h1>
+
+    //   <div className = "grid-container">
+    //     <div className = "grid-item">
+    //       <CashForm/>
+    //     </div>
+    //     <div className = "grid-item">
+    //       <HourForm/>
+    //     </div>
+    //     <div className = "grid-item">
+    //       <CategoryForm/>
+    //     </div>
+    //     <div className = "grid-item">
+    //       <GradeForm/>
+    //     </div>
+    //     <div className = "grid-item">
+    //       <GroupForm/>
+    //     </div>
+    //     <div className = "grid-item">
+    //       <DepartmentForm/>
+    //     </div>
+    //     <div className = "grid-item">
+    //       <RegisterForm/>
+    //     </div>
+    //     <div className = "grid-item">
+    //       <CompanyForm/>
+    //     </div>
+    //     <div className = "grid-item">
+    //       <ProjectForm/>
+    //     </div>
+    //     <div className = "grid-item">
+    //       <SprintForm/>
+    //     </div>
+    //     <div className = "grid-item">
+    //       <WorkForm/>
+    //     </div>
+    //     <div className = "grid-item">
+    //       <Form/>
+    //     </div>
+    //     <div className = "grid-item">
+    //       <CompanyCalcForm/>
+    //     </div>
+
+    //   </div>
+
+    // </div>
   )
 };
 

@@ -1,0 +1,147 @@
+/* .admin {
+  text-align: center;
+}
+
+.admin .grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.admin .grid-item {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.admin .grid-item:nth-child(1),
+.admin .grid-item:nth-child(2),
+.admin .grid-item:nth-child(3) {
+  grid-row: 1;
+  width: 33.33%;
+  height: 200px;
+}
+
+.admin .grid-item:nth-child(4),
+.admin .grid-item:nth-child(5),
+.admin .grid-item:nth-child(6) {
+  grid-row: 2;
+  width: 33.33%;
+  height: 200px;
+}
+
+.admin .grid-item:nth-child(7),
+.admin .grid-item:nth-child(8) {
+  grid-row: 3;
+  width: 66.66%;
+  height: 200px;
+}
+
+.admin .grid-item:nth-child(9),
+.admin .grid-item:nth-child(10) {
+  grid-row: 4;
+  width: 66.66%;
+  height: 200px;
+}
+
+.admin .grid-item:nth-child(11) {
+  grid-row: 5;
+  width: 66.66%;
+  height: 200px;
+  display: flex;
+}
+
+.admin .grid-item:nth-child(11) > div:first-child {
+  width: 33.33%;
+  height: 200px;
+}
+
+.admin .grid-item:nth-child(11) > div:last-child {
+  width: 66.66%;
+  height: 200px;
+}
+
+.admin .grid-item:nth-child(12) {
+  grid-row: 5;
+  width: 33.33%;
+  height: 200px;
+}
+
+.admin .grid-item:nth-child(13) {
+  grid-row: 6;
+  width: 66.66%;
+  height: 200px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 30px;
+} */
+
+.admin {
+  text-align: center;
+}
+
+.admin .grid-container {
+  display: grid;
+  grid-gap: 20px;
+}
+
+.admin .grid-line {
+  display: flex;
+  justify-content: space-between;
+}
+
+.admin .grid-line:nth-child(1) .grid-item,
+.admin .grid-line:nth-child(2) .grid-item {
+  width: calc(33.33% - 10px);
+}
+
+.admin .grid-line:nth-child(3) .grid-item:nth-child(1),
+.admin .grid-line:nth-child(3) .grid-item:nth-child(2) {
+  width: 50%;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+}
+
+.admin .grid-line:nth-child(4) .grid-item:nth-child(1),
+.admin .grid-line:nth-child(4) .grid-item:nth-child(2) {
+  width: 50%;
+}
+
+.admin .grid-line .grid-item {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.admin .grid-item:nth-child(5) {
+  width: calc(66.66% - 10px);
+}
+
+.admin .grid-item:last-child {
+  width: 100%;
+}
+
+.admin h1 {
+  margin-bottom: 20px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 30px;
+  margin-top: 8500px;
+} 

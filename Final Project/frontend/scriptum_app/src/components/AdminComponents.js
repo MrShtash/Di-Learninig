@@ -39,12 +39,12 @@ function AdminComponent({specialistData}) {
   return (
     <div className="user-info">
       {specialistData && (
-        <div>
+        <div className = "adminPage">
           <h3>Hello,</h3>
           <p>{specialistData.f_name} {specialistData.l_name}</p>
           <p>From {departmentData.d_name} Department </p>
           <p>Your status is {specialistData.status} and you can start work</p>
-          <AdminDashboard/>
+          <AdminDashboard className = "admin"/>
         </div>
       )}
     </div>
