@@ -36,7 +36,7 @@ function ManagerComponent({specialistData}) {
   }, [departmentData, specialistData.department_id]);
 
   return (
-    <div className="user-info">
+    <div className="manuser-info">
       {specialistData && (
         <div>
           <h3>Hello,</h3>
