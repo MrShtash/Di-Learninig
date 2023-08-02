@@ -45,3 +45,4 @@ some_array = list(range(1000))
 value = 1500
 
 binary_search(some_array, value)
+
