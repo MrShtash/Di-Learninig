@@ -13,10 +13,21 @@ def binary_search(array, value_to_search):
     middle = array[len(array) // 2]
     right = len(array)
     left = 0
+    iteration = 0
 
-    while True:
+    # while True:
+
+    # 2 solution
+    while left == middle or right == middle:
+
+        iteration += 1
+        # 1 solution
+        # if value_to_search > right or value_to_search < left:
+        #     pass
+
         if middle == value_to_search:
             print(f"FOUND SEARCH VALUE - {value_to_search}!")
+            print('Iterations', iteration)
             break
 
         elif middle < value_to_search:
@@ -25,12 +36,15 @@ def binary_search(array, value_to_search):
         elif middle > value_to_search:
             right = middle
             middle = (left + right) // 2
-        else:
-            print('NO SUCH VALUE')
-            break
+
+        print('LEFT', left)
+        print('RIGHT', right)
+
+    else:
+        print('NO SUCH VALUE')
 
 # print()
 some_array = list(range(1000))
-value = 50
+value = 1500
 
 binary_search(some_array, value)
