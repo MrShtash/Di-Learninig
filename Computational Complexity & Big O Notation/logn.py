@@ -17,13 +17,10 @@ def binary_search(array, value_to_search):
 
     # while True:
 
-    # 2 solution
+    # or
     while left == middle or right == middle:
 
         iteration += 1
-        # 1 solution
-        # if value_to_search > right or value_to_search < left:
-        #     pass
 
         if middle == value_to_search:
             print(f"FOUND SEARCH VALUE - {value_to_search}!")
